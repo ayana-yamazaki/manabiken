@@ -70,7 +70,6 @@
 .slide--work-ui {
   --work-ui-media-col: 65%;
   --work-ui-text-col: 35%;
-  --work-ui-column-bg: rgba(223, 216, 208, 0.92);
   --work-ui-text-color: #1a1a2e;
   background-color: transparent !important;
 }
@@ -122,7 +121,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  background: var(--work-ui-column-bg);
+  background: transparent !important;
 }
 
 .slide--work-ui .work-ui__text {
@@ -150,10 +149,6 @@
   margin-right: 0;
 }
 
-.slide--work-ui.work-ui--panel-none {
-  --work-ui-column-bg: transparent;
-}
-
 .slide--work-ui.work-ui--panel-none .work-ui__text-column {
   background: transparent !important;
 }
@@ -164,6 +159,16 @@
 
 .slide--work-ui.work-ui--text-light {
   --work-ui-text-color: #f5f0eb;
+}
+
+@media (min-width: 769px) {
+  .slide--work-ui .work-ui__text .slide__heading {
+    font-size: clamp(1.3rem, 2.9vw, 2.3rem);
+  }
+
+  .slide--work-ui .work-ui__text .slide__body {
+    font-weight: 400;
+  }
 }
 
 /* ========== Message slide ========== */
@@ -545,11 +550,11 @@
 
   .slide--work-ui .slide__inner--work-ui {
     grid-template-columns: 1fr;
-    grid-template-rows: 42vh minmax(0, 1fr);
+    grid-template-rows: 42vh auto;
     grid-template-areas:
       "media"
       "text";
-    height: 100vh;
+    height: auto;
     min-height: 100vh;
     align-items: stretch;
     justify-items: stretch;
@@ -562,11 +567,12 @@
 
   .work-ui__text-column {
     justify-content: center;
+    align-items: flex-start;
   }
 
   .slide--work-ui .work-ui__text {
     width: calc(100% - 2.5rem);
-    margin: 1.25rem auto 0;
+    margin: 0.75rem auto 0.5rem;
     align-self: start;
     justify-self: center;
   }

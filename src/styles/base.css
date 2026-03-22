@@ -231,8 +231,8 @@ body {
   background: transparent;
   border: none;
   box-shadow: none;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .slide--work-ui.work-ui--caption-plain .slide__caption {
