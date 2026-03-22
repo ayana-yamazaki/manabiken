@@ -36,11 +36,11 @@ body {
 .slide__text {
   max-width: 520px;
   padding: 2rem;
-  background: rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   opacity: 1;
   transform: translateY(0);
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
@@ -54,7 +54,7 @@ body {
 
 .slide__text--dark {
   color: #1a1a2e;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
@@ -261,12 +261,12 @@ body {
 }
 
 .slide--work-ui.slide--light .work-ui__text {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.5);
 }
 
 .slide--work-ui:not(.slide--light) .work-ui__text {
-  background: rgba(0, 0, 0, 0.6);
-  color: rgba(255, 255, 255, 0.85);  
+  background: rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.9);  
 }
 
 /* ========== Scroll hint ========== */

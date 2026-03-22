@@ -103,16 +103,16 @@ export const slides: SlideData[] = [
     {
     id: "slide-05",
     className: "slide slide--has-image slide--light",
-    bgStart: "#dfd8d0",
-    bgEnd: "#d0c8c0",
+    bgStart: "#1a1a2e",
+    bgEnd: "#0f3460",
     observeAsActive: true,
     content: {
       layout: "basic",
       label: "背景",
-      heading: "2026年現在、\n私はもう画面を描いていない。",
-      body: "代わりにコードを書いている。AIに言葉で伝えるだけで\n実際に動く画面が目の前に現れる。\n丸一日かかっていた作業が、数十分で終わる。デザイナーの仕事はエンジニア領域に染み出している。デザイナーって何なんだろう？",
-      imageSrc: "/images/figma-vs-code.png",
-      imageAlt: "2026年以前はFigma、2026年以降はコード",
+      heading: "2026年現在、\nコードを書いている。",
+      body: "代わりにコードを書いている。AIに言葉で伝えるだけで実際に動く画面が目の前に現れる。\n丸一日かかっていた作業が、数十分で終わる。デザイナーの仕事はエンジニア領域に染み出し、非デザイナーでもハイクオリティなものを生成できる。",
+      imageSrc: "/images/figma-vs-code2.png",
+      imageAlt: "コードを書いている様子",
     },
   },
   {
@@ -168,8 +168,6 @@ export const slides: SlideData[] = [
       heading: "「俺らにはIT無理だから。」\n最初の問い",
       headingClassName: "slide__heading--quote",
       body: "農家さん向けアプリ開発の事例。農家さんの多くが60代以上。\n当初、農家さんと大きな断絶。「俺らには無理だから」と怒ってスマホを投げる人まで。「どうしてそんなに拒絶するの？」それが最初の問い。",
-      imageSrc: "/images/farm-smartphone.png",
-      imageAlt: "農業の現場と手袋越しのスマホ操作",
     },
   },
   {
@@ -184,6 +182,8 @@ export const slides: SlideData[] = [
       },
       heading: "2年間、畑を借りて、\n作物を育てた。",
       body: "自分で畑に立つと、日光でスマホの画面が見えない。\n泥だらけの手袋では操作できない。\nシニアスマホ教室にも通い始めた。\n「マップアプリが何度聞いてもわからない。」\n言葉にならない切なさと、プライド。\n\n「わからない」と言えない空気の中で、\nその人たちの感情を、感じ取ろうとした。",
+      imageSrc: "/images/farm-smartphone.png",
+      imageAlt: "農業の現場と手袋越しのスマホ操作",
     },
   },
     {
