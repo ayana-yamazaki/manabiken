@@ -93,7 +93,7 @@ function ContentSlide({
               <img className="work-ui__image" src={content.imageSrc} alt={content.imageAlt ?? ""} />
             </div>
           ) : null}
-          <SlideTextArea content={content} caption={caption} containerClassName="work-ui__text-column" textClassName="work-ui__text" transparentContainer />
+          <SlideTextArea content={content} caption={caption} textClassName="work-ui__text" />
         </div>
       );
     }
@@ -161,12 +161,26 @@ function ContentSlide({
           <div className="river-origin" aria-hidden="true"></div>
           <div className="slide__inner slide__inner--split">
             <div className="split__left">
-              {content.leftLabel ? <p className="slide__label">{content.leftLabel}</p> : null}
-              {content.leftHeading ? <h2 className="slide__heading">{withBreaks(content.leftHeading)}</h2> : null}
+              <SlideTextArea 
+                content={{
+                  ...content,
+                  heading: content.leftHeading,
+                  label: content.leftLabel
+                }} 
+                containerClassName="split__left-content"
+                textClassName="split__left-text"
+              />
             </div>
             <div className="split__right">
-              {content.rightBody ? <p className="slide__body">{withBreaks(content.rightBody)}</p> : null}
-              {caption ? <p className="slide__caption">{withBreaks(caption)}</p> : null}
+              <SlideTextArea 
+                content={{
+                  ...content,
+                  body: content.rightBody
+                }} 
+                caption={caption}
+                containerClassName="split__right-content"
+                textClassName="split__right-text"
+              />
             </div>
           </div>
           <div className="slide__river-start">

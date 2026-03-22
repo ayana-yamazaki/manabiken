@@ -64,11 +64,6 @@ export const useSlideObserver = () => {
         const slideHeight = rect.height;
         const viewportHeight = window.innerHeight;
 
-        if (slide.classList.contains("slide--work-ui")) {
-          slide.style.backgroundColor = "transparent";
-          return;
-        }
-
         if (slideTop < viewportHeight && slideTop + slideHeight > 0) {
           const t = Math.max(0, Math.min(1, -slideTop / slideHeight));
           const bgStart = slide.dataset.bgStart || "#1a1a2e";

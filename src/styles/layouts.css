@@ -71,7 +71,7 @@
   --work-ui-media-col: 65%;
   --work-ui-text-col: 35%;
   --work-ui-text-color: #1a1a2e;
-  background-color: transparent !important;
+  background-color: transparent;
 }
 
 .slide--work-ui::before,
@@ -95,7 +95,6 @@
 }
 
 .work-ui__image-wrap {
-  grid-area: media;
   position: absolute;
   top: 0;
   right: 0;
@@ -110,38 +109,23 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: left center;
+  object-position: left top;
   display: block;
 }
 
-.work-ui__text-column {
+.slide--work-ui .work-ui__text {
   grid-area: text;
   position: relative;
   z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  background: transparent !important;
-}
-
-.slide--work-ui .work-ui__text {
   align-self: center;
   justify-self: end;
   width: min(520px, calc(100% - 3rem));
-  margin-right: clamp(1rem, 3vw, 3rem);
+  margin-right: clamp(0.5rem, 1.5vw, 1.5rem);
   color: var(--work-ui-text-color);
-}
-
-.slide--work-ui.work-ui--text-right .work-ui__text-column {
-  justify-content: flex-end;
 }
 
 .slide--work-ui.work-ui--text-left .slide__inner--work-ui {
   grid-template-areas: "text media";
-}
-
-.slide--work-ui.work-ui--text-left .work-ui__text-column {
-  justify-content: flex-start;
 }
 
 .slide--work-ui.work-ui--text-left .work-ui__text {
@@ -149,9 +133,7 @@
   margin-right: 0;
 }
 
-.slide--work-ui.work-ui--panel-none .work-ui__text-column {
-  background: transparent !important;
-}
+
 
 .slide--work-ui.work-ui--text-dark {
   --work-ui-text-color: #1a1a2e;
@@ -563,11 +545,6 @@
 
   .work-ui__image-wrap {
     height: 42vh;
-  }
-
-  .work-ui__text-column {
-    justify-content: center;
-    align-items: flex-start;
   }
 
   .slide--work-ui .work-ui__text {

@@ -253,6 +253,19 @@ body {
   color: rgba(26, 26, 46, 0.9);
 }
 
+.slide--work-ui .work-ui__text {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.slide--work-ui.slide--light .work-ui__text {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.slide--work-ui:not(.slide--light) .work-ui__text {
+  background: rgba(0, 0, 0, 0.6);
+}
+
 /* ========== Scroll hint ========== */
 .scroll-hint {
   position: absolute;
