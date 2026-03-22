@@ -32,12 +32,13 @@ body {
   pointer-events: none;
 }
 
+/* ========== [layout: "text"のスタイル変更] ========== */
 .slide__text {
-  max-width: 640px;
-  padding: 3rem;
+  max-width: 520px;
+  padding: 2rem;
   background: rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.06);
   opacity: 1;

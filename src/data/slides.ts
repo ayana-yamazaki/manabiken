@@ -122,9 +122,9 @@ export const slides: SlideData[] = [
     bgEnd: "#f0ebe5",
     content: {
       layout: "title",
-      heading: "「感じる」を教えている",
+      heading: "1. 「感じる」を教えている",
       headingClassName: "slide__heading--hero",
-      sub: "美術の授業の力 ①",
+      sub: "美術の授業の力",
       // author: "山崎 文菜 ── プロダクトデザイナー",
     },
   },
@@ -179,6 +179,9 @@ export const slides: SlideData[] = [
     bgEnd: "#2a4a48",
     content: {
       layout: "basic",
+      nodeAccent: {
+        enabled: true,
+      },
       heading: "2年間、畑を借りて、\n作物を育てた。",
       body: "自分で畑に立つと、日光でスマホの画面が見えない。\n泥だらけの手袋では操作できない。\nシニアスマホ教室にも通い始めた。\n「マップアプリが何度聞いてもわからない。」\n言葉にならない切なさと、プライド。\n\n「わからない」と言えない空気の中で、\nその人たちの感情を、感じ取ろうとした。",
     },
@@ -190,6 +193,9 @@ export const slides: SlideData[] = [
     bgEnd: "#2a4a48",
     content: {
       layout: "basic",
+      nodeAccent: {
+        enabled: true,
+      },
       heading: "シニアスマホ教室に通った。",
       body: "シニアスマホ教室でボランティアをした。若い頃はバリバリ第一線で働いてたのに、マップアプリで現在地を開く方法が何度聞いてもわからない。「何度も聞いてごめんなさいね、私頭が悪いから…」\n言葉にならない切なさと、プライド。\n\n「わからない」と言えない空気の中で、\nその人たちの感情を、感じ取ろうとした。",
     },
@@ -201,6 +207,9 @@ export const slides: SlideData[] = [
     bgEnd: "#e5dfd8",
     content: {
       layout: "basic",
+      nodeAccent: {
+        enabled: true,
+      },
       heading: "問いの変換\n「彼らが持って使える体験とは？」",
       body: "操作そのものを無くす設計。\nIT用語を隠す。\n畑の上に余計なものを被せない。\n\n「感じる」ことが、設計の方角を変えた。",
     },
@@ -212,6 +221,9 @@ export const slides: SlideData[] = [
     bgEnd: "#4a3728",
     content: {
       layout: "basic",
+      nodeAccent: {
+        enabled: true,
+      },
       heading: "「これ知ってる？\nかっこいいだろ。」",
       headingClassName: "slide__heading--quote",
       body: "農家さんが、自分から周りに勧めてくれた。\n口コミだけで全国200社以上に広がった。\n\n営業トークではなく、誇り。\n「感じる力」がビジネスの成果になった瞬間だった。",
@@ -220,38 +232,37 @@ export const slides: SlideData[] = [
   {
     id: "slide-14",
     className: "slide",
-    bgStart: "#4a3728",
-    bgEnd: "#5c3d2e",
-    content: {
-      layout: "text",
-      label: "美術教育との接続",
-      heading: "このプロセスを\n最初に体験したのは、\n対話による鑑賞の授業だった。",
-      body: "否定しない場で、他者の見方に触れる。\n自分の見え方が変わる。問いが生まれる。\n\nあの授業で身につけた「感じる力」が、\nグッドデザイン賞金賞につながっている。",
-    },
-  },
-
-  {
-    id: "slide-15",
-    className: "slide",
     bgStart: "#5c3d2e",
     bgEnd: "#4a3530",
     content: {
-      layout: "text",
-      label: "まとめ①",
-      heading: "感じる力 →\n問いを立てる力 →\n価値を生む力。",
+      layout: "basic",
+      heading: "まとめ\n感じる力 →\n問いを立てる力 →\n価値を生む力。",
       headingClassName: "slide__heading--warm",
       body: "美術の授業が育てている「感じる力」は、\n社会で「問いを立てる力」になり、\nやがて「価値を生む力」へと変わる。",
     }
   },
+
   {
-    id: "slide-16a",
+    id: "slide-15",
+    className: "slide slide--title slide--light",
+    bgStart: "#f5f0eb",
+    bgEnd: "#f0ebe5",
+    content: {
+      layout: "title",
+      heading: "2. 「正解のない中で試し続ける力」を教えている",
+      headingClassName: "slide__heading--hero",
+      sub: "美術の授業の力",
+    },
+  },
+  {
+    id: "slide-16",
     className: "slide slide--has-image",
     bgStart: "#4a3530",
     bgEnd: "#5c3d2e",
     observeAsActive: true,
     content: {
       layout: "basic",
-      label: "理由② ── プロトタイプ型",
+      label: "設計図型と\nプロトタイプ型",
       heading: "正解がわからないまま、\n小さく試す。\n小さく外す。",
       body: "設計図型：正解を決めてから動く。\nプロトタイプ型：小さく試す。外す。感じて方角を修正する。\n\n到達点は最初から決まっていない。\n動きながら見つけていく。",
       imageSrc: "/images/blueprint-vs-prototype.png",
@@ -259,7 +270,7 @@ export const slides: SlideData[] = [
     },
   },
   {
-    id: "slide-15",
+    id: "slide-17",
     className: "slide slide--has-image",
     bgStart: "#5c3d2e",
     bgEnd: "#8b3a3a",
@@ -273,18 +284,7 @@ export const slides: SlideData[] = [
       imageAlt: "椅子制作のプロセス",
     },
   },
-  {
-    id: "slide-16",
-    className: "slide",
-    bgStart: "#8b3a3a",
-    bgEnd: "#6b4423",
-    content: {
-      layout: "text",
-      label: "ある友人の話",
-      heading: "選択肢が多すぎるのではなく、\n「これがいい」と\n感じる力が弱っている。",
-      body: "優秀な公務員の友人が、転職できずにいる。\n情報は十分すぎるほどある。条件も整っている。\n\nでも、「これだ」と感じて飛び込む力が、\nどこかで鈍っていた。",
-    },
-  },
+
   {
     id: "slide-17",
     className: "slide slide--river-source",
