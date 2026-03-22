@@ -48,7 +48,7 @@ function ContentSlide({
     return null;
   }
 
-  const contentClassName = joinClassNames(className, ...(content.modifiers ?? []));
+  const contentClassName = joinClassNames(className, content.layout === "basic" ? "slide--work-ui slide--basic" : undefined, ...(content.modifiers ?? []));
 
   const renderStandardText = () => (
     <div className="slide__inner">
@@ -85,7 +85,7 @@ function ContentSlide({
       );
     }
 
-    if (content.layout === "work-ui") {
+    if (content.layout === "basic" || content.layout === "work-ui") {
       return (
         <div className="slide__inner slide__inner--work-ui">
           {content.imageSrc ? (
@@ -265,7 +265,7 @@ const renderSlide = (slide: SlideData, index: number) => {
   }
 
   if (slide.content?.layout === "node-animation") {
-    return <NodeAnimationSlide key={slide.id} {...commonProps} />;
+    return <NodeAnimationSlide key={slide.id} {...commonProps} content={slide.content} />;
   }
 
   return <ContentSlide key={slide.id} {...commonProps} content={slide.content} />;

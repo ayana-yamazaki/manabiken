@@ -1,4 +1,6 @@
 import { useEffect, useRef } from "react";
+import type { SlideContent } from "../../data/slides";
+import SlideTextArea from "./SlideTextArea";
 
 type Sq = {
   x: number; y: number;
@@ -18,6 +20,7 @@ const PAL = [
 ];
 
 const SQ = 28, CR = 10, GAP = 90, CDIST = 240, MCONN = 4;
+const NODE_COUNT = 22;
 const SPAWN_LO = 1500, SPAWN_HI = 4000;
 const TRAV_LO = 1200, TRAV_HI = 1800;
 const RDUR = 700, CDUR = 2000;
@@ -64,14 +67,14 @@ function makeSqs(w: number, h: number): Sq[] {
   const pad = SQ + 20;
   const res: Sq[] = [];
   let tries = 0;
-  while (res.length < 20 && tries < 4000) {
+  while (res.length < NODE_COUNT && tries < 4000) {
     tries++;
     const x = pad + Math.random() * (w - pad * 2);
     const y = pad + Math.random() * (h - pad * 2);
     if (res.every(s => Math.hypot(s.x - x, s.y - y) >= GAP)) {
       res.push({
         x, y,
-        base: PAL[res.length],
+        base: PAL[res.length % PAL.length],
         trans: null,
         nextAt: Date.now() + SPAWN_LO + Math.random() * (SPAWN_HI - SPAWN_LO),
       });
@@ -98,17 +101,18 @@ function makeArcs(sq: Sq[]): Arc[] {
   return res;
 }
 
-type Props = {
+export type NodeAnimationSlideProps = {
   id: string;
   slideNumber: number;
   className: string;
   bgStart: string;
   bgEnd: string;
+  content?: SlideContent;
   observeAsActive?: boolean;
   caption?: string;
 };
 
-export default function NodeAnimationSlide({ id, slideNumber, className, bgStart, bgEnd, observeAsActive, caption }: Props) {
+export default function NodeAnimationSlide({ id, slideNumber, className, bgStart, bgEnd, content, observeAsActive, caption }: NodeAnimationSlideProps) {
   const cvs = useRef<HTMLCanvasElement>(null);
   const sec = useRef<HTMLElement>(null);
 
@@ -242,7 +246,7 @@ export default function NodeAnimationSlide({ id, slideNumber, className, bgStart
     <section
       ref={sec}
       id={id}
-      className={className}
+      className={`${className} slide--work-ui slide--basic`}
       data-slide-number={slideNumber}
       data-bg-start={bgStart}
       data-bg-end={bgEnd}
@@ -253,13 +257,11 @@ export default function NodeAnimationSlide({ id, slideNumber, className, bgStart
         ref={cvs}
         style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
       />
-      {caption && (
-        <div className="slide__inner">
-          <div className="slide__text">
-            <p className="slide__caption">{caption}</p>
-          </div>
+      {content ? (
+        <div className="slide__inner slide__inner--work-ui">
+          <SlideTextArea content={content} caption={caption} textClassName="work-ui__text" />
         </div>
-      )}
+      ) : null}
     </section>
   );
 }

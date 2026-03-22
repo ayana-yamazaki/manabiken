@@ -10,6 +10,7 @@ export type SlideData = {
 
 export type SlideContentLayout =
   | "title"
+  | "basic"
   | "text"
   | "image-text"
   | "work-ui"
@@ -89,7 +90,7 @@ export const slides: SlideData[] = [
     bgStart: "#eae5df",
     bgEnd: "#e5dfd8",
     content: {
-      layout: "work-ui",
+      layout: "basic",
       heading: "2025年まで、私はアプリの画面を描いていた",
       body: "美しいブランドカラーや余白、直感的な画面構成、データベースとの整合性…\n10年以上かけて積み上げたスキル。1画面を仕上げるのに何日もかかることも",
       imageSrc: "/images/figma-vs-code.png",
@@ -103,7 +104,7 @@ export const slides: SlideData[] = [
     bgEnd: "#d0c8c0",
     observeAsActive: true,
     content: {
-      layout: "text",
+      layout: "basic",
       label: "背景",
       heading: "2026年現在、私はもう画面を描いていない。",
       body: "代わりにコードを書いている。AIに言葉で伝えるだけで\n実際に動く画面が目の前に現れる。\n丸一日かかっていた作業が、数十分で終わる。デザイナーの仕事はエンジニア領域に染み出している。デザイナーって何なんだろう？",
@@ -130,7 +131,7 @@ export const slides: SlideData[] = [
     bgStart: "#e5dfd8",
     bgEnd: "#dfd8d0",
     content: {
-      layout: "image-text",
+      layout: "basic",
       label: "私の仕事",
       heading: "レポサク",
       body: "北海道の農家さんと共同開発した車両管理アプリ。\nGPS端末をUSBに挿すだけで、\n数十台の車両の位置と軌跡がスマホで見える。\n\n全国200社以上、農協24組合に導入。\n2025年 グッドデザイン賞 金賞（TOP 20）受賞。",
@@ -170,7 +171,7 @@ export const slides: SlideData[] = [
     bgEnd: "#0f3460",
     observeAsActive: true,
     content: {
-      layout: "image-text",
+      layout: "basic",
       label: "理由① ── 感じる力",
       heading: "「俺らにはIT無理だから。」",
       headingClassName: "slide__heading--quote",
@@ -249,7 +250,7 @@ export const slides: SlideData[] = [
     bgEnd: "#5c3d2e",
     observeAsActive: true,
     content: {
-      layout: "image-text",
+      layout: "basic",
       label: "理由② ── プロトタイプ型",
       heading: "正解がわからないまま、\n小さく試す。\n小さく外す。",
       body: "設計図型：正解を決めてから動く。\nプロトタイプ型：小さく試す。外す。感じて方角を修正する。\n\n到達点は最初から決まっていない。\n動きながら見つけていく。",
@@ -264,7 +265,7 @@ export const slides: SlideData[] = [
     bgEnd: "#8b3a3a",
     observeAsActive: true,
     content: {
-      layout: "image-text",
+      layout: "basic",
       label: "原体験",
       heading: "手を動かしながら、\n座りながら、感じながら、\n形を探っていった。",
       body: "美術大学での椅子制作。\nスケッチを何十枚も描き、実寸モデルを作って座る。\n「なんか違う」を何度も繰り返す。\n設計図通りに作ったのではない。",
