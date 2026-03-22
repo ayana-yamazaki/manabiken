@@ -5,7 +5,7 @@ export type SlideData = {
   bgEnd: string;
   markup: string;
   observeAsActive?: boolean;
-  variant?: "default" | "intro" | "message" | "mountain-viz" | "closing";
+  variant?: "default" | "intro" | "message" | "mountain-viz" | "closing" | "node-animation";
 };
 
 export const slides: SlideData[] = [
@@ -242,6 +242,15 @@ export const slides: SlideData[] = [
           </p>
         </div>
       </div>`,
+  },
+  {
+    id: "slide-node-anim",
+    className: "slide slide--light slide--luminous",
+    bgStart: "#faf8f5",
+    bgEnd: "#ffffff",
+    markup: "",
+    observeAsActive: true,
+    variant: "node-animation",
   },
   {
     id: "slide-13",

@@ -15,6 +15,7 @@ body {
   background: #f5f0eb;
   color: #f5f0eb;
   overflow-x: hidden;
+  overscroll-behavior-y: none;
 }
 
 .slide::before {

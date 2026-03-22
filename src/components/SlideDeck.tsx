@@ -1,4 +1,5 @@
 import ClosingSlide from "./slides/ClosingSlide";
+import NodeAnimationSlide from "./slides/NodeAnimationSlide";
 import IntroSlide from "./slides/IntroSlide";
 import MessageSlide from "./slides/MessageSlide";
 import MountainVizSlide from "./slides/MountainVizSlide";
@@ -65,6 +66,10 @@ const renderSlide = (slide: SlideData, index: number) => {
     return <ClosingSlide key={slide.id} {...commonProps} />;
   }
 
+  if (slide.variant === "node-animation") {
+    return <NodeAnimationSlide key={slide.id} {...commonProps} />;
+  }
+
   return <HtmlSlide key={slide.id} {...commonProps} markup={slide.markup} />;
 };
 
@@ -73,7 +78,9 @@ export default function SlideDeck() {
 
   return (
     <>
-      {slides.map(renderSlide)}
+      <div className="slide-deck" id="slideDeck">
+        {slides.map(renderSlide)}
+      </div>
       <div className="progress-bar" id="progressBar"></div>
     </>
   );

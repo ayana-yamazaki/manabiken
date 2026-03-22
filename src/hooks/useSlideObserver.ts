@@ -3,9 +3,18 @@ import { interpolateColor } from "../utils/colorUtils";
 
 export const useSlideObserver = () => {
   useEffect(() => {
+    const scrollContainer = document.getElementById("slideDeck") as HTMLElement | null;
     const slideNodes = document.querySelectorAll<HTMLElement>(".slide");
     const progressBar = document.getElementById("progressBar") as HTMLElement | null;
-    let lastScrollY = window.scrollY;
+
+    if (!scrollContainer) {
+      return;
+    }
+
+    const previousScrollRestoration = history.scrollRestoration;
+    history.scrollRestoration = "manual";
+    window.scrollTo({ top: 0, behavior: "auto" });
+    scrollContainer.scrollTop = 0;
 
     const textObserver = new IntersectionObserver(
       (entries) => {
@@ -41,9 +50,8 @@ export const useSlideObserver = () => {
     });
 
     const onScroll = () => {
-      const scrollTop = window.scrollY;
-      const isScrollingDown = scrollTop >= lastScrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollTop = scrollContainer.scrollTop;
+      const docHeight = scrollContainer.scrollHeight - scrollContainer.clientHeight;
       const progress = docHeight > 0 ? scrollTop / docHeight : 0;
 
       if (progressBar) {
@@ -68,25 +76,33 @@ export const useSlideObserver = () => {
         const rect = slide.getBoundingClientRect();
         const textEl = slide.querySelector(".slide__text") as HTMLElement | null;
 
-        if (!textEl || !textEl.classList.contains("is-visible") || !isScrollingDown) {
+        if (!textEl || !textEl.classList.contains("is-visible")) {
           return;
         }
 
-        const centerOffset = rect.top + rect.height / 2 - window.innerHeight / 2;
-        const parallaxY = centerOffset * 0.08;
+        const viewportCenter = scrollContainer.clientHeight / 2;
+        const slideCenter = rect.top + rect.height / 2;
+        const distanceFromCenter = slideCenter - viewportCenter;
+        const activeBand = scrollContainer.clientHeight * 0.55;
+
+        if (Math.abs(distanceFromCenter) > activeBand) {
+          textEl.style.transform = "translateY(0px)";
+          return;
+        }
+
+        const parallaxY = Math.max(-36, Math.min(36, distanceFromCenter * 0.08));
         textEl.style.transform = `translateY(${parallaxY}px)`;
       });
-
-      lastScrollY = scrollTop;
     };
 
-    window.addEventListener("scroll", onScroll, { passive: true });
+    scrollContainer.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
     return () => {
       textObserver.disconnect();
       imageObserver.disconnect();
-      window.removeEventListener("scroll", onScroll);
+      scrollContainer.removeEventListener("scroll", onScroll);
+      history.scrollRestoration = previousScrollRestoration;
     };
   }, []);
 };
