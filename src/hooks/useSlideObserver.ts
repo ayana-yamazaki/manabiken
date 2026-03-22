@@ -1,14 +1,6 @@
 import { useEffect } from "react";
 import { interpolateColor } from "../utils/colorUtils";
 
-const IMAGE_OBSERVER_CLASSES = [
-  "slide--has-image",
-  "slide--intro",
-  "slide--mountain-viz",
-  "slide--message",
-  "slide--river-source",
-] as const;
-
 export const useSlideObserver = () => {
   useEffect(() => {
     const slideNodes = document.querySelectorAll<HTMLElement>(".slide");
@@ -43,7 +35,7 @@ export const useSlideObserver = () => {
     slideNodes.forEach((slide) => {
       textObserver.observe(slide);
 
-      if (IMAGE_OBSERVER_CLASSES.some((className) => slide.classList.contains(className))) {
+      if (slide.dataset.observeActive === "true") {
         imageObserver.observe(slide);
       }
     });

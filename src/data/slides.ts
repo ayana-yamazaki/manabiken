@@ -4,7 +4,8 @@ export type SlideData = {
   bgStart: string;
   bgEnd: string;
   markup: string;
-  variant?: "default" | "mountain-viz";
+  observeAsActive?: boolean;
+  variant?: "default" | "intro" | "message" | "mountain-viz" | "closing";
 };
 
 export const slides: SlideData[] = [
@@ -31,62 +32,25 @@ export const slides: SlideData[] = [
     className: "slide slide--intro slide--light",
     bgStart: "#f0ebe5",
     bgEnd: "#eae5df",
-    markup: `<div class="slide__inner slide__inner--intro">
-        <div class="intro__photo">
-          <img src="/images/profile.jpg" alt="山崎文菜" class="intro__photo-img" />
-        </div>
-        <div class="intro__text">
-          <h2 class="slide__heading">
-            山崎 文菜
-          </h2>
-          <p class="intro__name-en">Ayana Yamazaki</p>
-          <p class="slide__sub">プロダクトデザイナー</p>
-          <p class="slide__body">
-            金沢美術工芸大学 プロダクトデザイン学部卒。<br />
-            日立製作所で鉄道システムのUXデザインに携わり、<br />
-            その後スタートアップで農業・医療・SaaSなど<br />
-            現場で使われるサービスを設計してきた。<br /><br />
-            美術の先生ではありません。<br />
-            美術の授業を受けた側の人間です。
-          </p>
-        </div>
-      </div>`,
+    markup: "",
+    observeAsActive: true,
+    variant: "intro",
   },
   {
     id: "slide-03",
     className: "slide slide--light slide--message",
     bgStart: "#eae5df",
     bgEnd: "#e5dfd8",
-    markup: `<div class="slide__inner slide__inner--message">
-        <p class="slide__label">本日のメッセージ</p>
-        <h2 class="slide__heading">
-          AI時代に最も必要とされる力は、<br />美術の授業が育てうる力だ。
-        </h2>
-        <p class="message__lead">今日は3つの観点からお話しします。</p>
-        <div class="message-pillars">
-          <div class="message-pillar">
-            <span class="message-pillar__num">1</span>
-            <div class="message-pillar__circle"><!-- TBD --></div>
-            <p class="message-pillar__heading">感じる力</p>
-          </div>
-          <div class="message-pillar">
-            <span class="message-pillar__num">2</span>
-            <div class="message-pillar__circle"><!-- TBD --></div>
-            <p class="message-pillar__heading">プロトタイプ型</p>
-          </div>
-          <div class="message-pillar">
-            <span class="message-pillar__num">3</span>
-            <div class="message-pillar__circle"><!-- TBD --></div>
-            <p class="message-pillar__heading">観察の場</p>
-          </div>
-        </div>
-      </div>`,
+    markup: "",
+    observeAsActive: true,
+    variant: "message",
   },
   {
     id: "slide-04",
     className: "slide slide--has-image slide--light",
     bgStart: "#e5dfd8",
     bgEnd: "#dfd8d0",
+    observeAsActive: true,
     markup: `<div class="slide__image">
         <img src="/images/reposaku.png" alt="レポサク — グッドデザイン金賞" />
       </div>
@@ -111,6 +75,7 @@ export const slides: SlideData[] = [
     className: "slide slide--has-image slide--light",
     bgStart: "#dfd8d0",
     bgEnd: "#d0c8c0",
+    observeAsActive: true,
     markup: `<div class="slide__image">
         <img src="/images/figma-vs-code.png" alt="2026年以前はFigma、2026年以降はコード" />
       </div>
@@ -174,6 +139,7 @@ export const slides: SlideData[] = [
     className: "slide slide--has-image",
     bgStart: "#1a1a2e",
     bgEnd: "#0f3460",
+    observeAsActive: true,
     markup: `<div class="slide__image">
         <img src="/images/farm-smartphone.png" alt="農業の現場と手袋越しのスマホ操作" />
       </div>
@@ -301,6 +267,7 @@ export const slides: SlideData[] = [
     className: "slide slide--has-image",
     bgStart: "#4a3530",
     bgEnd: "#5c3d2e",
+    observeAsActive: true,
     markup: `<div class="slide__image">
         <img src="/images/blueprint-vs-prototype.png" alt="設計図型 vs プロトタイプ型" />
       </div>
@@ -324,6 +291,7 @@ export const slides: SlideData[] = [
     className: "slide slide--has-image",
     bgStart: "#5c3d2e",
     bgEnd: "#8b3a3a",
+    observeAsActive: true,
     markup: `<div class="slide__image">
         <img src="/images/chair-process.png" alt="椅子制作のプロセス" />
       </div>
@@ -367,6 +335,7 @@ export const slides: SlideData[] = [
     className: "slide slide--river-source",
     bgStart: "#6b4423",
     bgEnd: "#5c3d2e",
+    observeAsActive: true,
     markup: `<div class="river-origin" aria-hidden="true"></div>
       <div class="slide__inner slide__inner--split">
         <div class="split__left">
@@ -410,6 +379,7 @@ export const slides: SlideData[] = [
     className: "slide slide--has-image slide--drift",
     bgStart: "#1e8a9a",
     bgEnd: "#1a7f8e",
+    observeAsActive: true,
     markup: `<div class="water-surface" aria-hidden="true">
         <div class="water-surface__orbit water-surface__orbit-x--2">
           <div class="water-surface__orbit water-surface__orbit-y--2">
@@ -503,6 +473,7 @@ export const slides: SlideData[] = [
     bgStart: "#ffffff",
     bgEnd: "#faf8f5",
     markup: "",
+    observeAsActive: true,
     variant: "mountain-viz",
   },
   {
@@ -604,21 +575,7 @@ export const slides: SlideData[] = [
     className: "slide slide--closing slide--luminous",
     bgStart: "#ffffff",
     bgEnd: "#ffffff",
-    markup: `<div class="slide__inner slide__inner--closing">
-        <div class="closing__main">
-          <h2 class="slide__heading">
-            先生方の教室から<br />飛び立つ子どもたちと、<br />
-            いつか一緒に<br />仕事がしたい。
-          </h2>
-          <p class="slide__author-end">
-            山崎 文菜<br />
-            <span>プロダクトデザイナー ── CADDi</span>
-          </p>
-        </div>
-        <div class="closing__qr">
-          <div class="closing__qr-box"><!-- QR code here --></div>
-          <p class="closing__qr-label">スライドはこちら</p>
-        </div>
-      </div>`,
+    markup: "",
+    variant: "closing",
   },
 ];
