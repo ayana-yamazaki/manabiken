@@ -4,12 +4,13 @@ import { interpolateColor } from "../utils/colorUtils";
 export const useSlideObserver = () => {
   useEffect(() => {
     const scrollContainer = document.getElementById("slideDeck") as HTMLElement | null;
-    const slideNodes = document.querySelectorAll<HTMLElement>(".slide");
     const progressBar = document.getElementById("progressBar") as HTMLElement | null;
 
     if (!scrollContainer) {
       return;
     }
+
+    const slideNodes = scrollContainer.querySelectorAll<HTMLElement>(".slide");
 
     const previousScrollRestoration = history.scrollRestoration;
     history.scrollRestoration = "manual";

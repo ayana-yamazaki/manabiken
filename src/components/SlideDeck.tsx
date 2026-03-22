@@ -92,7 +92,7 @@ function ContentSlide({
       );
     }
 
-    if (content.layout === "basic" || content.layout === "basic") {
+    if (content.layout === "basic") {
       return (
         <div className="slide__inner slide__inner--basic">
           {content.imageSrc ? (
@@ -293,13 +293,17 @@ const renderSlide = (slide: SlideData, index: number) => {
   return <ContentSlide key={slide.id} {...commonProps} content={slide.content} />;
 };
 
+const uniqueSlides = slides.filter(
+  (slide, index, allSlides) => allSlides.findIndex((candidate) => candidate.id === slide.id) === index,
+);
+
 export default function SlideDeck() {
   useSlideObserver();
 
   return (
     <>
       <div className="slide-deck" id="slideDeck">
-        {slides.map(renderSlide)}
+        {uniqueSlides.map(renderSlide)}
       </div>
       <div className="progress-bar" id="progressBar"></div>
     </>

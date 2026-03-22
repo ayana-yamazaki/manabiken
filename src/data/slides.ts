@@ -135,7 +135,7 @@ export const slides: SlideData[] = [
       layout: "basic",
       heading: "レポサク\nグッドデザイン賞\n金賞 (TOP20)",
       body: "北海道の農家さんと共同開発した「レポサク」。\nGPS端末をUSBに挿すだけで、\n数十台の車両の位置と軌跡がスマホで見える。\n\n全国200社以上、農協24組合に導入。",
-      imageSrc: "/images/reposaku.png",
+      imageSrc: "/images/reposaku_main.jpg",
       imageAlt: "レポサク — グッドデザイン金賞",
     },
   },
@@ -164,96 +164,91 @@ export const slides: SlideData[] = [
         enabled: true,
       },
       heading: "「俺らにはIT無理だから。」\n最初の問い",
-      headingClassName: "slide__heading--quote",
       body: "農家さん向けアプリ開発の事例。農家さんの多くが60代以上。\n当初、農家さんと大きな断絶。「俺らには無理だから」と怒ってスマホを投げる人まで。「どうしてそんなに拒絶するの？」それが最初の問い。",
     },
   },
-  {
+{
     id: "slide-10",
-    className: "slide",
+    className: "slide slide--has-image slide--dark",
     bgStart: "#0f3460",
     bgEnd: "#2a4a48",
     content: {
-      layout: "basic",
-      modifiers: ["basic--text-left"],
-      nodeAccent: {
-        enabled: true,
-      },
-      heading: "2年間、畑を借りて、\n作物を育てた。",
-      body: "自分で畑に立つと、日光でスマホの画面が見えない。\n泥だらけの手袋では操作できない。\nシニアスマホ教室にも通い始めた。\n「マップアプリが何度聞いてもわからない。」\n言葉にならない切なさと、プライド。\n\n「わからない」と言えない空気の中で、\nその人たちの感情を、感じ取ろうとした。",
-      imageSrc: "/images/farm-smartphone.png",
-      imageAlt: "農業の現場と手袋越しのスマホ操作",
+      layout: "basic", // 画像を表示するためにbasicを使います！
+      modifiers: ["basic--text-left", "basic--text-plain"], // 👈 中央配置 ＆ 背景透明化！
+      heading: "2年間、畑を借り、土を耕し、作物を育てた",
+      body: "自分で畑に立つと、日光でスマホの画面が見えない。\n泥だらけの手袋では操作できないことが理解できた。",
+      imageSrc: "/images/farming.jpg",
+      imageAlt: "畑を借りて土を耕した",
     },
   },
-    {
+  {
     id: "slide-11",
-    className: "slide",
+    className: "slide slide--has-image slide--dark",
     bgStart: "#0f3460",
     bgEnd: "#2a4a48",
     content: {
       layout: "basic",
-      modifiers: ["basic--text-left"],
-      nodeAccent: {
-        enabled: true,
-      },
-      heading: "シニアスマホ教室に通った。",
-      body: "シニアスマホ教室でボランティアをした。若い頃はバリバリ第一線で働いてたのに、マップアプリで現在地を開く方法が何度聞いてもわからない。「何度も聞いてごめんなさいね、私頭が悪いから…」\n言葉にならない切なさと、プライド。\n\n「わからない」と言えない空気の中で、\nその人たちの感情を、感じ取ろうとした。",
+      // 👇 center を left に変更！(plainはそのまま残して背景透明を維持)
+      modifiers: ["basic--text-left", "basic--text-plain"], 
+      heading: "シニアスマホ教室に通った",
+      body: "シニアスマホ教室でボランティアをした。若い頃はバリバリ第一線で働いてたのに、マップアプリで現在地を開く方法が何度聞いてもわからない。「何度も聞いてごめんなさいね、私頭が悪いから…」\n言葉にならない切なさと、プライド。\n「わからない」と言えない空気の中で、\nその人たちの感情を、感じ取ろうとした。",
+      imageSrc: "/images/senior_smartphone.jpg",
+      imageAlt: "畑を借りて土を耕した", // 👈 ここのAltテキストも後で直しておくと完璧です！
     },
   },
   {
     id: "slide-12",
-    className: "slide",
-    bgStart: "#eae5df",
-    bgEnd: "#e5dfd8",
+    className: "slide slide--has-image slide--dark",
+    bgStart: "#0f3460",
+    bgEnd: "#2a4a48",
     content: {
-      layout: "basic",
+      layout: "basic", // 画像を表示するためにbasicを使います！
+      modifiers: ["basic--text-center", "basic--text-plain"], // 👈 中央配置 ＆ 背景透明化！
       nodeAccent: {
         enabled: true,
       },
-      heading: "問いの変換\n「彼らが持って使える体験とは？」",
-      body: "操作そのものを無くす設計。\nIT用語を隠す。\n畑の上に余計なものを被せない。\n\n「感じる」ことが、設計の方角を変えた。",
+      heading: "問いの変換\nー彼らが誇りを持って\n楽しく使える体験とは？",
+      body: "操作そのものを無くす設計。\nIT用語を隠す。\n畑の上に余計なものを被せない。\n「感じる」ことが、設計の方角を変えた。",
     },
   },
-  {
+{
     id: "slide-13",
-    className: "slide",
-    bgStart: "#3a4038",
-    bgEnd: "#4a3728",
+    className: "slide slide--has-image slide--light",
+    bgStart: "#e5dfd8",
+    bgEnd: "#dfd8d0",
     content: {
-      layout: "basic",
-      nodeAccent: {
-        enabled: true,
-      },
+      layout: "basic", 
       heading: "「これ知ってる？\nかっこいいだろ。」",
       headingClassName: "slide__heading--quote",
-      body: "農家さんが、自分から周りに勧めてくれた。\n口コミだけで全国200社以上に広がった。\n\n営業トークではなく、誇り。\n「感じる力」がビジネスの成果になった瞬間だった。",
+      body: "農家さんが、自分から周りに勧めてくれた。\n口コミだけで全国200社以上に広がった。\n「感じる力」がビジネスの成果になった瞬間だった。",
+      imageSrc: "/images/ここになんらかの画像名.png", // 👈 画像のファイル名も忘れずに！
+      imageAlt: "レポサク詳細画像",
     },
   },
   {
     id: "slide-14",
-    className: "slide",
-    bgStart: "#5c3d2e",
-    bgEnd: "#4a3530",
+    className: "slide slide--subtitle slide--light", // 👈 darkをlightに変更
+    bgStart: "#f5f0eb", // 👈 明るいベージュを維持
+    bgEnd: "#f0ebe5",
     content: {
-      layout: "basic",
-      heading: "まとめ\n感じる力 →\n問いを立てる力 →\n価値を生む力。",
-      headingClassName: "slide__heading--warm",
+      layout: "title",
+      heading: "まとめ\n感じる力 →問いを立てる力 →\n価値を生む力。",
       body: "美術の授業が育てている「感じる力」は、\n社会で「問いを立てる力」になり、\nやがて「価値を生む力」へと変わる。",
     }
   },
 
   {
     id: "slide-15",
-    className: "slide slide--title slide--light",
-    bgStart: "#f5f0eb",
+    className: "slide slide--subtitle slide--light", // 👈 darkをlightに変更
+    bgStart: "#f5f0eb", // 👈 明るいベージュを維持
     bgEnd: "#f0ebe5",
     content: {
       layout: "title",
       heading: "2. 「正解のない中で試し続ける力」を教えている",
-      headingClassName: "slide__heading--hero",
       sub: "美術の授業の力",
     },
   },
+  /*
   {
     id: "slide-16",
     className: "slide slide--has-image",
@@ -284,7 +279,7 @@ export const slides: SlideData[] = [
       imageAlt: "椅子制作のプロセス",
     },
   },
-
+*/
   {
     id: "slide-17",
     className: "slide slide--river-source",
@@ -314,6 +309,7 @@ export const slides: SlideData[] = [
       imageAlt: "上から見たヨット",
     },
   },
+  /*
   {
     id: "slide-19",
     className: "slide",
@@ -423,11 +419,23 @@ export const slides: SlideData[] = [
       bodyClassName: "slide__body--accent",
     },
   },
-  {
+  */
+    {
     id: "slide-28",
+    className: "slide slide--subtitle slide--light", // 👈 darkをlightに変更
+    bgStart: "#f5f0eb", // 👈 明るいベージュを維持
+    bgEnd: "#f0ebe5",
+    content: {
+      layout: "title",
+      sub: "数枚のスライドを追加予定",
+    },
+  },
+  {
+    id: "slide-29",
     className: "slide slide--closing slide--luminous",
     bgStart: "#ffffff",
     bgEnd: "#ffffff",
+    observeAsActive: true,
     content: {
       layout: "closing",
       heading: "先生方の教室から\n飛び立つ子どもたちと、\nいつか一緒に\n仕事がしたい。",

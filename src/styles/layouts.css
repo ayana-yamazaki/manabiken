@@ -662,3 +662,46 @@
 .slide--subtitle .slide__heading {
   margin-bottom: 0;
 }
+
+/* =========================================
+   basicレイアウトの拡張（画像あり・中央配置）
+========================================= */
+/* 無理やり中央に寄せる魔法 */
+.slide--basic.basic--text-center .slide__inner--basic,
+.slide--basic.basic--text-center .slide__inner--work-ui {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* テキストを真ん中揃えにする */
+.slide--basic.basic--text-center .basic__text {
+  width: min(800px, 90%);
+  margin: 0 !important;
+  text-align: center;
+}
+
+/* 背景のガラス箱と枠線を完全に吹き飛ばす魔法 */
+.slide--basic.basic--text-plain .basic__text {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* =========================================
+   basicレイアウトの拡張（ガッツリ左寄せ）
+========================================= */
+.slide--basic.basic--text-left .slide__inner--basic,
+.slide--basic.basic--text-left .slide__inner--work-ui {
+  display: flex !important;
+  justify-content: flex-start !important; /* 👈 強制的に左端からスタートさせる */
+  padding-left: 8vw !important; /* 👈 画面左端からの「美しい余白」 */
+}
+
+.slide--basic.basic--text-left .basic__text {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  text-align: left; /* 文字自体も左揃え */
+}
