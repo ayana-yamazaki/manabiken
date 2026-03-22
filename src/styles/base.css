@@ -224,11 +224,11 @@ body {
   opacity: 0.6;
 }
 
-.slide--work-ui .slide__text {
+.slide--basic .slide__text {
   color: inherit;
 }
 
-.slide--work-ui.work-ui--text-plain .slide__text {
+.slide--basic.basic--text-plain .slide__text {
   background: transparent;
   border: none;
   box-shadow: none;
@@ -236,35 +236,35 @@ body {
   -webkit-backdrop-filter: blur(20px);
 }
 
-.slide--work-ui.work-ui--caption-plain .slide__caption {
+.slide--basic.basic--caption-plain .slide__caption {
   padding: 0;
   background: transparent;
   border: none;
 }
 
-.slide--work-ui.work-ui--text-light .slide__heading,
-.slide--work-ui.work-ui--text-light .slide__body,
-.slide--work-ui.work-ui--text-light .slide__caption {
+.slide--basic.basic--text-light .slide__heading,
+.slide--basic.basic--text-light .slide__body,
+.slide--basic.basic--text-light .slide__caption {
   color: rgba(245, 240, 235, 0.95);
 }
 
-.slide--work-ui.work-ui--text-dark .slide__heading,
-.slide--work-ui.work-ui--text-dark .slide__body,
-.slide--work-ui.work-ui--text-dark .slide__caption {
+.slide--basic.basic--text-dark .slide__heading,
+.slide--basic.basic--text-dark .slide__body,
+.slide--basic.basic--text-dark .slide__caption {
   color: rgba(26, 26, 46, 0.9);
 }
 
 /* ========== 🎨🎨🎨テキストエリアの変更 ========== */
-.slide--work-ui .work-ui__text {
+.slide--basic .basic__text {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
 
-.slide--work-ui.slide--light .work-ui__text {
+.slide--basic.slide--light .basic__text {
   background: rgba(255, 255, 255, 0.5);
 }
 
-.slide--work-ui:not(.slide--light) .work-ui__text {
+.slide--basic:not(.slide--light) .basic__text {
   background: rgba(0, 0, 0, 0.3);
   color: rgba(255, 255, 255, 0.9);  
 }

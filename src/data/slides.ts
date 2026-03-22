@@ -13,7 +13,7 @@ export type SlideContentLayout =
   | "basic"
   | "text"
   | "image-text"
-  | "work-ui"
+  | "basic"
   | "split-river"
   | "drift"
   | "intro"
@@ -89,7 +89,7 @@ export const slides: SlideData[] = [
   },
   {
     id: "slide-04",
-    className: "slide slide--light slide--work-ui",
+    className: "slide slide--light slide--basic",
     bgStart: "#eae5df",
     bgEnd: "#e5dfd8",
     content: {
@@ -102,7 +102,7 @@ export const slides: SlideData[] = [
   },
     {
     id: "slide-05",
-    className: "slide slide--has-image slide--light",
+    className: "slide slide--has-image slide--dark .basic__text",
     bgStart: "#1a1a2e",
     bgEnd: "#0f3460",
     observeAsActive: true,
@@ -117,15 +117,13 @@ export const slides: SlideData[] = [
   },
   {
     id: "slide-06",
-    className: "slide slide--title slide--light",
-    bgStart: "#f5f0eb",
+    className: "slide slide--subtitle slide--light", // 👈 darkをlightに変更
+    bgStart: "#f5f0eb", // 👈 明るいベージュを維持
     bgEnd: "#f0ebe5",
     content: {
       layout: "title",
       heading: "1. 「感じる」を教えている",
-      headingClassName: "slide__heading--hero",
       sub: "美術の授業の力",
-      // author: "山崎 文菜 ── プロダクトデザイナー",
     },
   },
   {
@@ -177,6 +175,7 @@ export const slides: SlideData[] = [
     bgEnd: "#2a4a48",
     content: {
       layout: "basic",
+      modifiers: ["basic--text-left"],
       nodeAccent: {
         enabled: true,
       },
@@ -193,6 +192,7 @@ export const slides: SlideData[] = [
     bgEnd: "#2a4a48",
     content: {
       layout: "basic",
+      modifiers: ["basic--text-left"],
       nodeAccent: {
         enabled: true,
       },
@@ -293,6 +293,7 @@ export const slides: SlideData[] = [
     observeAsActive: true,
     content: {
       layout: "split-river",
+      modifiers: ["basic--text-plain"],
       leftLabel: "AI時代の落とし穴",
       leftHeading: "AIの自信に満ちた即答が、\n「正解は一回で出るもの」\nという思い込みを強める。",
       rightBody: "AIは迷わない。常に一つの答えを返す。\nその速さと確信に触れ続けると、\n「試行錯誤は非効率だ」と感じ始める。\n\n設計図型の生き方が、加速していく。",
@@ -309,7 +310,7 @@ export const slides: SlideData[] = [
       label: "美術教育との接続",
       heading: "美術の授業は、\n「ドリフトする」練習だ。",
       body: "粘土をこね、色を塗り、\n「なんか違う」と壊してやり直す。\n\nあの感覚が、社会に出てからの生き方になった。\n美術の授業は「プロトタイプ型の生き方」を\n教えている。",
-      imageSrc: "/images/about-scene.jpg",
+      //imageSrc: "/images/about-scene.jpg",
       imageAlt: "上から見たヨット",
     },
   },

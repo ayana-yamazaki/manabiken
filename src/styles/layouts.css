@@ -67,26 +67,26 @@
 }
 
 /* ========== Work UI slide ========== */
-.slide--work-ui {
-  --work-ui-media-col: 65%;
-  --work-ui-text-col: 35%;
-  --work-ui-text-color: #1a1a2e;
+.slide--basic {
+  --basic-media-col: 65%;
+  --basic-text-col: 35%;
+  --basic-text-color: #1a1a2e;
   background-color: transparent;
 }
 
-.slide--work-ui::before,
-.slide--work-ui::after {
+.slide--basic::before,
+.slide--basic::after {
   background: none !important;
   opacity: 0 !important;
 }
 
-.slide--work-ui .slide__inner--work-ui {
+.slide--basic .slide__inner--basic {
   width: 100%;
   max-width: none;
   height: 100vh;
   padding: 0;
   display: grid;
-  grid-template-columns: var(--work-ui-media-col) var(--work-ui-text-col);
+  grid-template-columns: var(--basic-media-col) var(--basic-text-col);
   grid-template-areas: "media text";
   gap: 0;
   align-items: stretch;
@@ -94,7 +94,7 @@
   overflow: hidden;
 }
 
-.work-ui__image-wrap {
+.basic__image-wrap {
   position: absolute;
   top: 0;
   right: 0;
@@ -105,7 +105,7 @@
   overflow: hidden;
 }
 
-.work-ui__image {
+.basic__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -113,7 +113,7 @@
   display: block;
 }
 
-.slide--work-ui .work-ui__text {
+.slide--basic .basic__text {
   grid-area: text;
   position: relative;
   z-index: 2;
@@ -121,7 +121,7 @@
   justify-self: end;
   width: min(520px, calc(100% - 3rem));
   margin-right: clamp(0.5rem, 1.5vw, 1.5rem);
-  color: var(--work-ui-text-color);
+  color: var(--basic-text-color);
 }
 
 .node-network-canvas {
@@ -149,31 +149,31 @@
   inset: 0;
 }
 
-.slide--work-ui.work-ui--text-left .slide__inner--work-ui {
+.slide--basic.basic--text-left .slide__inner--basic {
   grid-template-areas: "text media";
 }
 
-.slide--work-ui.work-ui--text-left .work-ui__text {
+.slide--basic.basic--text-left .basic__text {
   margin-left: clamp(1rem, 3vw, 3rem);
   margin-right: 0;
 }
 
 
 
-.slide--work-ui.work-ui--text-dark {
-  --work-ui-text-color: #1a1a2e;
+.slide--basic.basic--text-dark {
+  --basic-text-color: #1a1a2e;
 }
 
-.slide--work-ui.work-ui--text-light {
-  --work-ui-text-color: #f5f0eb;
+.slide--basic.basic--text-light {
+  --basic-text-color: #f5f0eb;
 }
 
 @media (min-width: 769px) {
-  .slide--work-ui .work-ui__text .slide__heading {
+  .slide--basic .basic__text .slide__heading {
     font-size: clamp(1.3rem, 2.9vw, 2.3rem);
   }
 
-  .slide--work-ui .work-ui__text .slide__body {
+  .slide--basic .basic__text .slide__body {
     font-weight: 400;
   }
 }
@@ -555,7 +555,7 @@
     max-width: 100%;
   }
 
-  .slide--work-ui .slide__inner--work-ui {
+  .slide--basic .slide__inner--basic {
     grid-template-columns: 1fr;
     grid-template-rows: 42vh auto;
     grid-template-areas:
@@ -568,11 +568,11 @@
     padding: 0;
   }
 
-  .work-ui__image-wrap {
+  .basic__image-wrap {
     height: 42vh;
   }
 
-  .slide--work-ui .work-ui__text {
+  .slide--basic .basic__text {
     width: calc(100% - 2.5rem);
     margin: 0.75rem auto 0.5rem;
     align-self: start;
@@ -584,7 +584,7 @@
     height: 30%;
   }
 
-  .slide--work-ui.work-ui--text-left .work-ui__text {
+  .slide--basic.basic--text-left .basic__text {
     margin: 1.25rem auto 0;
   }
 
@@ -645,4 +645,20 @@
     max-width: none;
     text-align: left;
   }
+}
+
+/* =========================================
+   足りなかったテーマの追加分
+========================================= */
+.slide--subtitle .slide__text {
+  display: flex;
+  flex-direction: column;
+}
+.slide--subtitle .slide__sub {
+  order: -1;
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+}
+.slide--subtitle .slide__heading {
+  margin-bottom: 0;
 }

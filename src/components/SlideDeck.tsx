@@ -52,7 +52,7 @@ function ContentSlide({
   const hasNodeAccent = Boolean(content.nodeAccent?.enabled);
   const contentClassName = joinClassNames(
     className,
-    content.layout === "basic" ? "slide--work-ui slide--basic" : undefined,
+    `slide--${content.layout}`,
     hasNodeAccent ? "slide--node-accent" : undefined,
     ...(content.modifiers ?? []),
   );
@@ -92,12 +92,12 @@ function ContentSlide({
       );
     }
 
-    if (content.layout === "basic" || content.layout === "work-ui") {
+    if (content.layout === "basic" || content.layout === "basic") {
       return (
-        <div className="slide__inner slide__inner--work-ui">
+        <div className="slide__inner slide__inner--basic">
           {content.imageSrc ? (
-            <div className="work-ui__image-wrap">
-              <img className="work-ui__image" src={content.imageSrc} alt={content.imageAlt ?? ""} />
+            <div className="basic__image-wrap">
+              <img className="basic__image" src={content.imageSrc} alt={content.imageAlt ?? ""} />
             </div>
           ) : null}
           {hasNodeAccent ? (
@@ -115,7 +115,7 @@ function ContentSlide({
               />
             </div>
           ) : null}
-          <SlideTextArea content={content} caption={caption} textClassName="work-ui__text" />
+          <SlideTextArea content={content} caption={caption} textClassName="basic__text" />
         </div>
       );
     }

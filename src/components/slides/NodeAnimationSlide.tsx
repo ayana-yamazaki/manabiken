@@ -17,7 +17,7 @@ export default function NodeAnimationSlide({ id, slideNumber, className, bgStart
   return (
     <section
       id={id}
-      className={`${className} slide--work-ui slide--basic`}
+      className={`${className} slide--basic slide--basic`}
       data-slide-number={slideNumber}
       data-bg-start={bgStart}
       data-bg-end={bgEnd}
@@ -26,8 +26,8 @@ export default function NodeAnimationSlide({ id, slideNumber, className, bgStart
     >
       <NodeNetworkCanvas className="node-network-canvas node-network-canvas--full" bgStart={bgStart} bgEnd={bgEnd} />
       {content ? (
-        <div className="slide__inner slide__inner--work-ui">
-          <SlideTextArea content={content} caption={caption} textClassName="work-ui__text" />
+        <div className="slide__inner slide__inner--basic">
+          <SlideTextArea content={content} caption={caption} textClassName="basic__text" />
         </div>
       ) : null}
     </section>
