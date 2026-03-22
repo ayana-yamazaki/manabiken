@@ -4,6 +4,7 @@ export type SlideData = {
   bgStart: string;
   bgEnd: string;
   markup: string;
+  caption?: string;
   observeAsActive?: boolean;
   variant?: "default" | "intro" | "message" | "mountain-viz" | "closing" | "node-animation";
 };
@@ -44,6 +45,30 @@ export const slides: SlideData[] = [
     markup: "",
     observeAsActive: true,
     variant: "message",
+  },
+  {
+    id: "slide-03b",
+    className: "slide slide--light slide--work-ui work-ui--text-right work-ui--panel-none work-ui--text-plain work-ui--text-dark work-ui--caption-plain",
+    bgStart: "#e5dfd8",
+    bgEnd: "#dfd8d0",
+    markup: `<div class="slide__inner slide__inner--work-ui">
+        <div class="work-ui__image-wrap">
+          <img class="work-ui__image" src="/images/figma-vs-code.png" alt="2025年までに制作していたアプリ画面のデザイン" />
+        </div>
+        <div class="work-ui__text-column">
+          <div class="slide__text work-ui__text">
+            <h2 class="slide__heading">
+              2025年まで、私はアプリの画面を描いていた
+            </h2>
+            <p class="slide__body">
+              美しいブランドカラーや余白、直感的な画面構成、
+              データベースとの整合性…
+              10年以上かけて積み上げたスキル
+            </p>
+          </div>
+        </div>
+      </div>`,
+    caption: "1画面を仕上げるのに何日もかかることも",
   },
   {
     id: "slide-04",

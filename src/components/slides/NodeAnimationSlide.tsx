@@ -48,6 +48,18 @@ function bPt(ax: number, ay: number, cx: number, cy: number, bx: number, by: num
   return { x: u * u * ax + 2 * u * t * cx + t * t * bx, y: u * u * ay + 2 * u * t * cy + t * t * by };
 }
 
+function filterIsolated(sq: Sq[], arcs: Arc[]): { sq: Sq[]; arcs: Arc[] } {
+  const connected = new Set<number>();
+  arcs.forEach(arc => { connected.add(arc.a); connected.add(arc.b); });
+  const remap: number[] = new Array(sq.length).fill(-1);
+  let next = 0;
+  sq.forEach((_, i) => { if (connected.has(i)) remap[i] = next++; });
+  return {
+    sq: sq.filter((_, i) => connected.has(i)),
+    arcs: arcs.map(arc => ({ a: remap[arc.a], b: remap[arc.b], cpx: arc.cpx, cpy: arc.cpy })),
+  };
+}
+
 function makeSqs(w: number, h: number): Sq[] {
   const pad = SQ + 20;
   const res: Sq[] = [];
@@ -93,9 +105,10 @@ type Props = {
   bgStart: string;
   bgEnd: string;
   observeAsActive?: boolean;
+  caption?: string;
 };
 
-export default function NodeAnimationSlide({ id, slideNumber, className, bgStart, bgEnd, observeAsActive }: Props) {
+export default function NodeAnimationSlide({ id, slideNumber, className, bgStart, bgEnd, observeAsActive, caption }: Props) {
   const cvs = useRef<HTMLCanvasElement>(null);
   const sec = useRef<HTMLElement>(null);
 
@@ -116,8 +129,8 @@ export default function NodeAnimationSlide({ id, slideNumber, className, bgStart
       canvas.width = lw * dpr;
       canvas.height = lh * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      sq = makeSqs(lw, lh);
-      arcs = makeArcs(sq);
+      const rawSq = makeSqs(lw, lh);
+      ({ sq, arcs } = filterIsolated(rawSq, makeArcs(rawSq)));
       travelers.length = 0;
       ripples.length = 0;
     };
@@ -240,6 +253,13 @@ export default function NodeAnimationSlide({ id, slideNumber, className, bgStart
         ref={cvs}
         style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
       />
+      {caption && (
+        <div className="slide__inner">
+          <div className="slide__text">
+            <p className="slide__caption">{caption}</p>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

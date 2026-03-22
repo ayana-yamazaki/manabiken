@@ -5,6 +5,7 @@ type ClosingSlideProps = {
   bgStart: string;
   bgEnd: string;
   observeAsActive?: boolean;
+  caption?: string;
 };
 
 export default function ClosingSlide({
@@ -14,6 +15,7 @@ export default function ClosingSlide({
   bgStart,
   bgEnd,
   observeAsActive,
+  caption,
 }: ClosingSlideProps) {
   return (
     <section
@@ -25,7 +27,7 @@ export default function ClosingSlide({
       data-observe-active={observeAsActive ? "true" : undefined}
     >
       <div className="slide__inner slide__inner--closing">
-        <div className="closing__main">
+        <div className="closing__main slide__text">
           <h2 className="slide__heading">
             先生方の教室から<br />飛び立つ子どもたちと、<br />
             いつか一緒に<br />仕事がしたい。
@@ -35,6 +37,7 @@ export default function ClosingSlide({
             <br />
             <span>プロダクトデザイナー ── CADDi</span>
           </p>
+          {caption && <p className="slide__caption">{caption}</p>}
         </div>
         <div className="closing__qr">
           <div className="closing__qr-box" />

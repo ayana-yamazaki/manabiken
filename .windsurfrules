@@ -17,3 +17,7 @@
 ## Always-on Requirements
 - Mobile First: あらゆる修正において、画面幅375px以下のモバイル表示でレイアウトが崩れないこと（横スクロールの発生、文字の溢れを厳禁とする）。
 - Build Safety: 修正後は必ず `npm run build` が通る整合性を維持すること。
+
+## Command Execution Rules
+- **No Automatic Build**: 修正のたびに `npm run build` を実行する必要はない。ビルド確認は、大規模なリファクタリング時やデプロイ直前など、ユーザーが明示的に指示した時のみ行うこと。
+- **Trust Dev Server**: 開発中のエラー確認はユーザーが `npm run dev` で行っているため、AI側でのランタイムチェックは不要。

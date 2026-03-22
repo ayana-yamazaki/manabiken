@@ -8,6 +8,7 @@ type MountainVizSlideProps = {
   bgStart: string;
   bgEnd: string;
   observeAsActive?: boolean;
+  caption?: string;
 };
 
 export default function MountainVizSlide({
@@ -17,6 +18,7 @@ export default function MountainVizSlide({
   bgStart,
   bgEnd,
   observeAsActive,
+  caption,
 }: MountainVizSlideProps) {
   useEffect(() => {
     const waterLevel = document.getElementById("waterLevel");
@@ -92,6 +94,7 @@ export default function MountainVizSlide({
             その後に残る「山」──その子だけの力に<br />
             最初に気づけるのは、先生方かもしれない。
           </p>
+          {caption && <p className="slide__caption">{caption}</p>}
         </div>
       </div>
     </section>

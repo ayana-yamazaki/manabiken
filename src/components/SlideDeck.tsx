@@ -17,6 +17,7 @@ function HtmlSlide({
   bgStart,
   bgEnd,
   observeAsActive,
+  caption,
   markup,
 }: {
   id: string;
@@ -25,8 +26,33 @@ function HtmlSlide({
   bgStart: string;
   bgEnd: string;
   observeAsActive?: boolean;
+  caption?: string;
   markup: string;
 }) {
+  const escapeHtml = (value: string) =>
+    value
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#39;");
+
+  const appendCaptionToMarkup = (rawMarkup: string, rawCaption?: string) => {
+    if (!rawCaption) {
+      return rawMarkup;
+    }
+
+    const captionMarkup = `<p class="slide__caption">${escapeHtml(rawCaption).replaceAll("\n", "<br />")}</p>`;
+    const textBlockPattern = /(<div class="slide__text[^\"]*">[\s\S]*?)(<\/div>)/;
+    const injectedMarkup = rawMarkup.replace(textBlockPattern, `$1${captionMarkup}$2`);
+
+    if (injectedMarkup !== rawMarkup) {
+      return injectedMarkup;
+    }
+
+    return `${rawMarkup}<div class="slide__inner"><div class="slide__text">${captionMarkup}</div></div>`;
+  };
+
   return (
     <section
       id={id}
@@ -35,7 +61,7 @@ function HtmlSlide({
       data-bg-start={bgStart}
       data-bg-end={bgEnd}
       data-observe-active={observeAsActive ? "true" : undefined}
-      dangerouslySetInnerHTML={{ __html: markup }}
+      dangerouslySetInnerHTML={{ __html: appendCaptionToMarkup(markup, caption) }}
     />
   );
 }
@@ -48,6 +74,7 @@ const renderSlide = (slide: SlideData, index: number) => {
     bgStart: slide.bgStart,
     bgEnd: slide.bgEnd,
     observeAsActive: slide.observeAsActive,
+    caption: slide.caption,
   };
 
   if (slide.variant === "mountain-viz") {

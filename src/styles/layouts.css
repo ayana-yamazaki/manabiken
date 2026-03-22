@@ -66,6 +66,106 @@
   margin-bottom: 1.5rem;
 }
 
+/* ========== Work UI slide ========== */
+.slide--work-ui {
+  --work-ui-media-col: 65%;
+  --work-ui-text-col: 35%;
+  --work-ui-column-bg: rgba(223, 216, 208, 0.92);
+  --work-ui-text-color: #1a1a2e;
+  background-color: transparent !important;
+}
+
+.slide--work-ui::before,
+.slide--work-ui::after {
+  background: none !important;
+  opacity: 0 !important;
+}
+
+.slide--work-ui .slide__inner--work-ui {
+  width: 100%;
+  max-width: none;
+  height: 100vh;
+  padding: 0;
+  display: grid;
+  grid-template-columns: var(--work-ui-media-col) var(--work-ui-text-col);
+  grid-template-areas: "media text";
+  gap: 0;
+  align-items: stretch;
+  justify-content: stretch;
+  overflow: hidden;
+}
+
+.work-ui__image-wrap {
+  grid-area: media;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: auto;
+  left: 0;
+  z-index: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.work-ui__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
+  display: block;
+}
+
+.work-ui__text-column {
+  grid-area: text;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background: var(--work-ui-column-bg);
+}
+
+.slide--work-ui .work-ui__text {
+  align-self: center;
+  justify-self: end;
+  width: min(520px, calc(100% - 3rem));
+  margin-right: clamp(1rem, 3vw, 3rem);
+  color: var(--work-ui-text-color);
+}
+
+.slide--work-ui.work-ui--text-right .work-ui__text-column {
+  justify-content: flex-end;
+}
+
+.slide--work-ui.work-ui--text-left .slide__inner--work-ui {
+  grid-template-areas: "text media";
+}
+
+.slide--work-ui.work-ui--text-left .work-ui__text-column {
+  justify-content: flex-start;
+}
+
+.slide--work-ui.work-ui--text-left .work-ui__text {
+  margin-left: clamp(1rem, 3vw, 3rem);
+  margin-right: 0;
+}
+
+.slide--work-ui.work-ui--panel-none {
+  --work-ui-column-bg: transparent;
+}
+
+.slide--work-ui.work-ui--panel-none .work-ui__text-column {
+  background: transparent !important;
+}
+
+.slide--work-ui.work-ui--text-dark {
+  --work-ui-text-color: #1a1a2e;
+}
+
+.slide--work-ui.work-ui--text-light {
+  --work-ui-text-color: #f5f0eb;
+}
+
 /* ========== Message slide ========== */
 .slide--message .slide__inner--message {
   flex-direction: column;
@@ -74,6 +174,12 @@
   text-align: center;
   max-width: 960px;
   gap: 0;
+}
+
+.slide--message .slide__text {
+  max-width: 960px;
+  width: 100%;
+  text-align: center;
 }
 
 .slide--message .slide__label {
@@ -167,6 +273,10 @@
 
 .closing__main {
   max-width: 700px;
+}
+
+.slide__inner--closing .slide__text {
+  text-align: center;
 }
 
 .closing__qr {
@@ -431,6 +541,38 @@
 
   .intro__text {
     max-width: 100%;
+  }
+
+  .slide--work-ui .slide__inner--work-ui {
+    grid-template-columns: 1fr;
+    grid-template-rows: 42vh minmax(0, 1fr);
+    grid-template-areas:
+      "media"
+      "text";
+    height: 100vh;
+    min-height: 100vh;
+    align-items: stretch;
+    justify-items: stretch;
+    padding: 0;
+  }
+
+  .work-ui__image-wrap {
+    height: 42vh;
+  }
+
+  .work-ui__text-column {
+    justify-content: center;
+  }
+
+  .slide--work-ui .work-ui__text {
+    width: calc(100% - 2.5rem);
+    margin: 1.25rem auto 0;
+    align-self: start;
+    justify-self: center;
+  }
+
+  .slide--work-ui.work-ui--text-left .work-ui__text {
+    margin: 1.25rem auto 0;
   }
 
   .message-pillars {

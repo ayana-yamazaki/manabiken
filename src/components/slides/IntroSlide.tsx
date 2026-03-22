@@ -5,6 +5,7 @@ type IntroSlideProps = {
   bgStart: string;
   bgEnd: string;
   observeAsActive?: boolean;
+  caption?: string;
 };
 
 export default function IntroSlide({
@@ -14,6 +15,7 @@ export default function IntroSlide({
   bgStart,
   bgEnd,
   observeAsActive,
+  caption,
 }: IntroSlideProps) {
   return (
     <section
@@ -28,7 +30,7 @@ export default function IntroSlide({
         <div className="intro__photo">
           <img src="/images/profile.jpg" alt="山崎文菜" className="intro__photo-img" />
         </div>
-        <div className="intro__text">
+        <div className="intro__text slide__text">
           <h2 className="slide__heading">山崎 文菜</h2>
           <p className="intro__name-en">Ayana Yamazaki</p>
           <p className="slide__sub">プロダクトデザイナー</p>
@@ -41,6 +43,7 @@ export default function IntroSlide({
             美術の先生ではありません。<br />
             美術の授業を受けた側の人間です。
           </p>
+          {caption && <p className="slide__caption">{caption}</p>}
         </div>
       </div>
     </section>
