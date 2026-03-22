@@ -1,0 +1,28 @@
+.slide {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+.slide__inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
+  padding: 4rem 2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .slide__inner {
+    justify-content: center;
+    align-items: flex-end;
+    min-height: 100vh;
+    padding: 2rem 1.25rem 3rem;
+  }
+}

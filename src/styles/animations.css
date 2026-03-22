@@ -1,0 +1,253 @@
+/* ========== Scroll hint animation ========== */
+.scroll-hint {
+  animation: fadeInUp 1.5s ease-out 1s both;
+}
+
+.scroll-hint__arrow {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: rotate(45deg) translateY(0);
+  }
+
+  50% {
+    transform: rotate(45deg) translateY(8px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+
+  to {
+    opacity: 0.4;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* ========== Water surface animation ========== */
+.river-shimmer__bar {
+  transform-origin: center;
+}
+
+.river-shimmer__bar--1 {
+  animation: river-drift-1 11s ease-in-out infinite;
+}
+
+.river-shimmer__bar--2 {
+  animation: river-drift-2 8s ease-in-out infinite;
+}
+
+.river-shimmer__bar--3 {
+  animation: river-drift-3 13s ease-in-out infinite;
+}
+
+.water-surface {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.water-surface__orbit {
+  position: absolute;
+  inset: 0;
+}
+
+.water-surface__layer {
+  position: absolute;
+  inset: -40%;
+  background-image: url("/images/caustics-texture.png");
+  background-repeat: repeat;
+}
+
+.water-surface__layer--1 {
+  background-size: 900px 900px;
+  opacity: 0.35;
+  animation: caustic-sway-1 100s linear infinite;
+}
+
+.water-surface__layer--2 {
+  background-size: 1200px 1200px;
+  opacity: 0.3;
+  filter: invert(1);
+  mix-blend-mode: multiply;
+  animation: caustic-sway-2 80s linear infinite reverse;
+}
+
+.water-surface__orbit-x--1 {
+  animation: orbit-x1 67s ease-in-out infinite alternate;
+}
+
+.water-surface__orbit-y--1 {
+  animation: orbit-y1 53s ease-in-out infinite alternate;
+}
+
+.water-surface__orbit-x--2 {
+  animation: orbit-x2 61s ease-in-out infinite alternate;
+}
+
+.water-surface__orbit-y--2 {
+  animation: orbit-y2 47s ease-in-out infinite alternate;
+}
+
+@keyframes river-drift-1 {
+  0%,
+  100% {
+    transform: rotate(-1.5deg) translateX(0);
+    opacity: 1;
+  }
+
+  50% {
+    transform: rotate(-0.5deg) translateX(60px);
+    opacity: 0.4;
+  }
+}
+
+@keyframes river-drift-2 {
+  0%,
+  100% {
+    transform: rotate(1deg) translateX(0);
+    opacity: 1;
+  }
+
+  50% {
+    transform: rotate(2deg) translateX(-50px);
+    opacity: 0.3;
+  }
+}
+
+@keyframes river-drift-3 {
+  0%,
+  100% {
+    transform: rotate(-0.8deg) translateX(0);
+    opacity: 1;
+  }
+
+  50% {
+    transform: rotate(0.5deg) translateX(40px);
+    opacity: 0.5;
+  }
+}
+
+@keyframes orbit-x1 {
+  0% {
+    transform: translateX(0);
+  }
+
+  33% {
+    transform: translateX(-40px);
+  }
+
+  66% {
+    transform: translateX(25px);
+  }
+
+  100% {
+    transform: translateX(-15px);
+  }
+}
+
+@keyframes orbit-y1 {
+  0% {
+    transform: translateY(0);
+  }
+
+  25% {
+    transform: translateY(-30px);
+  }
+
+  50% {
+    transform: translateY(18px);
+  }
+
+  75% {
+    transform: translateY(-40px);
+  }
+
+  100% {
+    transform: translateY(10px);
+  }
+}
+
+@keyframes orbit-x2 {
+  0% {
+    transform: translateX(0);
+  }
+
+  40% {
+    transform: translateX(35px);
+  }
+
+  70% {
+    transform: translateX(-22px);
+  }
+
+  100% {
+    transform: translateX(18px);
+  }
+}
+
+@keyframes orbit-y2 {
+  0% {
+    transform: translateY(0);
+  }
+
+  30% {
+    transform: translateY(28px);
+  }
+
+  60% {
+    transform: translateY(-35px);
+  }
+
+  100% {
+    transform: translateY(14px);
+  }
+}
+
+@keyframes caustic-sway-1 {
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-60px);
+  }
+
+  50% {
+    transform: translateX(40px);
+  }
+
+  75% {
+    transform: translateX(-20px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes caustic-sway-2 {
+  0% {
+    transform: translateX(0) scale(1.05);
+  }
+
+  30% {
+    transform: translateX(50px) scale(1.05);
+  }
+
+  60% {
+    transform: translateX(-35px) scale(1.05);
+  }
+
+  100% {
+    transform: translateX(0) scale(1.05);
+  }
+}
