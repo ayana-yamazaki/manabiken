@@ -25,6 +25,9 @@ export type SlideContentLayout =
 export type SlideContent = {
   layout: SlideContentLayout;
   modifiers?: string[];
+  nodeAccent?: {
+    enabled?: boolean;
+  };
   label?: string;
   lead?: string;
   heading?: string;
@@ -85,20 +88,20 @@ export const slides: SlideData[] = [
     observeAsActive: true,
   },
   {
-    id: "slide-03b",
+    id: "slide-04",
     className: "slide slide--light slide--work-ui",
     bgStart: "#eae5df",
     bgEnd: "#e5dfd8",
     content: {
       layout: "basic",
-      heading: "2025年まで、私はアプリの画面を描いていた",
+      heading: "2025年まで、\n私はアプリの画面を描いていた",
       body: "美しいブランドカラーや余白、直感的な画面構成、データベースとの整合性…\n10年以上かけて積み上げたスキル。1画面を仕上げるのに何日もかかることも",
       imageSrc: "/images/figma-vs-code.png",
       imageAlt: "2025年までに制作していたアプリ画面のデザイン",
     },
   },
     {
-    id: "slide-04",
+    id: "slide-05",
     className: "slide slide--has-image slide--light",
     bgStart: "#dfd8d0",
     bgEnd: "#d0c8c0",
@@ -106,14 +109,14 @@ export const slides: SlideData[] = [
     content: {
       layout: "basic",
       label: "背景",
-      heading: "2026年現在、私はもう画面を描いていない。",
+      heading: "2026年現在、\n私はもう画面を描いていない。",
       body: "代わりにコードを書いている。AIに言葉で伝えるだけで\n実際に動く画面が目の前に現れる。\n丸一日かかっていた作業が、数十分で終わる。デザイナーの仕事はエンジニア領域に染み出している。デザイナーって何なんだろう？",
       imageSrc: "/images/figma-vs-code.png",
       imageAlt: "2026年以前はFigma、2026年以降はコード",
     },
   },
   {
-    id: "slide-05",
+    id: "slide-06",
     className: "slide slide--title slide--light",
     bgStart: "#f5f0eb",
     bgEnd: "#f0ebe5",
@@ -126,15 +129,14 @@ export const slides: SlideData[] = [
     },
   },
   {
-    id: "slide-06",
+    id: "slide-07",
     className: "slide slide--has-image slide--light",
     bgStart: "#e5dfd8",
     bgEnd: "#dfd8d0",
     content: {
       layout: "basic",
-      label: "私の仕事",
-      heading: "レポサク",
-      body: "北海道の農家さんと共同開発した車両管理アプリ。\nGPS端末をUSBに挿すだけで、\n数十台の車両の位置と軌跡がスマホで見える。\n\n全国200社以上、農協24組合に導入。\n2025年 グッドデザイン賞 金賞（TOP 20）受賞。",
+      heading: "レポサク\nグッドデザイン賞\n金賞 (TOP20)",
+      body: "北海道の農家さんと共同開発した「レポサク」。\nGPS端末をUSBに挿すだけで、\n数十台の車両の位置と軌跡がスマホで見える。\n\n全国200社以上、農協24組合に導入。",
       imageSrc: "/images/reposaku.png",
       imageAlt: "レポサク — グッドデザイン金賞",
     },
@@ -146,79 +148,77 @@ export const slides: SlideData[] = [
     bgEnd: "#ffffff",
     content: {
       layout: "node-animation",      
-      heading: "「対話による鑑賞」",
+      heading: "対話による鑑賞",
       body: "誰かが「ここの色合いが好き」と言う。誰かが「僕はちょっと怖い」と言う。そんな感じ方があるのか、と驚く。自分では気づかなかった色や形が、他人の言葉を通じて見えてくる。自分とは違う感じ方があることを知る。",
     },
     observeAsActive: true,
   },
+
   {
-    id: "slide-07",
-    className: "slide",
-    bgStart: "#8a7e72",
-    bgEnd: "#1a1a2e",
-    content: {
-      layout: "text",
-      label: "転換点",
-      heading: "AIは「答え」を出すのが\n圧倒的に速い。",
-      body: "しかし、「問い」を立てること──\n何を作るべきか、誰のために作るべきか、\nその方角を定めるのは、\n現実に触れて何かを感じた人間の仕事だ。\n\nその力を育てうるのが、美術教育ではないか。",
-      bodyClassName: "slide__body--accent",
-    },
-  },
-  {
-    id: "slide-08",
+    id: "slide-09",
     className: "slide slide--has-image",
     bgStart: "#1a1a2e",
     bgEnd: "#0f3460",
     observeAsActive: true,
     content: {
       layout: "basic",
-      label: "理由① ── 感じる力",
-      heading: "「俺らにはIT無理だから。」",
+      nodeAccent: {
+        enabled: true,
+      },
+      heading: "「俺らにはIT無理だから。」\n最初の問い",
       headingClassName: "slide__heading--quote",
-      body: "レポサク開発の最初の壁。\n農家さんに拒絶された。\n怒ってスマホを机に叩きつけた人もいた。\n\nデータには表れない、アンケートにも書かれない。\nしかし確かにそこにある感情。",
+      body: "農家さん向けアプリ開発の事例。農家さんの多くが60代以上。\n当初、農家さんと大きな断絶。「俺らには無理だから」と怒ってスマホを投げる人まで。「どうしてそんなに拒絶するの？」それが最初の問い。",
       imageSrc: "/images/farm-smartphone.png",
       imageAlt: "農業の現場と手袋越しのスマホ操作",
     },
   },
   {
-    id: "slide-09",
+    id: "slide-10",
     className: "slide",
     bgStart: "#0f3460",
     bgEnd: "#2a4a48",
     content: {
-      layout: "text",
-      label: "現場",
-      heading: "畑を借りて、\n2年間通った。",
-      body: "日光でスマホの画面が見えない。\n泥だらけの手袋では操作できない。\n自分で育てた作物は、ほとんど枯れた。\n\nシニアスマホ教室にも通い始めた。\n「マップアプリが何度聞いてもわからない。」\n言葉にならない切なさと、プライド。\n\n「わからない」と言えない空気の中で、\nその人たちの感情を、感じ取ろうとした。",
+      layout: "basic",
+      heading: "2年間、畑を借りて、\n作物を育てた。",
+      body: "自分で畑に立つと、日光でスマホの画面が見えない。\n泥だらけの手袋では操作できない。\nシニアスマホ教室にも通い始めた。\n「マップアプリが何度聞いてもわからない。」\n言葉にならない切なさと、プライド。\n\n「わからない」と言えない空気の中で、\nその人たちの感情を、感じ取ろうとした。",
+    },
+  },
+    {
+    id: "slide-11",
+    className: "slide",
+    bgStart: "#0f3460",
+    bgEnd: "#2a4a48",
+    content: {
+      layout: "basic",
+      heading: "シニアスマホ教室に通った。",
+      body: "シニアスマホ教室でボランティアをした。若い頃はバリバリ第一線で働いてたのに、マップアプリで現在地を開く方法が何度聞いてもわからない。「何度も聞いてごめんなさいね、私頭が悪いから…」\n言葉にならない切なさと、プライド。\n\n「わからない」と言えない空気の中で、\nその人たちの感情を、感じ取ろうとした。",
     },
   },
   {
-    id: "slide-10",
+    id: "slide-12",
     className: "slide",
-    bgStart: "#2a4a48",
-    bgEnd: "#3a4038",
+    bgStart: "#eae5df",
+    bgEnd: "#e5dfd8",
     content: {
-      layout: "text",
-      label: "問いの転換",
-      heading: "「使いやすいアプリ」ではなく、\n「誇りを持って使える体験」へ。",
+      layout: "basic",
+      heading: "問いの変換\n「彼らが持って使える体験とは？」",
       body: "操作そのものを無くす設計。\nIT用語を隠す。\n畑の上に余計なものを被せない。\n\n「感じる」ことが、設計の方角を変えた。",
     },
   },
   {
-    id: "slide-11",
+    id: "slide-13",
     className: "slide",
     bgStart: "#3a4038",
     bgEnd: "#4a3728",
     content: {
-      layout: "text",
-      label: "成果",
+      layout: "basic",
       heading: "「これ知ってる？\nかっこいいだろ。」",
       headingClassName: "slide__heading--quote",
       body: "農家さんが、自分から周りに勧めてくれた。\n口コミだけで全国200社以上に広がった。\n\n営業トークではなく、誇り。\n「感じる力」がビジネスの成果になった瞬間だった。",
     },
   },
   {
-    id: "slide-12",
+    id: "slide-14",
     className: "slide",
     bgStart: "#4a3728",
     bgEnd: "#5c3d2e",
@@ -231,7 +231,7 @@ export const slides: SlideData[] = [
   },
 
   {
-    id: "slide-13",
+    id: "slide-15",
     className: "slide",
     bgStart: "#5c3d2e",
     bgEnd: "#4a3530",
@@ -244,7 +244,7 @@ export const slides: SlideData[] = [
     }
   },
   {
-    id: "slide-14",
+    id: "slide-16a",
     className: "slide slide--has-image",
     bgStart: "#4a3530",
     bgEnd: "#5c3d2e",

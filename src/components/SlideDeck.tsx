@@ -1,5 +1,6 @@
 import NodeAnimationSlide from "./slides/NodeAnimationSlide";
 import MountainVizSlide from "./slides/MountainVizSlide";
+import NodeNetworkCanvas from "./slides/NodeNetworkCanvas";
 import SlideTextArea from "./slides/SlideTextArea";
 import { slides, type SlideData } from "../data/slides";
 import { useSlideObserver } from "../hooks/useSlideObserver";
@@ -48,7 +49,13 @@ function ContentSlide({
     return null;
   }
 
-  const contentClassName = joinClassNames(className, content.layout === "basic" ? "slide--work-ui slide--basic" : undefined, ...(content.modifiers ?? []));
+  const hasNodeAccent = Boolean(content.nodeAccent?.enabled);
+  const contentClassName = joinClassNames(
+    className,
+    content.layout === "basic" ? "slide--work-ui slide--basic" : undefined,
+    hasNodeAccent ? "slide--node-accent" : undefined,
+    ...(content.modifiers ?? []),
+  );
 
   const renderStandardText = () => (
     <div className="slide__inner">
@@ -91,6 +98,21 @@ function ContentSlide({
           {content.imageSrc ? (
             <div className="work-ui__image-wrap">
               <img className="work-ui__image" src={content.imageSrc} alt={content.imageAlt ?? ""} />
+            </div>
+          ) : null}
+          {hasNodeAccent ? (
+            <div className="slide__node-accent">
+              <NodeNetworkCanvas
+                className="node-network-canvas node-network-canvas--accent"
+                drawBackground={false}
+                nodeCount={6}
+                squareSize={24}
+                circleRadius={6}
+                gap={60}
+                connectionDistance={100}
+                maxConnections={6}
+                opacity={1}
+              />
             </div>
           ) : null}
           <SlideTextArea content={content} caption={caption} textClassName="work-ui__text" />

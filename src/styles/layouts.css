@@ -124,6 +124,31 @@
   color: var(--work-ui-text-color);
 }
 
+.node-network-canvas {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.node-network-canvas--full {
+  z-index: 0;
+}
+
+.slide__node-accent {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40%;
+  height: 30%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.node-network-canvas--accent {
+  inset: 0;
+}
+
 .slide--work-ui.work-ui--text-left .slide__inner--work-ui {
   grid-template-areas: "text media";
 }
@@ -552,6 +577,11 @@
     margin: 0.75rem auto 0.5rem;
     align-self: start;
     justify-self: center;
+  }
+
+  .slide__node-accent {
+    width: 20%;
+    height: 30%;
   }
 
   .slide--work-ui.work-ui--text-left .work-ui__text {
