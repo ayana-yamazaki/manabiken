@@ -1,0 +1,14 @@
+# Project Rules for AI
+
+## Context Management
+- 不要なファイルのスキャンを避けるため、作業に関係のないディレクトリ（dist, node_modules, .astro/cacheなど）は無視すること。
+- 修正を行う際は、原則として関連するコンポーネントとそのデータ定義（src/data/slides.ts）を中心にコンテキストを読み込み、必要な場合のみ周辺ファイルに広げること。
+
+## Architecture
+- UIはReactコンポーネントとして `src/components/` に配置する。
+- スライドのデータ構造は `src/data/slides.ts` で一括管理する。
+- Astroファイル（src/pages/*.astro）は、Reactコンポーネントを呼び出すブリッジとしてのみ機能させる。
+
+## Performance
+- 1つのファイルが300行を超える場合は、機能単位でコンポーネントを分割することを提案すること。
+- 型定義は `src/types/` または `src/data/` で共通化し、重複を避けること。
