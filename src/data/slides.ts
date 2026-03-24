@@ -109,7 +109,7 @@ export const slides: SlideData[] = [
     content: {
       layout: "basic",
       label: "背景",
-      heading: "2026年現在、\nコードを書いている。",
+      heading: "2026年現在、\nコードを書いている",
       body: "代わりにコードを書いている。AIに言葉で伝えるだけで実際に動く画面が目の前に現れる。\n丸一日かかっていた作業が、数十分で終わる。デザイナーの仕事はエンジニア領域に染み出し、非デザイナーでもハイクオリティなものを生成できる。",
       imageSrc: "/images/figma-vs-code2.png",
       imageAlt: "コードを書いている様子",
@@ -438,7 +438,7 @@ export const slides: SlideData[] = [
     observeAsActive: true,
     content: {
       layout: "closing",
-      heading: "先生方の教室から\n飛び立つ子どもたちと、\nいつか一緒に\n仕事がしたい。",
+      heading: "先生方の教室から\n飛び立つ子どもたちと、\nいつか一緒に\n仕事がしたい",
       body: "山崎 文菜\nプロダクトデザイナー ── CADDi",
     },
   },
