@@ -1,4 +1,6 @@
 import { useEffect, useRef } from "react";
+import type { SlideContent } from "../../data/slides";
+import SlideTextArea from "./SlideTextArea";
 
 type BounceVizSlideProps = {
   id: string;
@@ -10,14 +12,15 @@ type BounceVizSlideProps = {
   backgroundAnimation?: string;
   observeAsActive?: boolean;
   caption?: string;
+  content?: SlideContent;
 };
 
 const VB_W = 1280;
 const VB_H = 720;
 const MID_Y        = VB_H / 2;  // 360
 const BASE_RATE    = 0.30;
-const SPEED_BOUNCE = 0.90;   // 全体共通の一定速度
-const ROT_BOUNCE   = 300;    // 一定回転速度 deg/sec
+const SPEED_BOUNCE = 0.54;   // 全体共通の一定速度
+const ROT_BOUNCE   = 180;    // 一定回転速度 deg/sec
 
 // 物理ベースのイージング: 重力に従い高いほど遅く・着地直前に加速
 // 上ゾーン: √(1 - height_ratio) で放物線的速度変調
@@ -26,14 +29,14 @@ function physicsEase(y: number): number {
     const t = (MID_Y - y) / MID_Y;          // 0(境界付近)〜1(最上部)
     return Math.max(0.12, Math.sqrt(1 - t * 0.90));
   }
-  return 0.45; // 下ゾーンはゆっくり這いずり
+  return 0.30; // 下ゾーンはゆっくり這いずり
 }
 
 // 上ゾーン→下ゾーン→上ゾーンの3部構成バウンスパスを生成
 // 二次ベジェ（放物線）を三次変換: CP1=(x+w/3, peak*2/3), CP2=(x1-w/3, peak*2/3)
-function generateBouncePath(): string {
-  const peakH0   = 280;   // 初期ピーク高さ（midYからの距離）
-  const bounceW0 = 190;   // 初期バウンス幅
+function generateBouncePath(peakScale: number = 1.0, extraDip: boolean = false): string {
+  const peakH0   = Math.round(280 * peakScale);  // Y幅をスケール
+  const bounceW0 = 190;   // X幅は共通
   const decay    = 0.78;  // 減衰率
   const midY     = MID_Y;
   const cmds: string[] = [];
@@ -51,7 +54,9 @@ function generateBouncePath(): string {
       const y1    = (i < n - 1)
         ? midY - Math.round(Math.random() * 190 + 30)  // 上ゾーン内ランダム着地
         : midY;                                         // 最後はmidYに戻る
-      const peakY = Math.min(y, y1) - h;              // 低い方からh上
+      // midY基準でランダムにhighにすることでバウンスごとに高さが変わる
+      const rawH  = Math.round(h * (0.4 + Math.random() * 0.7));  // hの40〜110%でランダム
+      const peakY = Math.max(10, midY - Math.min(rawH, MID_Y - 10));
       const cp1x  = Math.round(x  + (x1 - x) / 3);
       const cp1y  = Math.round(y  + (peakY - y)  * 2 / 3);
       const cp2x  = Math.round(x1 - (x1 - x) / 3);
@@ -64,32 +69,50 @@ function generateBouncePath(): string {
 
   // 下ゾーン: 急降下→底這い角張りバンプ→急上昇
   const addBottomZone = (width: number): void => {
-    const groundY = midY + 240;           // 底 y≈600
-    const x0      = x;
-    const dropX   = x0 + 50;
-    const riseX   = x0 + width - 50;
-    const xEnd    = x0 + width;
-    cmds.push(`C ${x0 + 15},${midY + 120} ${dropX - 10},${groundY} ${dropX},${groundY}`);
+    const groundY  = Math.min(VB_H - 20, midY + Math.round(240 * peakScale));
+    const x0       = x;
+    const dropX    = x0 + Math.round(30 + Math.random() * 50);  // 30〜80
+    const riseX    = x0 + width - Math.round(30 + Math.random() * 50);  // 可変
+    const xEnd     = x0 + width;
+    cmds.push(`C ${x0 + 15},${midY + Math.round(120 * peakScale)} ${dropX - 10},${groundY} ${dropX},${groundY}`);
 
+    // 這いずり: 着地点はbaseY付近でランダムにずれ、非対称CPで有機的うねり
+    const numSegs = 4 + Math.floor(Math.random() * 4);  // 4〜7セグ
     let cx = dropX;
-    const bumpCount = 3;
-    const unitW = Math.round((riseX - 10 - cx) / (bumpCount * 2 + 1));
-    cmds.push(`C ${cx + unitW},${groundY} ${cx + unitW * 2 - 2},${groundY} ${cx + unitW * 2},${groundY}`);
-    cx += unitW * 2;
-    for (let i = 0; i < bumpCount; i++) {
-      const bH = 20 + Math.round(Math.random() * 18);
-      cmds.push(`C ${cx + 2},${groundY - bH} ${cx + unitW - 2},${groundY - bH} ${cx + unitW},${groundY - bH}`);
-      cmds.push(`C ${cx + unitW + 2},${groundY - bH} ${cx + unitW * 2 - 2},${groundY} ${cx + unitW * 2},${groundY}`);
-      cx += unitW * 2;
+    let cy = groundY;
+
+    for (let i = 0; i < numSegs; i++) {
+      const isLast = i === numSegs - 1;
+      const nextX  = isLast ? riseX : Math.round(dropX + (riseX - dropX) * (i + 1) / numSegs);
+      const nextY  = isLast ? cy    : groundY + Math.round((Math.random() - 0.5) * 30);
+
+      // CP1・CP2を非対称なX/Y位置に: S字・不規則アーチを生む
+      const bumpH1 = Math.round(Math.random() * 45 * peakScale);
+      const bumpH2 = Math.round(Math.random() * 45 * peakScale);
+      const cp1x   = Math.round(cx + (nextX - cx) * (0.15 + Math.random() * 0.35));
+      const cp1y   = cy - bumpH1;
+      const cp2x   = Math.round(cx + (nextX - cx) * (0.50 + Math.random() * 0.35));
+      const cp2y   = nextY - bumpH2;
+
+      cmds.push(`C ${cp1x},${cp1y} ${cp2x},${cp2y} ${nextX},${nextY}`);
+      cx = nextX;
+      cy = nextY;
     }
-    cmds.push(`C ${riseX},${groundY + 8} ${xEnd - 15},${midY + 80} ${xEnd},${midY}`);
+    cmds.push(`C ${cx + 10},${cy} ${xEnd - 15},${midY + Math.round(80 * peakScale)} ${xEnd},${midY}`);
     x = xEnd;
     y = midY;
   };
 
-  addBounces(3);       // 上ゾーン 1: 3回バウンス → x≈454
-  addBottomZone(320);  // 下ゾーン    → x≈774
-  addBounces(3);       // 上ゾーン 2: 3回バウンス → x≈1228
+  if (extraDip) {
+    addBounces(2);       // 上ゾーン 1: 2回バウンス
+    addBottomZone(220);  // 下ゾーン 1
+    addBounces(2);       // 上ゾーン 2: 2回バウンス
+    addBottomZone(220);  // 下ゾーン 2
+  } else {
+    addBounces(3);       // 上ゾーン 1: 3回バウンス
+    addBottomZone(320);  // 下ゾーン
+    addBounces(3);       // 上ゾーン 2: 3回バウンス
+  }
 
   cmds.push(`C ${x + 30},${midY} 1270,${midY} 1280,${midY}`);
   return cmds.join(' ');
@@ -105,98 +128,96 @@ export default function BounceVizSlide({
   backgroundAnimation,
   observeAsActive,
   caption,
+  content,
 }: BounceVizSlideProps) {
-  const trailRef   = useRef<SVGPathElement>(null);
-  const moverRef   = useRef<SVGGElement>(null);
-  const spinnerRef = useRef<SVGGElement>(null);
-  const squareRef  = useRef<SVGRectElement>(null);
+  const trailRef1   = useRef<SVGPathElement>(null);
+  const moverRef1   = useRef<SVGGElement>(null);
+  const spinnerRef1 = useRef<SVGGElement>(null);
+  const squareRef1  = useRef<SVGRectElement>(null);
+  const trailRef2   = useRef<SVGPathElement>(null);
+  const moverRef2   = useRef<SVGGElement>(null);
+  const spinnerRef2 = useRef<SVGGElement>(null);
+  const squareRef2  = useRef<SVGRectElement>(null);
+  const trailRef3   = useRef<SVGPathElement>(null);
+  const moverRef3   = useRef<SVGGElement>(null);
+  const spinnerRef3 = useRef<SVGGElement>(null);
+  const squareRef3  = useRef<SVGRectElement>(null);
 
   useEffect(() => {
-    if (!trailRef.current || !moverRef.current || !spinnerRef.current || !squareRef.current) return;
+    const tracks = [
+      { trail: trailRef1.current, mover: moverRef1.current, spinner: spinnerRef1.current, square: squareRef1.current },
+      { trail: trailRef2.current, mover: moverRef2.current, spinner: spinnerRef2.current, square: squareRef2.current },
+      { trail: trailRef3.current, mover: moverRef3.current, spinner: spinnerRef3.current, square: squareRef3.current },
+    ];
+    if (tracks.some(t => !t.trail || !t.mover || !t.spinner || !t.square)) return;
 
-    const trail   = trailRef.current;
-    const mover   = moverRef.current;
-    const spinner = spinnerRef.current;
-    const square  = squareRef.current;
-
-    const hiddenSvg  = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    const calcPath   = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    const hiddenSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     hiddenSvg.setAttribute("style", "position:absolute;visibility:hidden;width:0;height:0;overflow:hidden;");
-    const generatedPath = generateBouncePath();
-    calcPath.setAttribute("d", generatedPath);
-    trail.setAttribute("d", generatedPath);
-    hiddenSvg.appendChild(calcPath);
     document.body.appendChild(hiddenSvg);
 
-    const totalLength = calcPath.getTotalLength();
-    trail.style.strokeDasharray  = String(totalLength);
-    trail.style.strokeDashoffset = String(totalLength);
+    // トラックごとのY幅スケールと起動ディレイ
+    const TRACK_CONFIGS = [
+      { peakScale: 1.0,  delay: 0,    extraDip: false },   // オレンジ
+      { peakScale: 0.3, delay: 500,  extraDip: false },   // 青緑: Y小さく
+      { peakScale: 1.5,  delay: 1000, extraDip: true  },   // イエロー: Y大きく、上下上下
+    ];
 
-    let pathParam = 0;
-    let rotation  = 0;
-    let prevTime: number | null = null;
-    let rafId: number | null = null;
-    let lastInTop: boolean | null = null;
+    const instances = tracks.map(({ trail, mover, spinner }, i) => {
+      const calcPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      const generatedPath = generateBouncePath(TRACK_CONFIGS[i].peakScale, TRACK_CONFIGS[i].extraDip);
+      calcPath.setAttribute("d", generatedPath);
+      trail!.setAttribute("d", generatedPath);
+      hiddenSvg.appendChild(calcPath);
+      const totalLength = calcPath.getTotalLength();
+      trail!.style.strokeDasharray  = String(totalLength);
+      trail!.style.strokeDashoffset = String(totalLength);
+      return { trail: trail!, mover: mover!, spinner: spinner!, calcPath, totalLength, delay: TRACK_CONFIGS[i].delay };
+    });
 
-    function updateSquareVisual(inTop: boolean) {
-      if (!square || !spinner || inTop === lastInTop) return;
-      lastInTop = inTop;
-      if (inTop) {
-        // square.style.fill    = "#ff8040";
-        // square.style.filter  = "url(#bv-glow)";
-        // spinner.style.filter = "url(#bv-glow)";
-      } else {
-        // square.style.fill    = "#6b2208";
-        // square.style.filter  = "";
-        // spinner.style.filter = "url(#bv-shadow)";
-      }
-    }
+    const rafIds: (number | null)[] = [null, null, null];
+    const timeoutIds: (ReturnType<typeof setTimeout> | null)[] = [null, null, null];
 
-    function animate(timestamp: number) {
-      if (!prevTime) {
-        prevTime = timestamp;
-        rafId = requestAnimationFrame(animate);
-        return;
-      }
+    function startAll() {
+      instances.forEach(({ trail, mover, spinner, calcPath, totalLength, delay }, idx) => {
+        if (rafIds[idx]) cancelAnimationFrame(rafIds[idx]!);
+        if (timeoutIds[idx]) clearTimeout(timeoutIds[idx]!);
 
-      const delta = Math.min((timestamp - prevTime) / 1000, 0.05);
-      prevTime = timestamp;
+        mover.setAttribute("transform", "translate(0, 360)");
+        spinner.setAttribute("transform", "rotate(0)");
+        trail.style.strokeDashoffset = String(totalLength);
 
-      const curPt = calcPath.getPointAtLength(pathParam * totalLength);
-      const ease   = physicsEase(curPt.y);
-      pathParam = Math.min(pathParam + delta * BASE_RATE * SPEED_BOUNCE * ease, 1.0);
+        timeoutIds[idx] = setTimeout(() => {
+          let pathParam = 0;
+          let rotation  = 0;
+          let prevTime: number | null = null;
 
-      const newPt    = calcPath.getPointAtLength(pathParam * totalLength);
-      const newInTop = newPt.y < MID_Y;
+          function animate(timestamp: number) {
+            if (!prevTime) {
+              prevTime = timestamp;
+              rafIds[idx] = requestAnimationFrame(animate);
+              return;
+            }
+            const delta = Math.min((timestamp - prevTime) / 1000, 0.05);
+            prevTime = timestamp;
 
-      rotation += delta * ROT_BOUNCE * ease;  // 速度に連動して回転も緩急
+            const curPt = calcPath.getPointAtLength(pathParam * totalLength);
+            const ease  = physicsEase(curPt.y);
+            pathParam = Math.min(pathParam + delta * BASE_RATE * SPEED_BOUNCE * ease, 1.0);
 
-      mover.setAttribute("transform", `translate(${newPt.x}, ${newPt.y})`);
-      spinner.setAttribute("transform", `rotate(${rotation})`);
-      trail.style.strokeDashoffset = String(totalLength * (1 - pathParam));
+            const newPt = calcPath.getPointAtLength(pathParam * totalLength);
+            rotation += delta * ROT_BOUNCE * ease;
 
-      updateSquareVisual(newInTop);
+            mover.setAttribute("transform", `translate(${newPt.x}, ${newPt.y})`);
+            spinner.setAttribute("transform", `rotate(${rotation})`);
+            trail.style.strokeDashoffset = String(totalLength * (1 - pathParam));
 
-      if (pathParam < 1.0) {
-        rafId = requestAnimationFrame(animate);
-      }
-    }
-
-    function startAnimation() {
-      if (rafId) cancelAnimationFrame(rafId);
-      pathParam = 0;
-      rotation  = 0;
-      prevTime  = null;
-      lastInTop = null;
-
-      mover.setAttribute("transform", "translate(0, 360)");
-      spinner.setAttribute("transform", "rotate(0)");
-      square.style.fill   = "#ff6b35";
-      square.style.filter = "";
-      spinner.style.filter = "";
-      trail.style.strokeDashoffset = String(totalLength);
-
-      rafId = requestAnimationFrame(animate);
+            if (pathParam < 1.0) {
+              rafIds[idx] = requestAnimationFrame(animate);
+            }
+          }
+          rafIds[idx] = requestAnimationFrame(animate);
+        }, delay);
+      });
     }
 
     const section = document.getElementById(id);
@@ -206,7 +227,7 @@ export default function BounceVizSlide({
       (entries) => {
         if (entries[0].isIntersecting && !started) {
           started = true;
-          startAnimation();
+          startAll();
         }
       },
       { threshold: 0.4 }
@@ -215,7 +236,8 @@ export default function BounceVizSlide({
     if (section) observer.observe(section);
 
     return () => {
-      if (rafId) cancelAnimationFrame(rafId);
+      rafIds.forEach(rid => { if (rid) cancelAnimationFrame(rid); });
+      timeoutIds.forEach(tid => { if (tid) clearTimeout(tid); });
       observer.disconnect();
       document.body.removeChild(hiddenSvg);
     };
@@ -334,43 +356,42 @@ export default function BounceVizSlide({
           </filter>
         </defs>
 
-        {/* 軌跡パス */}
-        <path
-          ref={trailRef}
-          d=""
-          fill="none"
-          stroke="#ff6b35"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          opacity="0.5"
-        />
+        {/* 軌跡パス 1: オレンジ */}
+        <path ref={trailRef1} d="" fill="none" stroke="#ff6b35" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="0.75" />
+        {/* 軌跡パス 2: 青緑 */}
+        <path ref={trailRef2} d="" fill="none" stroke="#5a9e94" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="0.75" />
+        {/* 軌跡パス 3: イエロー */}
+        <path ref={trailRef3} d="" fill="none" stroke="#c9b84c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" opacity="0.75" />
 
-        {/* mover: 位置追従 / spinner: 自転 */}
-        <g ref={moverRef}>
-          <g ref={spinnerRef}>
-            <rect
-              ref={squareRef}
-              x="-16"
-              y="-16"
-              width="32"
-              height="32"
-              rx="2"
-              fill="#ff6b35"
-            />
-            <rect
-              x="-16"
-              y="-16"
-              width="32"
-              height="10"
-              rx="2"
-              fill="rgba(255,255,255,0.28)"
-            />
+        {/* mover 1: オレンジ */}
+        <g ref={moverRef1}>
+          <g ref={spinnerRef1}>
+            <rect ref={squareRef1} x="-16" y="-16" width="32" height="32" rx="2" fill="#ff6b35" />
+            <rect x="-16" y="-16" width="32" height="10" rx="2" fill="rgba(255,255,255,0.28)" />
+          </g>
+        </g>
+        {/* mover 2: 青緑 */}
+        <g ref={moverRef2}>
+          <g ref={spinnerRef2}>
+            <rect ref={squareRef2} x="-16" y="-16" width="32" height="32" rx="2" fill="#5a9e94" />
+            <rect x="-16" y="-16" width="32" height="10" rx="2" fill="rgba(255,255,255,0.28)" />
+          </g>
+        </g>
+        {/* mover 3: イエロー */}
+        <g ref={moverRef3}>
+          <g ref={spinnerRef3}>
+            <rect ref={squareRef3} x="-16" y="-16" width="32" height="32" rx="2" fill="#c9b84c" />
+            <rect x="-16" y="-16" width="32" height="10" rx="2" fill="rgba(255,255,255,0.28)" />
           </g>
         </g>
       </svg>
 
-      {caption && (
+      {content && (content.heading || content.body) && (
+        <div className="slide__inner" style={{ position: "relative", zIndex: 1 }}>
+          <SlideTextArea content={content} caption={caption} />
+        </div>
+      )}
+      {!content && caption && (
         <p className="slide__caption" style={{ position: "relative", zIndex: 1 }}>
           {caption}
         </p>

@@ -51,16 +51,6 @@ export type SlideContent = {
 
 export const slides: SlideData[] = [
 
-  {
-    id: "slide-bounce",
-    className: "slide slide--light slide--mountain-viz",
-    bgStart: "#ffffff",
-    bgEnd: "#faf8f5",
-    content: {
-      layout: "bounce-viz",
-    },
-    observeAsActive: true,
-  },
 /* 
  {
     id: "slide-01",
@@ -258,17 +248,7 @@ export const slides: SlideData[] = [
   },
 
 */
-  {
-    id: "slide-15",
-    className: "slide slide--subtitle slide--light", 
-    bgStart: "#f5f0eb", 
-    bgEnd: "#f0ebe5",
-    content: {
-      layout: "title",
-      heading: "2. 「正解のない中で試し続ける力」を教えている",
-      sub: "美術の授業の力",
-    },
-  },
+
 
 
   {
@@ -349,39 +329,19 @@ export const slides: SlideData[] = [
 
 
   {
-    id: "slide-20",
-    className: "slide slide--light slide--luminous",
-    bgStart: "#f5f0eb",
-    bgEnd: "#faf8f5",
-    content: {
-      layout: "text",
-      label: "理由③ ── 観察の場",
-      heading: "算数の時間は\nずっと下を向いていたのに、\n美術の時間になると\n手が止まらなくなる子。",
-      body: "先生方なら、そんな子の顔が\nすぐに思い浮かぶのではないでしょうか。",
-    },
-  },
-  {
-    id: "slide-21",
-    className: "slide slide--light slide--luminous",
-    bgStart: "#faf8f5",
-    bgEnd: "#ffffff",
-    content: {
-      layout: "text",
-      label: "美術固有の構造",
-      heading: "テストの答案ではなく、\nプロセスを見られる。",
-      body: "没頭の仕方。やり直しの仕方。\n手の動かし方。色の選び方。\n\nその子の関心と思考の癖が、\n作品ではなくプロセスに滲む。\nそれを観察できる場が、美術の教室だ。",
-    },
-  },
-  {
-    id: "slide-22",
+    id: "slide-bounce",
     className: "slide slide--light slide--mountain-viz",
     bgStart: "#ffffff",
     bgEnd: "#faf8f5",
     content: {
-      layout: "mountain-viz",
+      layout: "bounce-viz",
+      heading: "テストの答案ではなく、思考のプロセスを見られる。",
+      body: "没頭の仕方。やり直しの仕方。\n手の動かし方。色の選び方。\n\nその子の関心と思考の癖が、\n作品ではなくプロセスに滲む。\nそれを観察できる場が、美術の教室だ。算数の時間は\nずっと下を向いていたのに、\n美術の時間になると\n手が止まらなくなる子。\n先生方なら、そんな子の顔が\nすぐに思い浮かぶのではないでしょうか。",
     },
     observeAsActive: true,
   },
+
+
   {
     id: "slide-23",
     className: "slide slide--light slide--luminous",

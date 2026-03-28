@@ -300,7 +300,7 @@ const renderSlide = (slide: SlideData, index: number) => {
   }
 
   if (slide.content?.layout === "bounce-viz") {
-    return <BounceVizSlide key={slide.id} {...commonProps} />;
+    return <BounceVizSlide key={slide.id} {...commonProps} content={slide.content} />;
   }
 
   return <ContentSlide key={slide.id} {...commonProps} content={slide.content} />;
