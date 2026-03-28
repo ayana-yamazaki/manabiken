@@ -52,7 +52,7 @@ export type SlideContent = {
 
 export const slides: SlideData[] = [
 
-/* 
+
  {
     id: "slide-01",
     className: "slide slide--title slide--light",
@@ -76,7 +76,7 @@ export const slides: SlideData[] = [
       heading: "山崎 文菜",
       nameEn: "Ayana Yamazaki",
       sub: "プロダクトデザイナー",
-      body: "金沢美術工芸大学 プロダクトデザイン学部卒。\n日立製作所で鉄道システムのUXデザインに携わり、\nその後スタートアップで農業・医療・SaaSなど\n現場で使われるサービスを設計してきた。\n\n美術の先生ではありません。\n美術の授業を受けた側の人間です。",
+      body: "金沢美術工芸大学 プロダクトデザイン学部卒。\n日立製作所で鉄道システムのUXデザインに携わり、\nその後スタートアップで農業・医療・製造業など\n現場で使われるサービス、アプリの画面を設計してきた。\n\n美術の先生ではありません。\n美術の授業を受けた側の人間です。",
       imageSrc: "/images/profile.jpg",
       imageAlt: "山崎文菜",
     },
@@ -89,20 +89,19 @@ export const slides: SlideData[] = [
     bgEnd: "#e5dfd8",
     content: {
       layout: "message",
-      label: "本日のメッセージ",
-      heading: "AI時代に最も必要とされる力は、\n美術の授業が育てうる力だ。",
+      heading: "AI時代に必要とされる力は、\n美術の授業が育てうる力だ。",
       lead: "今日は3つの観点からお話しします。",
     },
     observeAsActive: true,
   },
   {
     id: "slide-04",
-    className: "slide slide--light slide--basic",
+    className: "slide slide--light slide--luminous",
     bgStart: "#eae5df",
     bgEnd: "#e5dfd8",
     content: {
       layout: "basic",
-      heading: "2025年まで、\n私はアプリの画面を描いていた",
+      heading: "2025年まで、\n私はアプリの画面を\n描いていた",
       body: "美しいブランドカラーや余白、直感的な画面構成、データベースとの整合性…\n10年以上かけて積み上げたスキル。1画面を仕上げるのに何日もかかることも",
       imageSrc: "/images/figma-vs-code.png",
       imageAlt: "2025年までに制作していたアプリ画面のデザイン",
@@ -116,9 +115,8 @@ export const slides: SlideData[] = [
     observeAsActive: true,
     content: {
       layout: "basic",
-      label: "背景",
-      heading: "2026年現在、\nコードを書いている",
-      body: "代わりにコードを書いている。AIに言葉で伝えるだけで実際に動く画面が目の前に現れる。\n丸一日かかっていた作業が、数十分で終わる。デザイナーの仕事はエンジニア領域に染み出し、非デザイナーでもハイクオリティなものを生成できる。",
+      heading: "2026年現在、\nコードを生成している",
+      body: "もう画面をかいていない。AIに言葉で伝えるだけで実際に動く画面が目の前に現れる。\n丸一日かかっていた作業が、数十分で終わる。デザイナーの仕事はエンジニア領域に染み出し、非デザイナーでもハイクオリティなものを生成できるようになった。\n技術の進歩は凄まじく、今の1週間は、去年の3ヶ月ほどのスピード感がある。新たな技術に興奮し、夢中で使うと同時に、惨憺たる気持ちになることもある。",
       imageSrc: "/images/figma-vs-code2.png",
       imageAlt: "コードを書いている様子",
     },
@@ -126,38 +124,40 @@ export const slides: SlideData[] = [
   {
     id: "slide-06",
     className: "slide slide--subtitle slide--light", // 👈 darkをlightに変更
-    bgStart: "#f5f0eb", // 👈 明るいベージュを維持
-    bgEnd: "#f0ebe5",
+    bgStart: "#faf8f5",
+    bgEnd: "#ffffff",
     content: {
       layout: "title",
-      heading: "1. 「感じる」を教えている",
+      heading: "1. 「感じる」ことを教わった",
       sub: "美術の授業の力",
     },
   },
+
+   {
+    id: "slide-node-anim",
+    className: "slide slide--light slide--luminous",
+    bgStart: "#ffffff",
+    bgEnd: "#ffffff",
+    content: {
+      layout: "node-animation",      
+      heading: "対話による鑑賞",
+      body: "誰かが「ここの色合いが好き」と言う。\n誰かが「僕はちょっと怖い」と言う。\nそんな感じ方があるのか、と驚く。\n\n自分では気づかなかった色や形が、他人の言葉を通じて見えてくる。\n自分とは違う感じ方があることを実感する。",
+    },
+    observeAsActive: true,
+  },
+
   {
     id: "slide-07",
-    className: "slide slide--has-image slide--light",
+    className: "slide slide--light slide--luminous",
     bgStart: "#e5dfd8",
     bgEnd: "#dfd8d0",
     content: {
       layout: "basic",
       heading: "レポサク\nグッドデザイン賞\n金賞 (TOP20)",
-      body: "北海道の農家さんと共同開発した「レポサク」。\nGPS端末をUSBに挿すだけで、\n数十台の車両の位置と軌跡がスマホで見える。\n\n全国200社以上、農協24組合に導入。",
+      body: "北海道の農家さん向けWebアプリ。\nGPS端末をUSBに挿すだけで、\n数十台の車両の位置と軌跡がスマホで見える。\n何が評価されたのか？",
       imageSrc: "/images/reposaku_main.jpg",
       imageAlt: "レポサク — グッドデザイン金賞",
     },
-  },
-    {
-    id: "slide-node-anim",
-    className: "slide slide--light slide--luminous",
-    bgStart: "#faf8f5",
-    bgEnd: "#ffffff",
-    content: {
-      layout: "node-animation",      
-      heading: "対話による鑑賞",
-      body: "誰かが「ここの色合いが好き」と言う。誰かが「僕はちょっと怖い」と言う。そんな感じ方があるのか、と驚く。自分では気づかなかった色や形が、他人の言葉を通じて見えてくる。自分とは違う感じ方があることを知る。",
-    },
-    observeAsActive: true,
   },
 
   {
@@ -173,7 +173,9 @@ export const slides: SlideData[] = [
         enabled: true,
       },
       heading: "「俺らはIT無理だから」",
-      body: "農家さん向けアプリ開発の事例。農家さんの多くが60代以上。\n当初、農家さんと大きな断絶。「俺らには無理だから」と怒ってスマホを投げる人まで。「どうしてそんなに拒絶するの？」それが最初の問いだった。",
+      body: "農家さんの多くは60代以上で、あまりスマホに慣れていない。\n開発当初は、農家さんと大きな断絶があった。\n\n「難しい。面倒臭い。わかんない」\n「俺らはバカじゃない！」\n\n「なぜこんなに拒絶するの？」それが最初の問いだった。",
+      // imageSrc: "/images/farmer.jpg",
+      // imageAlt: "レポサク — グッドデザイン金賞",
     },
   },
 {
@@ -184,27 +186,13 @@ export const slides: SlideData[] = [
     content: {
       layout: "basic", // 画像を表示するためにbasicを使います！
       modifiers: ["basic--text-left", "basic--surface-clear"], // 👈 中央配置 ＆ 背景透明化！
-      heading: "2年間、畑を借り、土を耕し、作物を育てた",
-      body: "自分で畑に立つと、日光でスマホの画面が見えない。\n泥だらけの手袋では操作できないことが理解できた。",
+      heading: "2年間、畑を借り土を耕し、作物を育てた。\nシニアスマホ教室に通って、お年寄りを観察した。",
+      body: "自分で畑に立つと、日光でスマホの画面が見えない。\n手袋をつけるので、操作そのものが難しい。\n\nシニアスマホ教室では、お年寄りの感情を感じ取ろうとした。\n数年前までバリバリ第一線で働いてたのに、マップアプリで現在地を開く方法が何度聞いてもわからない。\nバカにされていると感じる。\n徐々に「私は頭が悪いから…」と、\nプライドは粉々、自己効力感も奪われる。\nアプリを開発するデザイナーとして、責任を感じた。",
       imageSrc: "/images/farming.jpg",
       imageAlt: "畑を借りて土を耕した",
     },
   },
-  {
-    id: "slide-11",
-    className: "slide slide--has-image slide--dark",
-    bgStart: "#0f3460",
-    bgEnd: "#2a4a48",
-    content: {
-      layout: "basic",
-      // 👇 center を left に変更！(plainはそのまま残して背景透明を維持)
-      modifiers: ["basic--text-left", "basic--surface-clear"], 
-      heading: "シニアスマホ教室に通った",
-      body: "シニアスマホ教室でボランティアをした。若い頃はバリバリ第一線で働いてたのに、マップアプリで現在地を開く方法が何度聞いてもわからない。「何度も聞いてごめんなさいね、私頭が悪いから…」\n言葉にならない切なさと、プライド。\n「わからない」と言えない空気の中で、\nその人たちの感情を、感じ取ろうとした。",
-      imageSrc: "/images/senior_smartphone.jpg",
-      imageAlt: "畑を借りて土を耕した", // 👈 ここのAltテキストも後で直しておくと完璧です！
-    },
-  },
+
   {
     id: "slide-12",
     className: "slide slide--has-image slide--dark",
@@ -216,8 +204,8 @@ export const slides: SlideData[] = [
       nodeAccent: {
         enabled: true,
       },
-      heading: "問いの変換\n彼らが誇りを持って\n楽しく使える体験とは？",
-      body: "操作そのものを無くす設計。\nIT用語を隠す。\n畑の上に余計なものを被せない。\n「感じる」ことが、設計の方角を変えた。",
+      heading: "問いの再設計\n「彼らが誇りを持って\n楽しく使える体験とは？」",
+      body: "思い切って、操作そのものを無くす設計に。\n彼らが聞き慣れないIT用語は隠す。\n画面に描画される畑は、ただの地図ではない。彼らが大切に大切に育てた土だ。だから、画面の畑には、無遠慮に余計なものは被せない。\n\n「感じる」ことが、設計の方角を変えた。",
     },
   },
 {
@@ -229,7 +217,7 @@ export const slides: SlideData[] = [
       layout: "basic", 
       heading: "「これ知ってる？\nかっこいいだろ。」",
       headingClassName: "slide__heading--quote",
-      body: "農家さんが、自分から周りに勧めてくれた。\n口コミだけで全国200社以上に広がった。\n「感じる力」がビジネスの成果になった瞬間だった。",
+      body: "農家さんとの「対話による鑑賞」から問いを再設計し、彼らが誇りを持って楽しく使えるWebアプリが開発できた。\n\n農家さんの口コミによってどんどん広がり、今では全国200社以上で導入。誰でも使えるカンタンさが話題になり、除雪やごみ収集、猟師さんにも使われている。\n\nこの取り組みが評価され、グッドデザイン賞金賞を受賞した。\n「対話による鑑賞」がビジネスの成果になった瞬間だった。",
       imageSrc: "/images/ここになんらかの画像名.png", // 👈 画像のファイル名も忘れずに！
       imageAlt: "レポサク詳細画像",
     },
@@ -243,12 +231,22 @@ export const slides: SlideData[] = [
       layout: "node-animation",
       modifiers: ["basic--text-center", "basic--surface-clear"],
       textColor: "#1a1a2e",
-      heading: "感じる力 →問いを立てる力 →\n価値を生む力",
-      body: "美術の授業が育てている「感じる力」は、\n社会で「問いを立てる力」になり、\nやがて「価値を生む力」へと変わる。",
+      heading: "感じる力が、\n問いを立てる力になる",
+      body: "\nデザイナーの「感じる力」は、他者の感情を丁寧に観察し、彼らの本質的な課題を掴み、それを形にし、ビジネスに還元する能力だ。\n\n「世界をどう見るか」というインプットと、\n「つくる・描く」というアウトプットの間に生じる\n言葉にならない違和感をそのまま扱う場は、\n美術をおいて他にほとんどないのではないか。 \n\n学校というシステムの中に、そうした「余白」が存在し続けていること自体に、決定的な意味がある。",
     }
   },
 
-*/
+    {
+    id: "slide-15",
+    className: "slide slide--subtitle slide--light", // 👈 darkをlightに変更
+    bgStart: "#f5f0eb", // 👈 明るいベージュを維持
+    bgEnd: "#f0ebe5",
+    content: {
+      layout: "title",
+      heading: "2. 正解がないまま \n小さく試し続けことを教わった",
+      sub: "美術の授業の力",
+    },
+  },
 
   {
     id: "slide-aa",
@@ -259,9 +257,8 @@ export const slides: SlideData[] = [
     content: {
       layout: "split-plain",
       modifiers: ["basic--surface-clear"],
-      leftLabel: "AI時代の落とし穴",
-      leftHeading: "AIの即答が、\n 正解は一回で出るものという感覚を強める",
-      rightBody: "AIは迷わない。常に一つの答えを返す。\nその速さと確信に触れ続けると、\n「試行錯誤は非効率だ」と感じ始める。\n\n設計図型の生き方が、加速していく。",
+      leftHeading: "設計図型の生き方は難しくなっている",
+      rightBody: "かつては、正解を決めてから歩む「設計図型」の生き方が当たり前だった。良い大学に行き、良い会社に入り、家を買い、子供を持ち…設計図どおりに進めば幸せが保証された。今はその設計図が1年後に通用する保証はどこにもない。デザイナーが絵を描かずにコードを書くなんて、一年前には未来の話だった。私がフリーランスで受けていた仕事は、すでに3割がAIに代替された。まさかこんなに急速に技術が発展するなんて。",
     },
   },
 
@@ -274,9 +271,8 @@ export const slides: SlideData[] = [
     content: {
       layout: "split-river",
       modifiers: ["basic--surface-clear"],
-      leftLabel: "AI時代の落とし穴",
-      leftHeading: "AIの即答が、\n 正解は一回で出るものという感覚を強める",
-      rightBody: "AIは迷わない。常に一つの答えを返す。\nその速さと確信に触れ続けると、\n「試行錯誤は非効率だ」と感じ始める。\n\n設計図型の生き方が、加速していく。",
+      leftHeading: "不確実な世界を生きるということ",
+      rightBody: "不確実性は高いのに、AIに話しかければ、それらしい答えがすぐに得られる。\n「正解は一回で出る」という感覚が加速する。\n\n膨大な選択肢の中から自分の生き方を選ぶのが怖くなってくる。",
     },
   },
   {
@@ -287,14 +283,14 @@ export const slides: SlideData[] = [
     observeAsActive: true,
     content: {
       layout: "drift",
-      heading: "到達点を決めず、\n小さく試す。\n小さく失敗する。",
-      body: "設計図型：正解を決めてから動く。\nプロトタイプ型：小さく試す。外す。感じて方角を修正する。\n\n到達点は最初から決まっていない。\n動きながら見つけていく。",
+      heading: "今必要なのは、正解のない中、小さく試し続けること",
+      body: "設計図型ではなく、「プロトタイプ型」の生き方だ。到達点が決まっていないまま動き始め、感覚に従いながらゆるやかに操舵していく。小さく試す。外す。感じて方角を修正する。\n\n到達点は最初から決まっていない。",
       imageSrc: "/images/boat.png",
       imageAlt: "上から見たヨット",
     },
   },
 
-   {
+  /* {
     id: "slide-16",
     className: "slide slide--has-image",
     bgStart: "#4a3530",
@@ -302,12 +298,12 @@ export const slides: SlideData[] = [
     observeAsActive: true,
     content: {
       layout: "basic",
-      heading: "美術の授業は、\n「ドリフト (漂流) する」練習だ。",
+      heading: "美術の授業は、)(漂流) する」練習だ。",
       body: "粘土をこね、色を塗り、\n「なんか違う」と壊してやり直す。\n\nあの感覚が、社会に出てからの生き方になった。\n美術の授業は「プロトタイプ型の生き方」を\n教えている。",
       imageSrc: "/images/blueprint-vs-prototype.png",
       imageAlt: "設計図型 vs プロトタイプ型",
     },
-  },
+  },*/
 
   {
     id: "slide-17",
@@ -317,9 +313,8 @@ export const slides: SlideData[] = [
     observeAsActive: true,
     content: {
       layout: "basic",
-      label: "原体験",
-      heading: "手を動かしながら、\n座りながら、感じながら、\n形を探っていった。",
-      body: "美術大学での椅子制作。\nスケッチを何十枚も描き、実寸モデルを作って座る。\n「なんか違う」を何度も繰り返す。\n設計図通りに作ったのではない。",
+      heading: "「正解がないまま手を動かす」感覚が、仕事の進め方になった",
+      body: "美術大学での椅子制作では、スケッチを何百枚と描いて、その中から1枚を選び、実寸プロトタイプを作って座る。\n「なんか違う」を何度も繰り返していく。\n最初から設計図を引くと、失敗が怖くなってしまう。小さく試すことは、レジリエンス高く生きるスキルだ。",
       imageSrc: "/images/chair-process.png",
       imageAlt: "椅子制作のプロセス",
     },
@@ -327,7 +322,7 @@ export const slides: SlideData[] = [
 
 
   {
-    id: "slide-1100",
+    id: "slide-18",
     className: "slide slide--subtitle slide--light",
     bgStart: "#f5f0eb",
     bgEnd: "#f0ebe5",
@@ -340,6 +335,19 @@ export const slides: SlideData[] = [
     }
   },
 
+      {
+    id: "slide-19",
+    className: "slide slide--subtitle slide--light", // 👈 darkをlightに変更
+    bgStart: "#f5f0eb", // 👈 明るいベージュを維持
+    bgEnd: "#f0ebe5",
+    content: {
+      layout: "title",
+      heading: "3. 美術の授業では、ものさしが変わった",
+      sub: "美術の授業の力",
+    },
+  },
+
+
 
   {
     id: "slide-bounce",
@@ -348,7 +356,7 @@ export const slides: SlideData[] = [
     bgEnd: "#faf8f5",
     content: {
       layout: "bounce-viz",
-      heading: "テストの答案ではなく、思考のプロセスを見られる。",
+      heading: "テストの答案ではなく、\n思考の過程を見てくれる",
       body: "没頭の仕方。やり直しの仕方。\n手の動かし方。色の選び方。\n\nその子の関心と思考の癖が、\n作品ではなくプロセスに滲む。\nそれを観察できる場が、美術の教室だ。算数の時間は\nずっと下を向いていたのに、\n美術の時間になると\n手が止まらなくなる子。\n先生方なら、そんな子の顔が\nすぐに思い浮かぶのではないでしょうか。",
     },
     observeAsActive: true,
