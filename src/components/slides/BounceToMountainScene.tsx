@@ -275,7 +275,7 @@ export default function BounceToMountainScene({ bounceSlide, mountainSlide, boun
         {/* Mountain overlay (fades in when mountain section intersects) */}
         <div
           ref={mountainOverlayRef}
-          style={{ position: "absolute", inset: 0, opacity: 0, transform: "translateY(100%)", transition: "opacity 1.8s ease, transform 1.8s cubic-bezier(0.16, 1, 0.3, 1)", pointerEvents: "none" }}
+          style={{ position: "absolute", inset: 0, opacity: 0, transform: "translateY(100%)", transition: "opacity 1.5s ease, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1)", pointerEvents: "none" }}
         >
           <MountainVizSvg />
         </div>
@@ -325,18 +325,7 @@ export default function BounceToMountainScene({ bounceSlide, mountainSlide, boun
           }}
         >
           <div className="slide__inner">
-            <div className="slide__text">
-              <p className="slide__label">山と谷</p>
-              <h2 className="slide__heading">
-                谷が埋まった後に<br />残るのは、<br />その人だけの山だ。
-              </h2>
-              <p className="slide__body">
-                AIの時代、苦手な領域はAIが補ってくれる。<br />
-                谷が埋まる。<br />
-                その後に残る「山」──その子だけの力に<br />
-                最初に気づけるのは、先生方かもしれない。
-              </p>
-            </div>
+            {mountainSlide.content && <SlideTextArea content={mountainSlide.content} />}
           </div>
         </section>
 

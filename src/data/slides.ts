@@ -243,7 +243,7 @@ export const slides: SlideData[] = [
     bgEnd: "#f0ebe5",
     content: {
       layout: "title",
-      heading: "2. 正解がないまま \n小さく試し続けことを教わった",
+      heading: "2. 正解がないまま \n小さく試し続けことを体で学んだ",
       sub: "美術の授業の力",
     },
   },
@@ -342,7 +342,7 @@ export const slides: SlideData[] = [
     bgEnd: "#f0ebe5",
     content: {
       layout: "title",
-      heading: "3. 美術の授業では、ものさしが変わった",
+      heading: "3. 美術の授業で、自分の凸凹が見えた",
       sub: "美術の授業の力",
     },
   },
@@ -357,7 +357,7 @@ export const slides: SlideData[] = [
     content: {
       layout: "bounce-viz",
       heading: "テストの答案ではなく、\n思考の過程を見てくれる",
-      body: "没頭の仕方。やり直しの仕方。\n手の動かし方。色の選び方。\n\nその子の関心と思考の癖が、\n作品ではなくプロセスに滲む。\nそれを観察できる場が、美術の教室だ。算数の時間は\nずっと下を向いていたのに、\n美術の時間になると\n手が止まらなくなる子。\n先生方なら、そんな子の顔が\nすぐに思い浮かぶのではないでしょうか。",
+      body: "人にはそれぞれ凸凹がある。苦手なことと、得意なこと。没頭の仕方。やり直しの仕方。\n手の動かし方。色の選び方。\n\nその子の関心と思考の癖が、\n作品ではなくプロセスに滲む。\nそれを大人やクラスメイトが観察してくれる場が、美術の教室だ。算数の時間は\nずっと下を向いていたのに、\n美術の時間になると\n手が止まらなくなる子。\n先生方なら、そんな子の顔が\nすぐに思い浮かぶのではないでしょうか。",
     },
     observeAsActive: true,
   },
@@ -369,37 +369,13 @@ export const slides: SlideData[] = [
     bgEnd: "#faf8f5",
     content: {
       layout: "mountain-viz",
-      heading: "テキスト",
-      body: "テキスト。",
+      label: "山と谷",
+      heading: "谷が埋まった後に\n残るのは、\nその人だけの山だ。",
+      body: "AIの時代、苦手な領域はAIが補ってくれる。\n谷が埋まる。\nその後に残る「山」──その子だけの力に\n最初に気づけるのは、先生方かもしれない。",
     },
     observeAsActive: true,
   },
 
-
-  {
-    id: "slide-23",
-    className: "slide slide--light slide--luminous",
-    bgStart: "#faf8f5",
-    bgEnd: "#ffffff",
-    content: {
-      layout: "basic",
-      heading: "美術の教室は、\n他教科では見えない「山」が\n顔を出す場所だ。",
-      headingClassName: "slide__heading--warm",
-      body: "そしてその山に最初に気づけるのは、\n先生方だけだ。",
-    },
-  },
-  {
-    id: "slide-24",
-    className: "slide slide--light slide--luminous",
-    bgStart: "#ffffff",
-    bgEnd: "#fffaf5",
-    content: {
-      layout: "basic",
-      label: "結論",
-      heading: "美術の授業が育てる、\n3つの力。",
-      body: "① 感じる力 ── 問いを立てる力になる\n② プロトタイプ型 ── 正解のない時代の生き方になる\n③ 観察の場 ── その子だけの山が見える",
-    },
-  },
   {
     id: "slide-25",
     className: "slide slide--light slide--luminous",
@@ -412,6 +388,7 @@ export const slides: SlideData[] = [
       body: "遅刻。忘れ物。バイトはクビ。\nでも、凹があるから\n農家さんの痛みがわかった。\n\n凹は弱さではなく、共鳴装置だった。",
     },
   },
+
   {
     id: "slide-26",
     className: "slide slide--light slide--luminous",
@@ -437,6 +414,20 @@ export const slides: SlideData[] = [
       bodyClassName: "slide__body--accent",
     },
   },
+
+  /*
+  {
+    id: "slide-24",
+    className: "slide slide--light slide--luminous",
+    bgStart: "#ffffff",
+    bgEnd: "#fffaf5",
+    content: {
+      layout: "basic",
+      label: "結論",
+      heading: "美術の授業が育てる、\n3つの力。",
+      body: "① 感じる力 ── 問いを立てる力になる\n② プロトタイプ型 ── 正解のない時代の生き方になる\n③ 観察の場 ── その子だけの山が見える",
+    },
+  },*/
 
   {
     id: "slide-29",
