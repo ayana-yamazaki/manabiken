@@ -49,7 +49,7 @@ function generateBouncePath(): string {
       const h     = Math.round(peakH0  * Math.pow(decay, i));
       const x1    = x + w;
       const y1    = (i < n - 1)
-        ? midY - Math.round(Math.random() * 80 + 20)  // 上ゾーン内ランダム着地
+        ? midY - Math.round(Math.random() * 190 + 30)  // 上ゾーン内ランダム着地
         : midY;                                         // 最後はmidYに戻る
       const peakY = Math.min(y, y1) - h;              // 低い方からh上
       const cp1x  = Math.round(x  + (x1 - x) / 3);
@@ -142,13 +142,13 @@ export default function BounceVizSlide({
       if (!square || !spinner || inTop === lastInTop) return;
       lastInTop = inTop;
       if (inTop) {
-        square.style.fill    = "#ff8040";
-        square.style.filter  = "url(#bv-glow)";
-        spinner.style.filter = "url(#bv-glow)";
+        // square.style.fill    = "#ff8040";
+        // square.style.filter  = "url(#bv-glow)";
+        // spinner.style.filter = "url(#bv-glow)";
       } else {
-        square.style.fill    = "#6b2208";
-        square.style.filter  = "";
-        spinner.style.filter = "url(#bv-shadow)";
+        // square.style.fill    = "#6b2208";
+        // square.style.filter  = "";
+        // spinner.style.filter = "url(#bv-shadow)";
       }
     }
 
@@ -245,7 +245,7 @@ export default function BounceVizSlide({
         <div
           style={{
             flex: 1,
-            background: "linear-gradient(180deg, #5ba3d0 0%, #87ceeb 30%, #b8dff5 70%, #d8eefa 100%)",
+            /*background: "linear-gradient(180deg, #5ba3d0 0%, #87ceeb 30%, #b8dff5 70%, #d8eefa 100%)",*/
           }}
           aria-hidden="true"
         />
@@ -330,7 +330,7 @@ export default function BounceVizSlide({
             </feMerge>
           </filter>
           <filter id="bv-shadow" x="-20%" y="-20%" width="140%" height="200%">
-            <feDropShadow dx="0" dy="5" stdDeviation="4" floodColor="#000" floodOpacity="0.6" />
+            <feDropShadow dx="0" dy="5" stdDeviation="4" floodColor="#000" floodOpacity="0.2" />
           </filter>
         </defs>
 
