@@ -3,7 +3,7 @@ export default function MountainVizSvg() {
     <div className="mountain-viz">
       <svg className="mountain-viz__svg" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
         <defs>
-          <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+          {/* <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#a8b0d0" />
             <stop offset="25%" stopColor="#b8b8d8" />
             <stop offset="45%" stopColor="#d0c8e0" />
@@ -15,7 +15,7 @@ export default function MountainVizSvg() {
             <stop offset="0%" stopColor="#8868b0" stopOpacity="0.9" />
             <stop offset="40%" stopColor="#7058a8" stopOpacity="0.8" />
             <stop offset="100%" stopColor="#405078" stopOpacity="0.4" />
-          </linearGradient>
+          </linearGradient> */}
           <linearGradient id="wtrFill" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="#50c8e0" stopOpacity="0.85" />
             <stop offset="30%" stopColor="#38b0d8" stopOpacity="0.8" />
@@ -29,7 +29,7 @@ export default function MountainVizSvg() {
             <rect id="waterLevel" x="-500" y="600" width="2200" height="1000" />
           </clipPath>
         </defs>
-        <rect x="0" y="0" width="1200" height="600" fill="url(#skyGrad)" />
+        { <rect x="0" y="0" width="1200" height="600" fill="url(#skyGrad)" /> }
         <path
           className="mtn-fill"
           d="M0,440 C80,430 150,380 220,320 C290,260 340,180 400,140 C460,100 500,200 560,300 C620,380 660,420 720,430 C780,440 820,380 880,280 C940,180 980,100 1040,80 C1100,60 1140,150 1200,280 L1200,600 L0,600 Z"

@@ -169,10 +169,6 @@
 }
 
 @media (min-width: 769px) {
-  .slide--basic .basic__text .slide__heading {
-    font-size: clamp(1.3rem, 2.9vw, 2.3rem);
-  }
-
   .slide--basic .basic__text .slide__body {
     font-weight: 400;
   }

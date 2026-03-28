@@ -341,6 +341,19 @@ export const slides: SlideData[] = [
     observeAsActive: true,
   },
 
+  {
+    id: "000",
+    className: "slide slide--light slide--mountain-viz",
+    bgStart: "#ffffff",
+    bgEnd: "#faf8f5",
+    content: {
+      layout: "mountain-viz",
+      heading: "テキスト",
+      body: "テキスト。",
+    },
+    observeAsActive: true,
+  },
+
 
   {
     id: "slide-23",

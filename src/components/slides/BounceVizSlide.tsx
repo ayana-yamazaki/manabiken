@@ -54,9 +54,9 @@ function generateBouncePath(peakScale: number = 1.0, extraDip: boolean = false):
       const y1    = (i < n - 1)
         ? midY - Math.round(Math.random() * 190 + 30)  // 上ゾーン内ランダム着地
         : midY;                                         // 最後はmidYに戻る
-      // midY基準でランダムにhighにすることでバウンスごとに高さが変わる
-      const rawH  = Math.round(h * (0.4 + Math.random() * 0.7));  // hの40〜110%でランダム
-      const peakY = Math.max(10, midY - Math.min(rawH, MID_Y - 10));
+      // 着地点の低い方からrawH上をピークに（アーク形状を保ちつつ高さに変動）
+      const rawH  = Math.round(h * (0.5 + Math.random() * 0.7));  // hの50〜120%でランダム
+      const peakY = Math.max(10, Math.min(y, y1) - rawH);
       const cp1x  = Math.round(x  + (x1 - x) / 3);
       const cp1y  = Math.round(y  + (peakY - y)  * 2 / 3);
       const cp2x  = Math.round(x1 - (x1 - x) / 3);
@@ -332,7 +332,7 @@ export default function BounceVizSlide({
       {/* SVGキャンバス */}
       <svg
         viewBox="0 0 1280 720"
-        preserveAspectRatio="xMidYMid meet"
+        preserveAspectRatio="none"
         xmlns="http://www.w3.org/2000/svg"
         style={{
           position: "absolute",

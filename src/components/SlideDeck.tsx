@@ -1,6 +1,8 @@
+import React from "react";
 import NodeAnimationSlide from "./slides/NodeAnimationSlide";
 import MountainVizSlide from "./slides/MountainVizSlide";
 import BounceVizSlide from "./slides/BounceVizSlide";
+import BounceToMountainScene from "./slides/BounceToMountainScene";
 import NodeNetworkCanvas from "./slides/NodeNetworkCanvas";
 import SlideTextArea from "./slides/SlideTextArea";
 import { slides, type SlideData } from "../data/slides";
@@ -278,37 +280,56 @@ function ContentSlide({
   );
 }
 
-const renderSlide = (slide: SlideData, index: number) => {
-  const commonProps = {
-    id: slide.id,
-    slideNumber: index + 1,
-    className: slide.className,
-    bgStart: slide.bgStart,
-    bgEnd: slide.bgEnd,
-    backgroundType: slide.backgroundType,
-    backgroundAnimation: slide.backgroundAnimation,
-    observeAsActive: slide.observeAsActive,
-    caption: slide.caption,
-  };
-
-  if (slide.content?.layout === "mountain-viz") {
-    return <MountainVizSlide key={slide.id} {...commonProps} />;
-  }
-
-  if (slide.content?.layout === "node-animation") {
-    return <NodeAnimationSlide key={slide.id} {...commonProps} content={slide.content} />;
-  }
-
-  if (slide.content?.layout === "bounce-viz") {
-    return <BounceVizSlide key={slide.id} {...commonProps} content={slide.content} />;
-  }
-
-  return <ContentSlide key={slide.id} {...commonProps} content={slide.content} />;
-};
-
 const uniqueSlides = slides.filter(
   (slide, index, allSlides) => allSlides.findIndex((candidate) => candidate.id === slide.id) === index,
 );
+
+function renderSlides() {
+  const result: React.ReactNode[] = [];
+  let i = 0;
+  while (i < uniqueSlides.length) {
+    const slide = uniqueSlides[i];
+    const next  = uniqueSlides[i + 1];
+
+    if (slide.content?.layout === "bounce-viz" && next?.content?.layout === "mountain-viz") {
+      result.push(
+        <BounceToMountainScene
+          key={slide.id}
+          bounceSlide={slide}
+          mountainSlide={next}
+          bounceIndex={i}
+          mountainIndex={i + 1}
+        />
+      );
+      i += 2;
+      continue;
+    }
+
+    const commonProps = {
+      id: slide.id,
+      slideNumber: i + 1,
+      className: slide.className,
+      bgStart: slide.bgStart,
+      bgEnd: slide.bgEnd,
+      backgroundType: slide.backgroundType,
+      backgroundAnimation: slide.backgroundAnimation,
+      observeAsActive: slide.observeAsActive,
+      caption: slide.caption,
+    };
+
+    if (slide.content?.layout === "mountain-viz") {
+      result.push(<MountainVizSlide key={slide.id} {...commonProps} />);
+    } else if (slide.content?.layout === "node-animation") {
+      result.push(<NodeAnimationSlide key={slide.id} {...commonProps} content={slide.content} />);
+    } else if (slide.content?.layout === "bounce-viz") {
+      result.push(<BounceVizSlide key={slide.id} {...commonProps} content={slide.content} />);
+    } else {
+      result.push(<ContentSlide key={slide.id} {...commonProps} content={slide.content} />);
+    }
+    i++;
+  }
+  return result;
+}
 
 export default function SlideDeck() {
   useSlideObserver();
@@ -316,7 +337,7 @@ export default function SlideDeck() {
   return (
     <>
       <div className="slide-deck" id="slideDeck">
-        {uniqueSlides.map(renderSlide)}
+        {renderSlides()}
       </div>
       <div className="progress-bar" id="progressBar"></div>
     </>
