@@ -171,7 +171,13 @@ export default function BounceToMountainScene({ bounceSlide, mountainSlide, boun
     const section = document.getElementById(bounceSlide.id);
     let started = false;
     const observer = new IntersectionObserver(
-      (entries) => { if (entries[0].isIntersecting && !started) { started = true; startAll(); } },
+      (entries) => {
+        if (entries[0].isIntersecting && !started) {
+          started = true;
+          startAll();
+          section?.querySelector<HTMLElement>(".slide__text")?.classList.add("is-visible");
+        }
+      },
       { threshold: 0.3 }
     );
     if (section) observer.observe(section);
@@ -212,7 +218,10 @@ export default function BounceToMountainScene({ bounceSlide, mountainSlide, boun
     const mtnObserver = new IntersectionObserver(
       (entries) => {
         const intersecting = entries[0].isIntersecting;
-        if (intersecting) mtnSection.classList.add("is-active");
+        if (intersecting) {
+          mtnSection.classList.add("is-active");
+          mtnSection.querySelector<HTMLElement>(".slide__text")?.classList.add("is-visible");
+        }
         if (mountainOverlayRef.current) {
           mountainOverlayRef.current.style.opacity = intersecting ? "1" : "0";
           mountainOverlayRef.current.style.transform = intersecting ? "translateY(0)" : "translateY(100%)";
@@ -324,9 +333,7 @@ export default function BounceToMountainScene({ bounceSlide, mountainSlide, boun
             color: "#1a1a2e",
           }}
         >
-          <div className="slide__inner">
-            {mountainSlide.content && <SlideTextArea content={mountainSlide.content} />}
-          </div>
+          {mountainSlide.content && <SlideTextArea content={mountainSlide.content} textClassName="slide__text--float" />}
         </section>
 
       </div>

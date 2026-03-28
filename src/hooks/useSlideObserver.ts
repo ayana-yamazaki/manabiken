@@ -91,7 +91,7 @@ export const useSlideObserver = () => {
           return;
         }
 
-        const parallaxY = Math.max(-36, Math.min(36, distanceFromCenter * 0.08));
+        const parallaxY = Math.max(-80, Math.min(80, distanceFromCenter * 0.20));
         textEl.style.transform = `translateY(${parallaxY}px)`;
       });
     };

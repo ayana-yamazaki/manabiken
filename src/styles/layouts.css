@@ -522,6 +522,14 @@
   overflow: hidden;
 }
 
+.slide.slide--mountain-viz {
+  align-items: flex-start;
+}
+
+.slide--mountain-viz .slide__inner {
+  padding-top: 8vh;
+}
+
 .mountain-viz {
   position: absolute;
   inset: 0;

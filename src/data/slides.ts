@@ -374,7 +374,7 @@ export const slides: SlideData[] = [
     content: {
       layout: "mountain-viz",
       label: "山と谷",
-      heading: "谷が埋まった後に\n残るのは、\nその人だけの山だ。",
+      heading: "谷が埋まった後に顔をだすのは、\nその人の山だ。",
       body: "AIの時代、苦手な領域はAIが補ってくれる。\n谷が埋まる。\nその後に残る「山」──その子だけの力に\n最初に気づけるのは、先生方かもしれない。",
     },
     observeAsActive: true,
