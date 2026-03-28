@@ -275,7 +275,7 @@ export default function BounceToMountainScene({ bounceSlide, mountainSlide, boun
         {/* Mountain overlay (fades in when mountain section intersects) */}
         <div
           ref={mountainOverlayRef}
-          style={{ position: "absolute", inset: 0, opacity: 0, transform: "translateY(100%)", transition: "opacity 1.5s ease, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1)", pointerEvents: "none" }}
+          style={{ position: "absolute", inset: 0, opacity: 0, transform: "translateY(100%)", transition: "opacity 1.8s ease, transform 1.8s cubic-bezier(0.16, 1, 0.3, 1)", pointerEvents: "none" }}
         >
           <MountainVizSvg />
         </div>
@@ -299,6 +299,7 @@ export default function BounceToMountainScene({ bounceSlide, mountainSlide, boun
             alignItems: "center",
             justifyContent: "flex-end",
             position: "relative",
+            color: "#1a1a2e",
           }}
         >
           {bounceSlide.content && (
@@ -320,6 +321,7 @@ export default function BounceToMountainScene({ bounceSlide, mountainSlide, boun
             display: "flex",
             alignItems: "center",
             position: "relative",
+            color: "#1a1a2e",
           }}
         >
           <div className="slide__inner">

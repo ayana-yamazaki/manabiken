@@ -104,17 +104,14 @@ body {
 }
 
 .slide__heading {
+  font-size: clamp(1.3rem, 2.9vw, 2.3rem);
   font-weight: 900;
   line-height: 1.5;
   letter-spacing: 0.02em;
   margin-bottom: 1.5rem;
 }
 
-.slide .slide__heading {
-  font-size: clamp(1.3rem, 2.9vw, 2.3rem);
-}
-
-.slide .slide__heading--hero {
+.slide__heading--hero {
   font-size: clamp(1.76rem, 4.4vw, 3.6rem);
   line-height: 1.4;
 }
@@ -330,11 +327,11 @@ body {
     padding: 2rem 1.5rem;
   }
 
-  .slide .slide__heading {
+  .slide__heading {
     font-size: clamp(1.2rem, 4.8vw, 1.76rem);
   }
 
-  .slide .slide__heading--hero {
+  .slide__heading--hero {
     font-size: clamp(1.44rem, 6.4vw, 2.4rem);
   }
 

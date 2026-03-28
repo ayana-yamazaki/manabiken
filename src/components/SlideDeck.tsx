@@ -252,8 +252,12 @@ function ContentSlide({
             </div>
           </div>
           {content.imageSrc ? (
-            <div className="slide__image">
-              <img src={content.imageSrc} alt={content.imageAlt ?? ""} />
+            <div className="slide__boat-wrapper">
+              <img
+                src={content.imageSrc}
+                alt={content.imageAlt ?? ""}
+                className="slide__boat-image"
+              />
             </div>
           ) : null}
           <SlideTextArea content={content} caption={caption} textClassName="slide__text--float" />

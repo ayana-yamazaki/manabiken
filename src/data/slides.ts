@@ -261,7 +261,7 @@ export const slides: SlideData[] = [
       layout: "split-river",
       modifiers: ["basic--surface-clear"],
       leftLabel: "AI時代の落とし穴",
-      leftHeading: "AIの自信に満ちた即答が、\n「正解は一回で出るもの」\nという思い込みを強める。",
+      leftHeading: "AIの即答が、\n 正解は一回で出るものという感覚を強める",
       rightBody: "AIは迷わない。常に一つの答えを返す。\nその速さと確信に触れ続けると、\n「試行錯誤は非効率だ」と感じ始める。\n\n設計図型の生き方が、加速していく。",
     },
   },
@@ -275,7 +275,7 @@ export const slides: SlideData[] = [
       layout: "drift",
       heading: "到達点を決めず、\n小さく試す。\n小さく失敗する。",
       body: "設計図型：正解を決めてから動く。\nプロトタイプ型：小さく試す。外す。感じて方角を修正する。\n\n到達点は最初から決まっていない。\n動きながら見つけていく。",
-      //imageSrc: "/images/about-scene.jpg",
+      imageSrc: "/images/boat.png",
       imageAlt: "上から見たヨット",
     },
   },
@@ -288,7 +288,6 @@ export const slides: SlideData[] = [
     observeAsActive: true,
     content: {
       layout: "basic",
-      label: "美術教育との接続",
       heading: "美術の授業は、\n「ドリフト (漂流) する」練習だ。",
       body: "粘土をこね、色を塗り、\n「なんか違う」と壊してやり直す。\n\nあの感覚が、社会に出てからの生き方になった。\n美術の授業は「プロトタイプ型の生き方」を\n教えている。",
       imageSrc: "/images/blueprint-vs-prototype.png",
@@ -342,7 +341,7 @@ export const slides: SlideData[] = [
   },
 
   {
-    id: "000",
+    id: "slide-mountain",
     className: "slide slide--light slide--mountain-viz",
     bgStart: "#ffffff",
     bgEnd: "#faf8f5",
@@ -361,8 +360,7 @@ export const slides: SlideData[] = [
     bgStart: "#faf8f5",
     bgEnd: "#ffffff",
     content: {
-      layout: "text",
-      label: "まとめ③",
+      layout: "basic",
       heading: "美術の教室は、\n他教科では見えない「山」が\n顔を出す場所だ。",
       headingClassName: "slide__heading--warm",
       body: "そしてその山に最初に気づけるのは、\n先生方だけだ。",
@@ -374,7 +372,7 @@ export const slides: SlideData[] = [
     bgStart: "#ffffff",
     bgEnd: "#fffaf5",
     content: {
-      layout: "text",
+      layout: "basic",
       label: "結論",
       heading: "美術の授業が育てる、\n3つの力。",
       body: "① 感じる力 ── 問いを立てる力になる\n② プロトタイプ型 ── 正解のない時代の生き方になる\n③ 観察の場 ── その子だけの山が見える",

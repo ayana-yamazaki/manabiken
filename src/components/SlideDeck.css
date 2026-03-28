@@ -1,3 +1,29 @@
+@keyframes boat-sink {
+  0%   { transform: translateY(0px); }
+  100% { transform: translateY(120px); }
+}
+
+@keyframes boat-sway {
+  0%, 100% { transform: translateX(0px); }
+  50%       { transform: translateX(12px); }
+}
+
+.slide__boat-wrapper {
+  position: absolute;
+  left: 30%;
+  bottom: 30%;
+  z-index: 100;
+  pointer-events: none;
+  animation: boat-sink 10s ease-in-out forwards;
+}
+
+.slide__boat-image {
+  width: 50px;
+  height: auto;
+  display: block;
+  animation: boat-sway 5s ease-in-out infinite;
+}
+
 .slide-deck {
   height: 100vh;
   overflow-y: auto;
