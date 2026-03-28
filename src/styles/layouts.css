@@ -113,6 +113,24 @@
   display: block;
 }
 
+.basic__image-wrap--bottom-center {
+  top: auto;
+  bottom: 0;
+  left: 40%;
+  right: auto;
+  transform: translateX(-50%);
+  width: 60vw;
+  height: auto;
+  overflow: visible;
+}
+
+.basic__image-wrap--bottom-center .basic__image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
 .slide--basic .basic__text {
   grid-area: text;
   position: relative;
@@ -700,4 +718,20 @@
   margin-left: 0 !important;
   margin-right: auto !important;
   text-align: left; /* 文字自体も左揃え */
+}
+
+.basic__canvas-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 55%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .basic__canvas-right {
+    display: none;
+  }
 }

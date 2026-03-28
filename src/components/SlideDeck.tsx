@@ -4,6 +4,7 @@ import MountainVizSlide from "./slides/MountainVizSlide";
 import BounceVizSlide from "./slides/BounceVizSlide";
 import BounceToMountainScene from "./slides/BounceToMountainScene";
 import NodeNetworkCanvas from "./slides/NodeNetworkCanvas";
+import TwoNodeCanvas from "./slides/TwoNodeCanvas";
 import SlideTextArea from "./slides/SlideTextArea";
 import { slides, type SlideData } from "../data/slides";
 import { useSlideObserver } from "../hooks/useSlideObserver";
@@ -103,7 +104,7 @@ function ContentSlide({
       return (
         <div className="slide__inner slide__inner--basic">
           {content.imageSrc ? (
-            <div className="basic__image-wrap">
+            <div className={joinClassNames("basic__image-wrap", content.imageClassName)}>
               <img className="basic__image" src={content.imageSrc} alt={content.imageAlt ?? ""} />
             </div>
           ) : null}
@@ -121,6 +122,9 @@ function ContentSlide({
                 opacity={1}
               />
             </div>
+          ) : null}
+          {content.rightCanvas === "two-node" ? (
+            <TwoNodeCanvas className="basic__canvas-right" />
           ) : null}
           <SlideTextArea content={content} caption={caption} textClassName="basic__text" />
         </div>

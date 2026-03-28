@@ -44,9 +44,11 @@ export type SlideContent = {
   bodyClassName?: string;
   imageSrc?: string;
   imageAlt?: string;
+  imageClassName?: string;
   leftLabel?: string;
   leftHeading?: string;
   rightBody?: string;
+  rightCanvas?: string;
 };
 
 
@@ -115,6 +117,7 @@ export const slides: SlideData[] = [
     observeAsActive: true,
     content: {
       layout: "basic",
+      textColor: "#faf8f5",
       heading: "2026年現在、\nコードを生成している",
       body: "もう画面をかいていない。AIに言葉で伝えるだけで実際に動く画面が目の前に現れる。\n丸一日かかっていた作業が、数十分で終わる。デザイナーの仕事はエンジニア領域に染み出し、非デザイナーでもハイクオリティなものを生成できるようになった。\n技術の進歩は凄まじく、今の1週間は、去年の3ヶ月ほどのスピード感がある。新たな技術に興奮し、夢中で使うと同時に、惨憺たる気持ちになることもある。",
       imageSrc: "/images/figma-vs-code2.png",
@@ -168,24 +171,22 @@ export const slides: SlideData[] = [
     observeAsActive: true,
     content: {
       layout: "basic",
-      modifiers: ["basic--text-left", "basic--surface-clear"], 
-      nodeAccent: {
-        enabled: true,
-      },
+      modifiers: ["basic--text-left", "basic--surface-clear"],
+      textColor: "#faf8f5",
       heading: "「俺らはIT無理だから」",
       body: "農家さんの多くは60代以上で、あまりスマホに慣れていない。\n開発当初は、農家さんと大きな断絶があった。\n\n「難しい。面倒臭い。わかんない」\n「俺らはバカじゃない！」\n\n「なぜこんなに拒絶するの？」それが最初の問いだった。",
-      // imageSrc: "/images/farmer.jpg",
-      // imageAlt: "レポサク — グッドデザイン金賞",
+      rightCanvas: "two-node",
     },
   },
 {
     id: "slide-10",
-    className: "slide slide--has-image slide--dark",
+    className: "slide slide--has-image slide--dark .basic__text",
     bgStart: "#0f3460",
     bgEnd: "#2a4a48",
     content: {
-      layout: "basic", // 画像を表示するためにbasicを使います！
-      modifiers: ["basic--text-left", "basic--surface-clear"], // 👈 中央配置 ＆ 背景透明化！
+      layout: "basic", 
+      textColor: "#faf8f5",
+      modifiers: ["basic--text-left", "basic--surface-clear"], 
       heading: "2年間、畑を借り土を耕し、作物を育てた。\nシニアスマホ教室に通って、お年寄りを観察した。",
       body: "自分で畑に立つと、日光でスマホの画面が見えない。\n手袋をつけるので、操作そのものが難しい。\n\nシニアスマホ教室では、お年寄りの感情を感じ取ろうとした。\n数年前までバリバリ第一線で働いてたのに、マップアプリで現在地を開く方法が何度聞いてもわからない。\nバカにされていると感じる。\n徐々に「私は頭が悪いから…」と、\nプライドは粉々、自己効力感も奪われる。\nアプリを開発するデザイナーとして、責任を感じた。",
       imageSrc: "/images/farming.jpg",
@@ -200,6 +201,7 @@ export const slides: SlideData[] = [
     bgEnd: "#2a4a48",
     content: {
       layout: "basic", 
+      textColor: "#faf8f5",
       modifiers: ["basic--text-center", "basic--surface-clear"], 
       nodeAccent: {
         enabled: true,
@@ -208,20 +210,22 @@ export const slides: SlideData[] = [
       body: "思い切って、操作そのものを無くす設計に。\n彼らが聞き慣れないIT用語は隠す。\n画面に描画される畑は、ただの地図ではない。彼らが大切に大切に育てた土だ。だから、画面の畑には、無遠慮に余計なものは被せない。\n\n「感じる」ことが、設計の方角を変えた。",
     },
   },
-{
+
+    {
     id: "slide-13",
-    className: "slide slide--has-image slide--light",
+    className: "slide slide--light slide--luminous",
     bgStart: "#e5dfd8",
     bgEnd: "#dfd8d0",
     content: {
-      layout: "basic", 
+      layout: "basic",
       heading: "「これ知ってる？\nかっこいいだろ。」",
-      headingClassName: "slide__heading--quote",
       body: "農家さんとの「対話による鑑賞」から問いを再設計し、彼らが誇りを持って楽しく使えるWebアプリが開発できた。\n\n農家さんの口コミによってどんどん広がり、今では全国200社以上で導入。誰でも使えるカンタンさが話題になり、除雪やごみ収集、猟師さんにも使われている。\n\nこの取り組みが評価され、グッドデザイン賞金賞を受賞した。\n「対話による鑑賞」がビジネスの成果になった瞬間だった。",
-      imageSrc: "/images/ここになんらかの画像名.png", // 👈 画像のファイル名も忘れずに！
-      imageAlt: "レポサク詳細画像",
+      imageSrc: "/images/top_ver2.jpg",
+      imageAlt: "レポサク — グッドデザイン金賞",
     },
   },
+
+
   {
     id: "slide-14",
     className: "slide slide--subtitle slide--light",
@@ -307,7 +311,7 @@ export const slides: SlideData[] = [
 
   {
     id: "slide-17",
-    className: "slide slide--has-image",
+    className: "slide slide--light slide--luminous",
     bgStart: "#5c3d2e",
     bgEnd: "#8b3a3a",
     observeAsActive: true,
