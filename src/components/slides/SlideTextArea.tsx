@@ -36,18 +36,20 @@ export default function SlideTextArea({
   children,
 }: SlideTextAreaProps) {
   const bodyLines = content.body?.split("\n") ?? [];
+  const textColorStyle = content.textColor ? { color: content.textColor } : undefined;
+
   const textBlock = (
     <div className={joinClassNames("slide__text", textClassName)}>
-      {content.label ? <p className="slide__label">{content.label}</p> : null}
+      {content.label ? <p className="slide__label" style={textColorStyle}>{content.label}</p> : null}
       {content.heading ? (
-        <h2 className={joinClassNames("slide__heading", content.headingClassName)}>{withBreaks(content.heading)}</h2>
+        <h2 className={joinClassNames("slide__heading", content.headingClassName)} style={textColorStyle}>{withBreaks(content.heading)}</h2>
       ) : null}
-      {content.nameEn ? <p className="intro__name-en">{content.nameEn}</p> : null}
-      {content.sub ? <p className="slide__sub">{withBreaks(content.sub)}</p> : null}
-      {content.lead ? <p className="message__lead">{withBreaks(content.lead)}</p> : null}
-      {content.author ? <p className="slide__author">{withBreaks(content.author)}</p> : null}
+      {content.nameEn ? <p className="intro__name-en" style={textColorStyle}>{content.nameEn}</p> : null}
+      {content.sub ? <p className="slide__sub" style={textColorStyle}>{withBreaks(content.sub)}</p> : null}
+      {content.lead ? <p className="message__lead" style={textColorStyle}>{withBreaks(content.lead)}</p> : null}
+      {content.author ? <p className="slide__author" style={textColorStyle}>{withBreaks(content.author)}</p> : null}
       {content.layout === "closing" && bodyLines.length > 0 ? (
-        <p className="slide__author-end">
+        <p className="slide__author-end" style={textColorStyle}>
           {bodyLines[0]}
           {bodyLines.length > 1 ? (
             <>
@@ -59,11 +61,11 @@ export default function SlideTextArea({
       ) : null}
       {content.body ? (
         content.layout === "closing" ? null : (
-          <p className={joinClassNames("slide__body", content.bodyClassName)}>{withBreaks(content.body)}</p>
+          <p className={joinClassNames("slide__body", content.bodyClassName)} style={textColorStyle}>{withBreaks(content.body)}</p>
         )
       ) : null}
       {children}
-      {caption ? <p className="slide__caption">{withBreaks(caption)}</p> : null}
+      {caption ? <p className="slide__caption" style={textColorStyle}>{withBreaks(caption)}</p> : null}
     </div>
   );
 

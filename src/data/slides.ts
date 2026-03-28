@@ -3,6 +3,8 @@ export type SlideData = {
   className: string;
   bgStart: string;
   bgEnd: string;
+  backgroundType?: string;
+  backgroundAnimation?: string;
   content?: SlideContent;
   caption?: string;
   observeAsActive?: boolean;
@@ -25,6 +27,7 @@ export type SlideContentLayout =
 export type SlideContent = {
   layout: SlideContentLayout;
   modifiers?: string[];
+  textColor?: string;
   nodeAccent?: {
     enabled?: boolean;
   };
@@ -45,7 +48,7 @@ export type SlideContent = {
 };
 
 export const slides: SlideData[] = [
-  {
+ /* {
     id: "slide-01",
     className: "slide slide--title slide--light",
     bgStart: "#f5f0eb",
@@ -160,7 +163,7 @@ export const slides: SlideData[] = [
     observeAsActive: true,
     content: {
       layout: "basic",
-      modifiers: ["basic--text-left", "basic--text-plain"], 
+      modifiers: ["basic--text-left", "basic--surface-clear"], 
       nodeAccent: {
         enabled: true,
       },
@@ -175,7 +178,7 @@ export const slides: SlideData[] = [
     bgEnd: "#2a4a48",
     content: {
       layout: "basic", // 画像を表示するためにbasicを使います！
-      modifiers: ["basic--text-left", "basic--text-plain"], // 👈 中央配置 ＆ 背景透明化！
+      modifiers: ["basic--text-left", "basic--surface-clear"], // 👈 中央配置 ＆ 背景透明化！
       heading: "2年間、畑を借り、土を耕し、作物を育てた",
       body: "自分で畑に立つと、日光でスマホの画面が見えない。\n泥だらけの手袋では操作できないことが理解できた。",
       imageSrc: "/images/farming.jpg",
@@ -190,7 +193,7 @@ export const slides: SlideData[] = [
     content: {
       layout: "basic",
       // 👇 center を left に変更！(plainはそのまま残して背景透明を維持)
-      modifiers: ["basic--text-left", "basic--text-plain"], 
+      modifiers: ["basic--text-left", "basic--surface-clear"], 
       heading: "シニアスマホ教室に通った",
       body: "シニアスマホ教室でボランティアをした。若い頃はバリバリ第一線で働いてたのに、マップアプリで現在地を開く方法が何度聞いてもわからない。「何度も聞いてごめんなさいね、私頭が悪いから…」\n言葉にならない切なさと、プライド。\n「わからない」と言えない空気の中で、\nその人たちの感情を、感じ取ろうとした。",
       imageSrc: "/images/senior_smartphone.jpg",
@@ -204,7 +207,7 @@ export const slides: SlideData[] = [
     bgEnd: "#2a4a48",
     content: {
       layout: "basic", // 画像を表示するためにbasicを使います！
-      modifiers: ["basic--text-center", "basic--text-plain"], // 👈 中央配置 ＆ 背景透明化！
+      modifiers: ["basic--text-center", "basic--surface-clear"], // 👈 中央配置 ＆ 背景透明化！
       nodeAccent: {
         enabled: true,
       },
@@ -228,16 +231,19 @@ export const slides: SlideData[] = [
   },
   {
     id: "slide-14",
-    className: "slide slide--subtitle slide--light", // 👈 darkをlightに変更
-    bgStart: "#f5f0eb", // 👈 明るいベージュを維持
+    className: "slide slide--subtitle slide--light",
+    bgStart: "#f5f0eb",
     bgEnd: "#f0ebe5",
     content: {
-    layout: "node-animation",   
+      layout: "node-animation",
+      modifiers: ["basic--text-center", "basic--surface-clear"],
+      textColor: "#1a1a2e",
       heading: "感じる力 →問いを立てる力 →\n価値を生む力",
       body: "美術の授業が育てている「感じる力」は、\n社会で「問いを立てる力」になり、\nやがて「価値を生む力」へと変わる。",
     }
   },
 
+*/
   {
     id: "slide-15",
     className: "slide slide--subtitle slide--light", // 👈 darkをlightに変更
@@ -249,6 +255,38 @@ export const slides: SlideData[] = [
       sub: "美術の授業の力",
     },
   },
+
+
+  {
+    id: "slide-18",
+    className: "slide slide--river-source",
+    bgStart: "#6b4423",
+    bgEnd: "#5c3d2e",
+    observeAsActive: true,
+    content: {
+      layout: "split-river",
+      modifiers: ["basic--surface-clear"],
+      leftLabel: "AI時代の落とし穴",
+      leftHeading: "AIの自信に満ちた即答が、\n「正解は一回で出るもの」\nという思い込みを強める。",
+      rightBody: "AIは迷わない。常に一つの答えを返す。\nその速さと確信に触れ続けると、\n「試行錯誤は非効率だ」と感じ始める。\n\n設計図型の生き方が、加速していく。",
+    },
+  },
+  {
+    id: "slide-18_2",
+    className: "slide slide--has-image slide--drift",
+    bgStart: "#1e8a9a",
+    bgEnd: "#1a7f8e",
+    observeAsActive: true,
+    content: {
+      layout: "drift",
+      label: "美術教育との接続",
+      heading: "美術の授業は、\n「ドリフトする」練習だ。",
+      body: "粘土をこね、色を塗り、\n「なんか違う」と壊してやり直す。\n\nあの感覚が、社会に出てからの生き方になった。\n美術の授業は「プロトタイプ型の生き方」を\n教えている。",
+      //imageSrc: "/images/about-scene.jpg",
+      imageAlt: "上から見たヨット",
+    },
+  },
+
 
   {
     id: "slide-16",
@@ -278,36 +316,6 @@ export const slides: SlideData[] = [
       body: "美術大学での椅子制作。\nスケッチを何十枚も描き、実寸モデルを作って座る。\n「なんか違う」を何度も繰り返す。\n設計図通りに作ったのではない。",
       imageSrc: "/images/chair-process.png",
       imageAlt: "椅子制作のプロセス",
-    },
-  },
-
-  {
-    id: "slide-18",
-    className: "slide slide--river-source",
-    bgStart: "#6b4423",
-    bgEnd: "#5c3d2e",
-    observeAsActive: true,
-    content: {
-      layout: "split-river",
-      modifiers: ["basic--text-plain"],
-      leftLabel: "AI時代の落とし穴",
-      leftHeading: "AIの自信に満ちた即答が、\n「正解は一回で出るもの」\nという思い込みを強める。",
-      rightBody: "AIは迷わない。常に一つの答えを返す。\nその速さと確信に触れ続けると、\n「試行錯誤は非効率だ」と感じ始める。\n\n設計図型の生き方が、加速していく。",
-    },
-  },
-  {
-    id: "slide-18_2",
-    className: "slide slide--has-image slide--drift",
-    bgStart: "#1e8a9a",
-    bgEnd: "#1a7f8e",
-    observeAsActive: true,
-    content: {
-      layout: "drift",
-      label: "美術教育との接続",
-      heading: "美術の授業は、\n「ドリフトする」練習だ。",
-      body: "粘土をこね、色を塗り、\n「なんか違う」と壊してやり直す。\n\nあの感覚が、社会に出てからの生き方になった。\n美術の授業は「プロトタイプ型の生き方」を\n教えている。",
-      //imageSrc: "/images/about-scene.jpg",
-      imageAlt: "上から見たヨット",
     },
   },
 

@@ -7,6 +7,8 @@ type MountainVizSlideProps = {
   className: string;
   bgStart: string;
   bgEnd: string;
+  backgroundType?: string;
+  backgroundAnimation?: string;
   observeAsActive?: boolean;
   caption?: string;
 };
@@ -17,6 +19,8 @@ export default function MountainVizSlide({
   className,
   bgStart,
   bgEnd,
+  backgroundType,
+  backgroundAnimation,
   observeAsActive,
   caption,
 }: MountainVizSlideProps) {
@@ -78,6 +82,8 @@ export default function MountainVizSlide({
       data-slide-number={slideNumber}
       data-bg-start={bgStart}
       data-bg-end={bgEnd}
+      data-bg-type={backgroundType}
+      data-bg-animation={backgroundAnimation}
       data-observe-active={observeAsActive ? "true" : undefined}
     >
       <MountainVizSvg />

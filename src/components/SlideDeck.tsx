@@ -32,6 +32,8 @@ function ContentSlide({
   className,
   bgStart,
   bgEnd,
+  backgroundType,
+  backgroundAnimation,
   observeAsActive,
   content,
   caption,
@@ -41,6 +43,8 @@ function ContentSlide({
   className: string;
   bgStart: string;
   bgEnd: string;
+  backgroundType?: string;
+  backgroundAnimation?: string;
   observeAsActive?: boolean;
   content?: SlideData["content"];
   caption?: string;
@@ -264,6 +268,8 @@ function ContentSlide({
       data-slide-number={slideNumber}
       data-bg-start={bgStart}
       data-bg-end={bgEnd}
+      data-bg-type={backgroundType}
+      data-bg-animation={backgroundAnimation}
       data-observe-active={observeAsActive ? "true" : undefined}
     >
       {renderSlideBody()}
@@ -278,6 +284,8 @@ const renderSlide = (slide: SlideData, index: number) => {
     className: slide.className,
     bgStart: slide.bgStart,
     bgEnd: slide.bgEnd,
+    backgroundType: slide.backgroundType,
+    backgroundAnimation: slide.backgroundAnimation,
     observeAsActive: slide.observeAsActive,
     caption: slide.caption,
   };

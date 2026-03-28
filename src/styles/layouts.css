@@ -160,11 +160,11 @@
 
 
 
-.slide--basic.basic--text-dark {
+.slide--basic.basic--tone-dark {
   --basic-text-color: #1a1a2e;
 }
 
-.slide--basic.basic--text-light {
+.slide--basic.basic--tone-light {
   --basic-text-color: #f5f0eb;
 }
 
@@ -682,7 +682,7 @@
 }
 
 /* 背景のガラス箱と枠線を完全に吹き飛ばす魔法 */
-.slide--basic.basic--text-plain .basic__text {
+.slide--basic.basic--surface-clear .basic__text {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
