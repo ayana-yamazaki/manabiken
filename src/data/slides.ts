@@ -220,8 +220,8 @@ export const slides: SlideData[] = [
     bgStart: "#0f3460",
     bgEnd: "#2a4a48",
     content: {
-      layout: "basic", // 画像を表示するためにbasicを使います！
-      modifiers: ["basic--text-center", "basic--surface-clear"], // 👈 中央配置 ＆ 背景透明化！
+      layout: "basic", 
+      modifiers: ["basic--text-center", "basic--surface-clear"], 
       nodeAccent: {
         enabled: true,
       },
@@ -260,8 +260,8 @@ export const slides: SlideData[] = [
 */
   {
     id: "slide-15",
-    className: "slide slide--subtitle slide--light", // 👈 darkをlightに変更
-    bgStart: "#f5f0eb", // 👈 明るいベージュを維持
+    className: "slide slide--subtitle slide--light", 
+    bgStart: "#f5f0eb", 
     bgEnd: "#f0ebe5",
     content: {
       layout: "title",
@@ -293,16 +293,14 @@ export const slides: SlideData[] = [
     observeAsActive: true,
     content: {
       layout: "drift",
-      label: "美術教育との接続",
-      heading: "美術の授業は、\n「ドリフトする」練習だ。",
-      body: "粘土をこね、色を塗り、\n「なんか違う」と壊してやり直す。\n\nあの感覚が、社会に出てからの生き方になった。\n美術の授業は「プロトタイプ型の生き方」を\n教えている。",
+      heading: "到達点を決めず、\n小さく試す。\n小さく失敗する。",
+      body: "設計図型：正解を決めてから動く。\nプロトタイプ型：小さく試す。外す。感じて方角を修正する。\n\n到達点は最初から決まっていない。\n動きながら見つけていく。",
       //imageSrc: "/images/about-scene.jpg",
       imageAlt: "上から見たヨット",
     },
   },
 
-
-  {
+   {
     id: "slide-16",
     className: "slide slide--has-image",
     bgStart: "#4a3530",
@@ -310,13 +308,14 @@ export const slides: SlideData[] = [
     observeAsActive: true,
     content: {
       layout: "basic",
-      label: "設計図型と\nプロトタイプ型",
-      heading: "正解がわからないまま、\n小さく試す。\n小さく外す。",
-      body: "設計図型：正解を決めてから動く。\nプロトタイプ型：小さく試す。外す。感じて方角を修正する。\n\n到達点は最初から決まっていない。\n動きながら見つけていく。",
+      label: "美術教育との接続",
+      heading: "美術の授業は、\n「ドリフト (漂流) する」練習だ。",
+      body: "粘土をこね、色を塗り、\n「なんか違う」と壊してやり直す。\n\nあの感覚が、社会に出てからの生き方になった。\n美術の授業は「プロトタイプ型の生き方」を\n教えている。",
       imageSrc: "/images/blueprint-vs-prototype.png",
       imageAlt: "設計図型 vs プロトタイプ型",
     },
   },
+
   {
     id: "slide-17",
     className: "slide slide--has-image",
@@ -333,19 +332,22 @@ export const slides: SlideData[] = [
     },
   },
 
+
   {
-    id: "slide-19",
-    className: "slide",
-    bgStart: "#1a7f8e",
-    bgEnd: "#2d4040",
+    id: "slide-1100",
+    className: "slide slide--subtitle slide--light",
+    bgStart: "#f5f0eb",
+    bgEnd: "#f0ebe5",
     content: {
-      layout: "text",
-      label: "まとめ②",
-      heading: "設計図型の限界。\nプロトタイプ型の生存戦略。\n美術がその練習場である。",
-      headingClassName: "slide__heading--warm",
-      body: "正解のない時代に、\n「小さく試し、感じて、方角を変える」力。\n美術の授業は、その力を育てている。",
-    },
+      layout: "basic",
+      modifiers: ["basic--text-center", "basic--surface-clear"],
+      textColor: "#1a1a2e",
+      heading: "美術は、正解のない中で\n小さく試し続ける力を\n育てている",
+      body: "正解のない時代だからこそ、\n失敗してドリフト (漂流) しよう。\n美術の授業は、その力を育てている。",
+    }
   },
+
+
   {
     id: "slide-20",
     className: "slide slide--light slide--luminous",
@@ -443,16 +445,6 @@ export const slides: SlideData[] = [
     },
   },
 
-    {
-    id: "slide-28",
-    className: "slide slide--subtitle slide--light", // 👈 darkをlightに変更
-    bgStart: "#f5f0eb", // 👈 明るいベージュを維持
-    bgEnd: "#f0ebe5",
-    content: {
-      layout: "title",
-      sub: "数枚のスライドを追加予定",
-    },
-  },
   {
     id: "slide-29",
     className: "slide slide--closing slide--luminous",

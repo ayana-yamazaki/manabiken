@@ -12,24 +12,87 @@ type BounceVizSlideProps = {
   caption?: string;
 };
 
-const PATH_D = [
-  "M 0,360",
-  "C 60,360  160,80  240,80",
-  "C 320,80  380,620 480,620",
-  "C 580,620 600,60  680,60",
-  "C 760,60  800,640 880,640",
-  "C 960,640 1200,360 1280,360",
-].join(" ");
+const VB_W = 1280;
+const VB_H = 720;
+const MID_Y        = VB_H / 2;  // 360
+const BASE_RATE    = 0.30;
+const SPEED_BOUNCE = 0.90;   // 全体共通の一定速度
+const ROT_BOUNCE   = 300;    // 一定回転速度 deg/sec
 
-const MID_Y        = 360;
-const BASE_RATE    = 0.115;
-const SPEED_TOP    = 2.4;
-const SPEED_BOTTOM = 0.38;
-const ROT_TOP      = 380;
-const ROT_BOTTOM   = 18;
+// 物理ベースのイージング: 重力に従い高いほど遅く・着地直前に加速
+// 上ゾーン: √(1 - height_ratio) で放物線的速度変調
+function physicsEase(y: number): number {
+  if (y < MID_Y) {
+    const t = (MID_Y - y) / MID_Y;          // 0(境界付近)〜1(最上部)
+    return Math.max(0.12, Math.sqrt(1 - t * 0.90));
+  }
+  return 0.45; // 下ゾーンはゆっくり這いずり
+}
 
-function jitter(t: number): number {
-  return 0.7 + 0.3 * Math.abs(Math.sin(t * 18.0));
+// 上ゾーン→下ゾーン→上ゾーンの3部構成バウンスパスを生成
+// 二次ベジェ（放物線）を三次変換: CP1=(x+w/3, peak*2/3), CP2=(x1-w/3, peak*2/3)
+function generateBouncePath(): string {
+  const peakH0   = 280;   // 初期ピーク高さ（midYからの距離）
+  const bounceW0 = 190;   // 初期バウンス幅
+  const decay    = 0.78;  // 減衰率
+  const midY     = MID_Y;
+  const cmds: string[] = [];
+  let x = 0;
+  let y = midY;
+  cmds.push(`M ${x},${y}`);
+
+  // 上ゾーン: 放物線バウンスをn回追加
+  // 中間の着地点Y はランダム（上ゾーン内）、最後だけmidYに戻す
+  const addBounces = (n: number): void => {
+    for (let i = 0; i < n; i++) {
+      const w     = Math.round(bounceW0 * Math.pow(decay, i));
+      const h     = Math.round(peakH0  * Math.pow(decay, i));
+      const x1    = x + w;
+      const y1    = (i < n - 1)
+        ? midY - Math.round(Math.random() * 80 + 20)  // 上ゾーン内ランダム着地
+        : midY;                                         // 最後はmidYに戻る
+      const peakY = Math.min(y, y1) - h;              // 低い方からh上
+      const cp1x  = Math.round(x  + (x1 - x) / 3);
+      const cp1y  = Math.round(y  + (peakY - y)  * 2 / 3);
+      const cp2x  = Math.round(x1 - (x1 - x) / 3);
+      const cp2y  = Math.round(y1 + (peakY - y1) * 2 / 3);
+      cmds.push(`C ${cp1x},${cp1y} ${cp2x},${cp2y} ${x1},${y1}`);
+      x = x1;
+      y = y1;
+    }
+  };
+
+  // 下ゾーン: 急降下→底這い角張りバンプ→急上昇
+  const addBottomZone = (width: number): void => {
+    const groundY = midY + 240;           // 底 y≈600
+    const x0      = x;
+    const dropX   = x0 + 50;
+    const riseX   = x0 + width - 50;
+    const xEnd    = x0 + width;
+    cmds.push(`C ${x0 + 15},${midY + 120} ${dropX - 10},${groundY} ${dropX},${groundY}`);
+
+    let cx = dropX;
+    const bumpCount = 3;
+    const unitW = Math.round((riseX - 10 - cx) / (bumpCount * 2 + 1));
+    cmds.push(`C ${cx + unitW},${groundY} ${cx + unitW * 2 - 2},${groundY} ${cx + unitW * 2},${groundY}`);
+    cx += unitW * 2;
+    for (let i = 0; i < bumpCount; i++) {
+      const bH = 20 + Math.round(Math.random() * 18);
+      cmds.push(`C ${cx + 2},${groundY - bH} ${cx + unitW - 2},${groundY - bH} ${cx + unitW},${groundY - bH}`);
+      cmds.push(`C ${cx + unitW + 2},${groundY - bH} ${cx + unitW * 2 - 2},${groundY} ${cx + unitW * 2},${groundY}`);
+      cx += unitW * 2;
+    }
+    cmds.push(`C ${riseX},${groundY + 8} ${xEnd - 15},${midY + 80} ${xEnd},${midY}`);
+    x = xEnd;
+    y = midY;
+  };
+
+  addBounces(3);       // 上ゾーン 1: 3回バウンス → x≈454
+  addBottomZone(320);  // 下ゾーン    → x≈774
+  addBounces(3);       // 上ゾーン 2: 3回バウンス → x≈1228
+
+  cmds.push(`C ${x + 30},${midY} 1270,${midY} 1280,${midY}`);
+  return cmds.join(' ');
 }
 
 export default function BounceVizSlide({
@@ -59,7 +122,9 @@ export default function BounceVizSlide({
     const hiddenSvg  = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     const calcPath   = document.createElementNS("http://www.w3.org/2000/svg", "path");
     hiddenSvg.setAttribute("style", "position:absolute;visibility:hidden;width:0;height:0;overflow:hidden;");
-    calcPath.setAttribute("d", PATH_D);
+    const generatedPath = generateBouncePath();
+    calcPath.setAttribute("d", generatedPath);
+    trail.setAttribute("d", generatedPath);
     hiddenSvg.appendChild(calcPath);
     document.body.appendChild(hiddenSvg);
 
@@ -77,12 +142,12 @@ export default function BounceVizSlide({
       if (!square || !spinner || inTop === lastInTop) return;
       lastInTop = inTop;
       if (inTop) {
-        square.style.fill   = "#ff6b35";
-        square.style.filter = "url(#bv-glow)";
-        spinner.style.filter = "";
+        square.style.fill    = "#ff8040";
+        square.style.filter  = "url(#bv-glow)";
+        spinner.style.filter = "url(#bv-glow)";
       } else {
-        square.style.fill   = "#c04a1a";
-        square.style.filter = "";
+        square.style.fill    = "#6b2208";
+        square.style.filter  = "";
         spinner.style.filter = "url(#bv-shadow)";
       }
     }
@@ -97,18 +162,14 @@ export default function BounceVizSlide({
       const delta = Math.min((timestamp - prevTime) / 1000, 0.05);
       prevTime = timestamp;
 
-      const pt     = calcPath.getPointAtLength(pathParam * totalLength);
-      const inTop  = pt.y < MID_Y;
-      const speed  = inTop ? SPEED_TOP : SPEED_BOTTOM;
-      const rotSpd = inTop ? ROT_TOP   : ROT_BOTTOM;
+      const curPt = calcPath.getPointAtLength(pathParam * totalLength);
+      const ease   = physicsEase(curPt.y);
+      pathParam = Math.min(pathParam + delta * BASE_RATE * SPEED_BOUNCE * ease, 1.0);
 
-      const effectiveSpeed = inTop ? speed : speed * jitter(pathParam);
-      pathParam = Math.min(pathParam + delta * BASE_RATE * effectiveSpeed, 1.0);
-
-      const newPt   = calcPath.getPointAtLength(pathParam * totalLength);
+      const newPt    = calcPath.getPointAtLength(pathParam * totalLength);
       const newInTop = newPt.y < MID_Y;
 
-      rotation += delta * rotSpd;
+      rotation += delta * ROT_BOUNCE * ease;  // 速度に連動して回転も緩急
 
       mover.setAttribute("transform", `translate(${newPt.x}, ${newPt.y})`);
       spinner.setAttribute("transform", `rotate(${rotation})`);
@@ -184,7 +245,7 @@ export default function BounceVizSlide({
         <div
           style={{
             flex: 1,
-            /*background: "linear-gradient(180deg, #edf8ff 0%, #f2f9fb 0%, #dceef8 0%, #d8eefa 0%)",*/
+            background: "linear-gradient(180deg, #5ba3d0 0%, #87ceeb 30%, #b8dff5 70%, #d8eefa 100%)",
           }}
           aria-hidden="true"
         />
@@ -192,7 +253,7 @@ export default function BounceVizSlide({
         <div
           style={{
             flex: 1,
-            /*background: "linear-gradient(180deg, #ececec 0%, #61686c 0%, #0d0803 0%)",*/
+            /*background: "linear-gradient(180deg, #2d1f0d 0%, #1c1208 50%, #0d0803 100%)",*/
           }}
           aria-hidden="true"
         />
@@ -224,7 +285,7 @@ export default function BounceVizSlide({
           fontWeight: 600,
           letterSpacing: "0.08em",
           opacity: 0.55,
-          /*color: "#1a3d5c",*/
+          color: "#1a3d5c",
           pointerEvents: "none",
           userSelect: "none",
         }}
@@ -261,28 +322,28 @@ export default function BounceVizSlide({
         }}
       >
         <defs>
-          <filter id="bv-glow" x="-60%" y="-60%" width="220%" height="220%">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+          <filter id="bv-glow" x="-80%" y="-80%" width="260%" height="260%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
-          <filter id="bv-shadow" x="-20%" y="-40%" width="140%" height="200%">
-            <feDropShadow dx="0" dy="4" stdDeviation="3" floodColor="#000" floodOpacity="0.1" />
+          <filter id="bv-shadow" x="-20%" y="-20%" width="140%" height="200%">
+            <feDropShadow dx="0" dy="5" stdDeviation="4" floodColor="#000" floodOpacity="0.6" />
           </filter>
         </defs>
 
         {/* 軌跡パス */}
         <path
           ref={trailRef}
-          d={PATH_D}
+          d=""
           fill="none"
-          stroke="#d6d2a1"
-          strokeWidth="2.5"
+          stroke="#ff6b35"
+          strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          opacity="0.45"
+          opacity="0.5"
         />
 
         {/* mover: 位置追従 / spinner: 自転 */}
