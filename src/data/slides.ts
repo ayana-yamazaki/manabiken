@@ -319,7 +319,7 @@ export const slides: SlideData[] = [
       layout: "basic",
       heading: "「正解がないまま手を動かす」感覚が、仕事の進め方になった",
       body: "美術大学での椅子制作では、スケッチを何百枚と描いて、その中から1枚を選び、実寸プロトタイプを作って座る。\n「なんか違う」を何度も繰り返していく。\n最初から設計図を引くと、失敗が怖くなってしまう。小さく試すことは、レジリエンス高く生きるスキルだ。",
-      imageSrc: "/images/chair-process.png",
+      imageSrc: "/images/craft_chair.jpg",
       imageAlt: "椅子制作のプロセス",
     },
   },
