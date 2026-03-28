@@ -11,6 +11,12 @@ const RIPPLE_RING_DELAY = 150;
 const RIPPLE_DURATION = 700;
 const RIPPLE_INTERVAL = 2000;
 
+const BASE_RADIUS = 115;
+const DRIFT_RANGE = 28;
+const ROT_SPEED = 0.00022;
+const DRIFT_SPEED_A = 0.00047;
+const DRIFT_SPEED_B = 0.00031;
+
 export type TwoNodeCanvasProps = {
   className?: string;
 };
@@ -34,6 +40,13 @@ export default function TwoNodeCanvas({ className }: TwoNodeCanvasProps) {
     const ripples: Ripple[] = [];
     const nextAt: [number, number] = [0, 0];
 
+    let baseAngle = -Math.PI / 2;
+    let lastTime = 0;
+    const driftPhase: [number, number] = [
+      Math.random() * Math.PI * 2,
+      Math.random() * Math.PI * 2 + Math.PI,
+    ];
+
     const resize = () => {
       const dpr = Math.ceil(window.devicePixelRatio || 1);
       lw = host.clientWidth;
@@ -50,6 +63,7 @@ export default function TwoNodeCanvas({ className }: TwoNodeCanvasProps) {
     const now0 = Date.now();
     nextAt[0] = now0 + 600;
     nextAt[1] = now0 + 1600;
+    lastTime = now0;
 
     const tick = () => {
       if (!visible) {
@@ -58,12 +72,29 @@ export default function TwoNodeCanvas({ className }: TwoNodeCanvasProps) {
       }
       rafId = requestAnimationFrame(tick);
       const now = Date.now();
+      const dt = Math.min(now - lastTime, 50);
+      lastTime = now;
 
-      const sep = Math.min(300, lw * 0.55);
+      baseAngle += ROT_SPEED * dt;
+      driftPhase[0] += DRIFT_SPEED_A * dt;
+      driftPhase[1] += DRIFT_SPEED_B * dt;
+
       const cx = lw / 2;
       const cy = lh / 2;
-      const nx = [cx - sep / 2, cx + sep / 2];
-      const ny = [cy, cy];
+
+      const radii = [
+        BASE_RADIUS + Math.sin(driftPhase[0]) * DRIFT_RANGE * 0.65 + Math.sin(driftPhase[0] * 1.73) * DRIFT_RANGE * 0.35,
+        BASE_RADIUS + Math.sin(driftPhase[1]) * DRIFT_RANGE * 0.6 + Math.sin(driftPhase[1] * 1.51) * DRIFT_RANGE * 0.4,
+      ];
+
+      const nx = [
+        cx + Math.cos(baseAngle) * radii[0],
+        cx + Math.cos(baseAngle + Math.PI) * radii[1],
+      ];
+      const ny = [
+        cy + Math.sin(baseAngle) * radii[0],
+        cy + Math.sin(baseAngle + Math.PI) * radii[1],
+      ];
 
       for (let i = 0; i < 2; i++) {
         if (now >= nextAt[i]) {
@@ -74,35 +105,47 @@ export default function TwoNodeCanvas({ className }: TwoNodeCanvasProps) {
 
       ctx.clearRect(0, 0, lw, lh);
 
-      const x0 = nx[0] + SQ_SIZE / 2 + 6;
-      const x1 = nx[1] - SQ_SIZE / 2 - 6;
-      const lineW = x1 - x0;
-      const waveAmp = 10;
-      const waveCount = 4;
-      const steps = 120;
+      const dx = nx[1] - nx[0];
+      const dy = ny[1] - ny[0];
+      const len = Math.hypot(dx, dy);
+      const margin = SQ_SIZE / 2 + 6;
+      const lineLen = len - margin * 2;
 
-      const gapHalf = 18;
-      const midX = x0 + lineW / 2;
-      ctx.save();
-      ctx.strokeStyle = "rgba(130, 210, 230, 0.65)";
-      ctx.lineWidth = 1.5;
-      ctx.setLineDash([6, 4]);
-      for (let seg = 0; seg < 2; seg++) {
-        const segX0 = seg === 0 ? x0 : midX + gapHalf;
-        const segX1 = seg === 0 ? midX - gapHalf : x1;
-        ctx.beginPath();
-        for (let s = 0; s <= steps; s++) {
-          const t = s / steps;
-          const x = segX0 + t * (segX1 - segX0);
-          const tFull = (x - x0) / lineW;
-          const y = cy + Math.sin(tFull * Math.PI * 2 * waveCount) * waveAmp;
-          if (s === 0) ctx.moveTo(x, y);
-          else ctx.lineTo(x, y);
+      if (lineLen > 0) {
+        const ux = dx / len;
+        const uy = dy / len;
+        const px = -uy;
+        const py = ux;
+        const sx = nx[0] + ux * margin;
+        const sy = ny[0] + uy * margin;
+        const waveAmp = 9;
+        const waveCount = 4;
+        const steps = 120;
+        const gapFrac = 18 / lineLen;
+
+        ctx.save();
+        ctx.strokeStyle = "rgba(130, 210, 230, 0.65)";
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([6, 4]);
+
+        for (let seg = 0; seg < 2; seg++) {
+          const t0 = seg === 0 ? 0 : 0.5 + gapFrac;
+          const t1 = seg === 0 ? 0.5 - gapFrac : 1;
+          ctx.beginPath();
+          for (let s = 0; s <= steps; s++) {
+            const tSeg = s / steps;
+            const tFull = t0 + tSeg * (t1 - t0);
+            const wave = Math.sin(tFull * Math.PI * 2 * waveCount) * waveAmp;
+            const x = sx + ux * tFull * lineLen + px * wave;
+            const y = sy + uy * tFull * lineLen + py * wave;
+            if (s === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
         }
-        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.restore();
       }
-      ctx.setLineDash([]);
-      ctx.restore();
 
       for (let i = ripples.length - 1; i >= 0; i--) {
         const rp = ripples[i];
