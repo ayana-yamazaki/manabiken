@@ -224,7 +224,7 @@ export default function BounceVizSlide({
           fontWeight: 600,
           letterSpacing: "0.08em",
           opacity: 0.55,
-          color: "#1a3d5c",
+          /*color: "#1a3d5c",*/
           pointerEvents: "none",
           userSelect: "none",
         }}
@@ -268,8 +268,8 @@ export default function BounceVizSlide({
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
-          <filter id="bv-shadow" x="-20%" y="-20%" width="140%" height="200%">
-            <feDropShadow dx="0" dy="4" stdDeviation="3" floodColor="#000" floodOpacity="0.5" />
+          <filter id="bv-shadow" x="-20%" y="-40%" width="140%" height="200%">
+            <feDropShadow dx="0" dy="4" stdDeviation="3" floodColor="#000" floodOpacity="0.1" />
           </filter>
         </defs>
 
@@ -278,7 +278,7 @@ export default function BounceVizSlide({
           ref={trailRef}
           d={PATH_D}
           fill="none"
-          stroke="#ff6b35"
+          stroke="#d6d2a1"
           strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
