@@ -52,7 +52,7 @@ export const slides: SlideData[] = [
     bgEnd: "#f0ebe5",
     content: {
       layout: "title",
-      heading: "問いを立てる力は、\nどこで育つのか。",
+      heading: "問いを立てる力は\nどこで育つのか",
       headingClassName: "slide__heading--hero",
       sub: "デザインの現場から見た美術教育",
       author: "山崎 文菜 ── プロダクトデザイナー",
@@ -160,11 +160,12 @@ export const slides: SlideData[] = [
     observeAsActive: true,
     content: {
       layout: "basic",
+      modifiers: ["basic--text-left", "basic--text-plain"], 
       nodeAccent: {
         enabled: true,
       },
-      heading: "「俺らにはIT無理だから。」\n最初の問い",
-      body: "農家さん向けアプリ開発の事例。農家さんの多くが60代以上。\n当初、農家さんと大きな断絶。「俺らには無理だから」と怒ってスマホを投げる人まで。「どうしてそんなに拒絶するの？」それが最初の問い。",
+      heading: "「俺らはIT無理だから」",
+      body: "農家さん向けアプリ開発の事例。農家さんの多くが60代以上。\n当初、農家さんと大きな断絶。「俺らには無理だから」と怒ってスマホを投げる人まで。「どうしてそんなに拒絶するの？」それが最初の問いだった。",
     },
   },
 {
@@ -207,7 +208,7 @@ export const slides: SlideData[] = [
       nodeAccent: {
         enabled: true,
       },
-      heading: "問いの変換\nー彼らが誇りを持って\n楽しく使える体験とは？",
+      heading: "問いの変換\n彼らが誇りを持って\n楽しく使える体験とは？",
       body: "操作そのものを無くす設計。\nIT用語を隠す。\n畑の上に余計なものを被せない。\n「感じる」ことが、設計の方角を変えた。",
     },
   },
@@ -231,8 +232,8 @@ export const slides: SlideData[] = [
     bgStart: "#f5f0eb", // 👈 明るいベージュを維持
     bgEnd: "#f0ebe5",
     content: {
-      layout: "title",
-      heading: "まとめ\n感じる力 →問いを立てる力 →\n価値を生む力。",
+    layout: "node-animation",   
+      heading: "感じる力 →問いを立てる力 →\n価値を生む力",
       body: "美術の授業が育てている「感じる力」は、\n社会で「問いを立てる力」になり、\nやがて「価値を生む力」へと変わる。",
     }
   },
@@ -248,7 +249,7 @@ export const slides: SlideData[] = [
       sub: "美術の授業の力",
     },
   },
-  /*
+
   {
     id: "slide-16",
     className: "slide slide--has-image",
@@ -279,9 +280,9 @@ export const slides: SlideData[] = [
       imageAlt: "椅子制作のプロセス",
     },
   },
-*/
+
   {
-    id: "slide-17",
+    id: "slide-18",
     className: "slide slide--river-source",
     bgStart: "#6b4423",
     bgEnd: "#5c3d2e",
@@ -295,7 +296,7 @@ export const slides: SlideData[] = [
     },
   },
   {
-    id: "slide-18",
+    id: "slide-18_2",
     className: "slide slide--has-image slide--drift",
     bgStart: "#1e8a9a",
     bgEnd: "#1a7f8e",
@@ -309,7 +310,7 @@ export const slides: SlideData[] = [
       imageAlt: "上から見たヨット",
     },
   },
-  /*
+
   {
     id: "slide-19",
     className: "slide",
@@ -419,7 +420,7 @@ export const slides: SlideData[] = [
       bodyClassName: "slide__body--accent",
     },
   },
-  */
+
     {
     id: "slide-28",
     className: "slide slide--subtitle slide--light", // 👈 darkをlightに変更
