@@ -184,6 +184,38 @@ function ContentSlide({
       return null;
     }
 
+    if (content.layout === "split-plain") {
+      return (
+        <>
+          <div className="river-origin" aria-hidden="true"></div>
+          <div className="slide__inner slide__inner--split">
+          <div className="split__left">
+            <SlideTextArea
+              content={{
+                ...content,
+                heading: content.leftHeading,
+                label: content.leftLabel
+              }}
+              containerClassName="split__left-content"
+              textClassName="split__left-text"
+            />
+          </div>
+          <div className="split__right">
+            <SlideTextArea
+              content={{
+                ...content,
+                body: content.rightBody
+              }}
+              caption={caption}
+              containerClassName="split__right-content"
+              textClassName="split__right-text"
+            />
+          </div>
+        </div>
+        </>
+      );
+    }
+
     if (content.layout === "split-river") {
       return (
         <>

@@ -17,6 +17,7 @@ export type SlideContentLayout =
   | "image-text"
   | "basic"
   | "split-river"
+  | "split-plain"
   | "drift"
   | "intro"
   | "message"
@@ -249,7 +250,20 @@ export const slides: SlideData[] = [
 
 */
 
-
+  {
+    id: "slide-aa",
+    className: "slide slide--river-source",
+    bgStart: "#6b4423",
+    bgEnd: "#5c3d2e",
+    observeAsActive: true,
+    content: {
+      layout: "split-plain",
+      modifiers: ["basic--surface-clear"],
+      leftLabel: "AI時代の落とし穴",
+      leftHeading: "AIの即答が、\n 正解は一回で出るものという感覚を強める",
+      rightBody: "AIは迷わない。常に一つの答えを返す。\nその速さと確信に触れ続けると、\n「試行錯誤は非効率だ」と感じ始める。\n\n設計図型の生き方が、加速していく。",
+    },
+  },
 
   {
     id: "slide-18",
