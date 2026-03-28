@@ -1,5 +1,6 @@
 import NodeAnimationSlide from "./slides/NodeAnimationSlide";
 import MountainVizSlide from "./slides/MountainVizSlide";
+import BounceVizSlide from "./slides/BounceVizSlide";
 import NodeNetworkCanvas from "./slides/NodeNetworkCanvas";
 import SlideTextArea from "./slides/SlideTextArea";
 import { slides, type SlideData } from "../data/slides";
@@ -296,6 +297,10 @@ const renderSlide = (slide: SlideData, index: number) => {
 
   if (slide.content?.layout === "node-animation") {
     return <NodeAnimationSlide key={slide.id} {...commonProps} content={slide.content} />;
+  }
+
+  if (slide.content?.layout === "bounce-viz") {
+    return <BounceVizSlide key={slide.id} {...commonProps} />;
   }
 
   return <ContentSlide key={slide.id} {...commonProps} content={slide.content} />;

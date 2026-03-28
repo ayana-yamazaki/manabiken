@@ -22,6 +22,7 @@ export type SlideContentLayout =
   | "message"
   | "mountain-viz"
   | "node-animation"
+  | "bounce-viz"
   | "closing";
 
 export type SlideContent = {
@@ -47,8 +48,21 @@ export type SlideContent = {
   rightBody?: string;
 };
 
+
 export const slides: SlideData[] = [
- /* {
+
+  {
+    id: "slide-bounce",
+    className: "slide slide--light slide--mountain-viz",
+    bgStart: "#ffffff",
+    bgEnd: "#faf8f5",
+    content: {
+      layout: "bounce-viz",
+    },
+    observeAsActive: true,
+  },
+/* 
+ {
     id: "slide-01",
     className: "slide slide--title slide--light",
     bgStart: "#f5f0eb",
@@ -58,7 +72,7 @@ export const slides: SlideData[] = [
       heading: "問いを立てる力は\nどこで育つのか",
       headingClassName: "slide__heading--hero",
       sub: "デザインの現場から見た美術教育",
-      author: "山崎 文菜 ── プロダクトデザイナー",
+      author: "山崎 文菜 プロダクトデザイナー",
     },
   },
   {
