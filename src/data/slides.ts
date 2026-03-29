@@ -78,21 +78,9 @@ export const slides: SlideData[] = [
       heading: "山崎 文菜",
       nameEn: "Ayana Yamazaki",
       sub: "プロダクトデザイナー",
-      body: "金沢美術工芸大学 プロダクトデザイン学部卒。\n日立製作所で鉄道システムのUXデザインに携わり、\nその後スタートアップで農業・医療・製造業など\n現場で使われるサービス、アプリの画面を設計してきた。\n\n美術の先生ではありません。\n美術の授業を受けた側の人間です。",
+      body: "金沢美術工芸大学 プロダクトデザイン学部卒。\n日立製作所研究開発グループで新幹線の運行システムのUI/UXデザインに携わる。\nその後スタートアップで農業・医療・製造業・運送業など\n現場で使われるサービス、アプリの設計をしてきた。\n\n美術の先生ではなく、\n美術の授業を受けた側の人間です。",
       imageSrc: "/images/profile.jpg",
       imageAlt: "山崎文菜",
-    },
-    observeAsActive: true,
-  },
-  {
-    id: "slide-03",
-    className: "slide slide--light slide--message",
-    bgStart: "#eae5df",
-    bgEnd: "#e5dfd8",
-    content: {
-      layout: "message",
-      heading: "AI時代に必要とされる力は、\n美術の授業が育てうる力だ。",
-      lead: "今日は3つの観点からお話しします。",
     },
     observeAsActive: true,
   },
@@ -119,10 +107,23 @@ export const slides: SlideData[] = [
       layout: "basic",
       textColor: "#faf8f5",
       heading: "2026年現在、\nコードを生成している",
-      body: "もう画面をかいていない。AIに言葉で伝えるだけで実際に動く画面が目の前に現れる。\n丸一日かかっていた作業が、数十分で終わる。デザイナーの仕事はエンジニア領域に染み出し、非デザイナーでもハイクオリティなものを生成できるようになった。\n技術の進歩は凄まじく、今の1週間は、去年の3ヶ月ほどのスピード感がある。新たな技術に興奮し、夢中で使うと同時に、惨憺たる気持ちになることもある。",
+      body: "もう画面をかいていない。AIに言葉で伝えるだけで実際に動く画面が目の前に現れる。\n丸一日かかっていた作業が、数十分で終わる。デザイナーの仕事はエンジニア領域に染み出し、非デザイナーでもハイクオリティなものを生成できるようになった。\n技術の進歩は凄まじく、今の1週間は、去年の3ヶ月ほどのスピード感がある。\n知能が民主化し、人間のできることがどんどん広がっている。",
       imageSrc: "/images/figma-vs-code2.png",
       imageAlt: "コードを書いている様子",
     },
+  },
+
+  {
+    id: "slide-03",
+    className: "slide slide--light slide--message",
+    bgStart: "#f0ebe5",
+    bgEnd: "#f0ebe5",
+    content: {
+      layout: "message",
+      heading: "AI時代に必要とされる力は、\n美術の授業が育てる",
+      lead: "自分の実体験と、テクノロジーとビジネスの観点を踏まえて、今日は3つの観点からお話しします。",
+    },
+    observeAsActive: true,
   },
   {
     id: "slide-06",
@@ -144,7 +145,7 @@ export const slides: SlideData[] = [
     content: {
       layout: "node-animation",      
       heading: "対話による鑑賞",
-      body: "誰かが「ここの色合いが好き」と言う。\n誰かが「僕はちょっと怖い」と言う。\nそんな感じ方があるのか、と驚く。\n\n自分では気づかなかった色や形が、他人の言葉を通じて見えてくる。\n自分とは違う感じ方があることを実感する。",
+      body: "誰かが「ここの色合いが好き」と言う。\n誰かが「僕はちょっと怖い」と言う。\nそんな感じ方があるのか、と驚く。\n\n自分では気づかなかった色や形が、他人の言葉を通じて見えてくる。\n自分とは違う感じ方があることを観察する。",
     },
     observeAsActive: true,
   },
@@ -262,7 +263,7 @@ export const slides: SlideData[] = [
       layout: "split-plain",
       modifiers: ["basic--surface-clear"],
       leftHeading: "設計図型の生き方は難しくなっている",
-      rightBody: "かつては、正解を決めてから歩む「設計図型」の生き方が当たり前だった。良い大学に行き、良い会社に入り、家を買い、子供を持ち…設計図どおりに進めば幸せが保証された。今はその設計図が1年後に通用する保証はどこにもない。デザイナーが絵を描かずにコードを書くなんて、一年前には未来の話だった。私がフリーランスで受けていた仕事は、すでに3割がAIに代替された。まさかこんなに急速に技術が発展するなんて。",
+      rightBody: "かつては、正解を決めてから歩む「設計図型」の生き方が当たり前だった。\n良い大学に行き、良い会社に入り、家を買い、子供を持ち…設計図どおりに進めば幸せが保証された。\n\n今はその設計図が1年後に通用する保証はどこにもない。デザイナーが絵を描かずにコードを書くなんて、一年前には未来の話だった。私がフリーランスで受けていた仕事は、すでに3割がAIに代替された。まさかこんなに急速に技術が発展するなんて。",
     },
   },
 
@@ -287,7 +288,7 @@ export const slides: SlideData[] = [
     observeAsActive: true,
     content: {
       layout: "drift",
-      heading: "今必要なのは、正解のない中、小さく試し続けること",
+      heading: "今必要なのは、\n正解のない中、小さく試し続けること",
       body: "設計図型ではなく、「プロトタイプ型」の生き方だ。到達点が決まっていないまま動き始め、感覚に従いながらゆるやかに操舵していく。小さく試す。外す。感じて方角を修正する。\n\n到達点は最初から決まっていない。",
       imageSrc: "/images/boat.png",
       imageAlt: "上から見たヨット",
@@ -380,6 +381,7 @@ export const slides: SlideData[] = [
     observeAsActive: true,
   },
 
+    /*
   {
     id: "slide-25",
     className: "slide slide--light slide--luminous",
@@ -387,24 +389,24 @@ export const slides: SlideData[] = [
     bgEnd: "#fff8f2",
     content: {
       layout: "text",
-      label: "私自身の凸凹",
       heading: "テストは最下位と上位が\n同居していた。",
       body: "遅刻。忘れ物。バイトはクビ。\nでも、凹があるから\n農家さんの痛みがわかった。\n\n凹は弱さではなく、共鳴装置だった。",
     },
-  },
+  },  */
 
   {
     id: "slide-26",
     className: "slide slide--light slide--luminous",
-    bgStart: "#fff8f2",
-    bgEnd: "#fffaf5",
+    bgStart: "#4facd1",
+    bgEnd: "#4facd1",
     content: {
       layout: "text",
-      label: "実践",
       heading: "この原稿自体が、\nAIとの共著だ。",
-      body: "論理的にまとめるのが苦手な私の凹を、\nAIが埋めてくれた。\n\n残ったのは、私の山だけ。\nそれでいい。",
+      body: "論理的にまとめるのが苦手な私の凹を、\nAIが埋めてくれた。\n\n残ったのは、私の山だけ。",
     },
   },
+
+  /*
   {
     id: "slide-27",
     className: "slide slide--light slide--luminous",
@@ -419,7 +421,6 @@ export const slides: SlideData[] = [
     },
   },
 
-  /*
   {
     id: "slide-24",
     className: "slide slide--light slide--luminous",

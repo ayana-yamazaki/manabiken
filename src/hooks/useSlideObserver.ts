@@ -20,11 +20,11 @@ export const useSlideObserver = () => {
     const textObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const textEl = entry.target.querySelector(".slide__text") as HTMLElement | null;
-          if (!textEl) return;
+          const textEls = entry.target.querySelectorAll<HTMLElement>(".slide__text");
+          if (!textEls.length) return;
 
           if (entry.isIntersecting) {
-            textEl.classList.add("is-visible");
+            textEls.forEach((el) => el.classList.add("is-visible"));
           }
         });
       },
@@ -75,24 +75,24 @@ export const useSlideObserver = () => {
 
       slideNodes.forEach((slide) => {
         const rect = slide.getBoundingClientRect();
-        const textEl = slide.querySelector(".slide__text") as HTMLElement | null;
+        const textEls = slide.querySelectorAll<HTMLElement>(".slide__text");
 
-        if (!textEl || !textEl.classList.contains("is-visible")) {
-          return;
-        }
+        textEls.forEach((textEl) => {
+          if (!textEl.classList.contains("is-visible")) return;
 
-        const viewportCenter = scrollContainer.clientHeight / 2;
-        const slideCenter = rect.top + rect.height / 2;
-        const distanceFromCenter = slideCenter - viewportCenter;
-        const activeBand = scrollContainer.clientHeight * 0.55;
+          const viewportCenter = scrollContainer.clientHeight / 2;
+          const slideCenter = rect.top + rect.height / 2;
+          const distanceFromCenter = slideCenter - viewportCenter;
+          const activeBand = scrollContainer.clientHeight * 0.55;
 
-        if (Math.abs(distanceFromCenter) > activeBand) {
-          textEl.style.transform = "translateY(0px)";
-          return;
-        }
+          if (Math.abs(distanceFromCenter) > activeBand) {
+            textEl.style.transform = "translateY(0px)";
+            return;
+          }
 
-        const parallaxY = Math.max(-80, Math.min(80, distanceFromCenter * 0.20));
-        textEl.style.transform = `translateY(${parallaxY}px)`;
+          const parallaxY = Math.max(-80, Math.min(80, distanceFromCenter * 0.20));
+          textEl.style.transform = `translateY(${parallaxY}px)`;
+        });
       });
     };
 

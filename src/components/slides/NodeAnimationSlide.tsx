@@ -43,7 +43,7 @@ export default function NodeAnimationSlide({
       data-observe-active={observeAsActive ? "true" : undefined}
       style={{ position: "relative", overflow: "hidden" }}
     >
-      <NodeNetworkCanvas className="node-network-canvas node-network-canvas--full" bgStart={bgStart} bgEnd={bgEnd} />
+      <NodeNetworkCanvas className="node-network-canvas node-network-canvas--full" bgStart={bgStart} bgEnd={bgEnd} opacity={0.9} />
       {content ? (
         <div className="slide__inner slide__inner--basic">
           <SlideTextArea content={content} caption={caption} textClassName="basic__text" />

@@ -311,14 +311,7 @@ body {
 }
 
 .progress-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #c4956a, #1a1a2e);
-  z-index: 100;
-  width: 0%;
-  transition: width 0.1s linear;
+  display: none;
 }
 
 @media (max-width: 768px) {

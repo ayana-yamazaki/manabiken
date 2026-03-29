@@ -31,6 +31,11 @@
   scroll-behavior: smooth;
   overscroll-behavior-y: none;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.slide-deck::-webkit-scrollbar {
+  display: none;
 }
 
 .slide {

@@ -145,25 +145,7 @@ function ContentSlide({
     if (content.layout === "message") {
       return (
         <div className="slide__inner slide__inner--message">
-          <SlideTextArea content={content} caption={caption}>
-            <div className="message-pillars">
-              <div className="message-pillar">
-                <span className="message-pillar__num">1</span>
-                <div className="message-pillar__circle" />
-                <p className="message-pillar__heading">感じる力</p>
-              </div>
-              <div className="message-pillar">
-                <span className="message-pillar__num">2</span>
-                <div className="message-pillar__circle" />
-                <p className="message-pillar__heading">プロトタイプ型</p>
-              </div>
-              <div className="message-pillar">
-                <span className="message-pillar__num">3</span>
-                <div className="message-pillar__circle" />
-                <p className="message-pillar__heading">観察の場</p>
-              </div>
-            </div>
-          </SlideTextArea>
+          <SlideTextArea content={content} caption={caption} />
         </div>
       );
     }
@@ -172,10 +154,6 @@ function ContentSlide({
       return (
         <div className="slide__inner slide__inner--closing">
           <SlideTextArea content={content} caption={caption} textClassName="closing__main" />
-          <div className="closing__qr">
-            <div className="closing__qr-box" />
-            <p className="closing__qr-label">スライドはこちら</p>
-          </div>
         </div>
       );
     }

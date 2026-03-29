@@ -57,6 +57,10 @@
   transform: translateY(0);
 }
 
+.intro__text .slide__heading {
+  margin-bottom: 8px;
+}
+
 .intro__name-en {
   font-family: "Noto Sans JP", sans-serif;
   font-size: 0.85rem;
@@ -230,7 +234,7 @@
   font-size: clamp(0.85rem, 1.2vw, 1rem);
   font-weight: 300;
   opacity: 0.6;
-  margin-bottom: 3rem;
+  margin-bottom: 0;
 }
 
 .message-pillars {
